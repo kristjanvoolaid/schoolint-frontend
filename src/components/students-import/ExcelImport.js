@@ -30,7 +30,6 @@ function ExcelImport() {
         for (let i = 0; i < d.length; i++) {
           data.push(d[i]);
         }
-        console.log(data);
       });
     }
 
@@ -47,6 +46,8 @@ function ExcelImport() {
           })
           .catch((error) => { console.error('Error:', error);
         });
+
+        alert("Sent!");
     }
 
     return (
@@ -62,7 +63,6 @@ function ExcelImport() {
           type="button"
           value="Send" 
           onClick={(e) => {
-            console.log("Send")
             sendData(data);
         }}/>
       </div>

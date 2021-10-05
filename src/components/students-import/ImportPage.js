@@ -1,5 +1,5 @@
 import React from "react";
-import ExcelImport from "./components/ExcelImport";
+import ExcelImport from "./ExcelImport";
 
 const Importpage = () => {
     return (
