@@ -1,0 +1,13 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.candidates_table {
+    margin-top: 20px;
+}
+
+#candidates_row {
+    margin-left: auto;
+    margin-right: auto;
+}

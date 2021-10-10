@@ -51,7 +51,7 @@ function ExcelImport() {
     }
 
     return (
-      <div>
+      <div className="tc">
         <input 
           type="file"
           onChange={(e) => {
@@ -59,7 +59,7 @@ function ExcelImport() {
   
           readExcel(file);
         }}/>
-        <input 
+        <input
           type="button"
           value="Send" 
           onClick={(e) => {
