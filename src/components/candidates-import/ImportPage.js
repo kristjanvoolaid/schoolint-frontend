@@ -1,10 +1,12 @@
 import React from "react";
-import ExcelImport from "./ExcelImport";
+// import ExcelImport from "./ExcelImport";
+import ExcelUpload from "./ExcelUpload";
 
 const Importpage = () => {
     return (
         <div>
-            <ExcelImport />
+            {/* <ExcelImport /> */}
+            <ExcelUpload />
         </div>
     )
 }
