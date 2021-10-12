@@ -5,18 +5,37 @@ class Candidates extends Component {
     constructor() {
         super()
         this.state = {
-          'candidates': [] 
+          'candidates': [],
+          'error': null 
         }
     }
 
     componentDidMount() {
-        fetch('http://127.0.0.1:3001/students')
-        .then(response => response.json())
-        .then(candidates => this.setState({candidates: candidates.students}));
+        this.fetchCandidates();
+    }
+
+    async fetchCandidates() {
+      try {
+        const response = await fetch('http://127.0.0.1:3001/candidates');
+        const candidates = await response.json();
+  
+        this.setState({
+          candidates: candidates.candidates
+        }) 
+      } catch (error) {
+        console.log(error)
+        this.setState({
+          error: 'There was error while loading candidates'
+        })
+      }
     }
 
     render() {
-        const { candidates } = this.state;
+        const { candidates, error } = this.state;
+
+        if (error != null) {
+          return <h1 className="tc">{error}</h1>
+        }
 
         if (candidates.length < 1) {
           return <h1 className="tc">No candidates to show!</h1>

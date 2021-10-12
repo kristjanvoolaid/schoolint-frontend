@@ -22,21 +22,29 @@ class ExcelUpload extends Component {
             return alert('No file selected!');
         }
 
-        const dataToSend = new FormData();
-        dataToSend.append('file', this.state.file);
+        try {
+            const dataToSend = new FormData();
+            dataToSend.append('file', this.state.file);
         
-        // Sending file to backend
-        axios.post("http://localhost:3001/import", dataToSend, {
-        })
-        .then(response => response.statusText)
-        .then(result => console.log(result));
+            // Sending file to backend
+            axios.post("http://localhost:3001/import", dataToSend, {
+            })
+            .then(response => response.statusText)
+            .then(result => console.log(result));
+
+            alert('File sent!')
+        } catch (error) {
+            console.log(error)
+            return alert('Failed to send file')   
+        }
+
     }
 
     render() {
         return (
             <div className="tc">
                 <h1>Upload candidates excel</h1>
-                <input type="file" onChange={this.onChangeHandler}/>
+                <input name="Import" type="file" onChange={this.onChangeHandler}/>
                 <button type="button" onClick={this.onClickHandler}>Upload</button>
             </div>
         )
