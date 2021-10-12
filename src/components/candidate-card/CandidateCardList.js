@@ -5,25 +5,27 @@ import './CandidatesCard.css';
 const CandidateCardList = ({ candidates }) => {
     return (
         <div className="tc">
-            <div class="candidates_table">
+            <div id="candidates_table">
                 <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Score</th>
-                    <th>Email</th>
-                    <th>Active</th>
-                </tr>
-            </table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Email</th>
+                            <th>Active</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
             {
                 candidates.map((candidate, i) => {
                     return (
                         <CandidateCard 
-                            key={i}
-                            name={candidates[i].Name}
-                            score={candidates[i].Score}
-                            email={candidates[i].Email}
-                            active={candidates[i].Active}
+                            key={candidates[i].id}
+                            name={candidates[i].firstName + " " + candidates[i].lastName}
+                            score={candidates[i].score}
+                            email={candidates[i].email}
+                            active={candidates[i].personalId}
                         />
                     )
                 })
