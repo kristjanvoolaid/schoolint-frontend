@@ -4,6 +4,7 @@ import Importpage from "../components/candidates-import/ImportPage";
 import Candidates from "./Candidates";
 import Home from "../components/home-page/Home";
 import { Route, Link } from "react-router-dom";
+import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
 
 class App extends Component {
   constructor() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path="/home" component={Home} />
           <Route exact path="/import" component={Importpage} />
           <Route exact path="/candidates" component={Candidates} />
+          <Route exect path="/candidates/:id" component={CandidateCardDetails} />
       </div>
     )
   }

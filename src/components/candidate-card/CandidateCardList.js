@@ -22,8 +22,9 @@ const CandidateCardList = ({ candidates }) => {
                     return (
                         <CandidateCard 
                             key={candidates[i].id}
+                            id={candidates[i].id}
                             name={candidates[i].firstName + " " + candidates[i].lastName}
-                            score={candidates[i].score}
+                            score={candidates[i].finalScore}
                             email={candidates[i].email}
                             active={candidates[i].personalId}
                         />
