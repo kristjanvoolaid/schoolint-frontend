@@ -2,7 +2,7 @@ import React from "react";
 import './CandidatesCard.css';
 import { Link } from "react-router-dom";
 
-const CandidateCard = ({ id, name, score, email, active }) => {
+const CandidateCard = ({ id, name, score, email, personalId }) => {
     const candidateEndpoint = `/candidates/${id}`;
     return (
         <div className='tc'>
@@ -19,7 +19,7 @@ const CandidateCard = ({ id, name, score, email, active }) => {
                             </td>
                             <td>{score}</td>
                             <td>{email}</td>
-                            <td>{active}</td>
+                            <td>{personalId}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Menu />
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/import" component={Importpage} />
           <Route exact path="/candidates" component={Candidates} />
           <Route exect path="/candidates/:id" component={CandidateCardDetails} />
