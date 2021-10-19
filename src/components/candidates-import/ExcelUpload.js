@@ -44,7 +44,7 @@ class ExcelUpload extends Component {
         return (
             <div className="tc">
                 <h1>Upload candidates excel</h1>
-                <input name="Import" type="file" onChange={this.onChangeHandler}/>
+                <input name="Import" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
                 <button type="button" onClick={this.onClickHandler}>Upload</button>
             </div>
         )

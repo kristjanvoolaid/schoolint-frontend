@@ -30,12 +30,15 @@ Juhend:
     1. Kood peaks olema eelmisest juhendist arvutisse alla laetud. Tee kindlaks, et oled develop harus
     git branch // aktiivsel harul on * juures
 
-    2. Tee uus branch. Nimi kujuneb selliselt - feature/TH-23-uus-nupp. Ehk feature/jira-taski-nr-mida-branchis-tegema hakkad.
+    3. Lae alla viimane koodi seis (ilmselt on toimunud muudatusi viimase korraga kui arendusi tegid)
+    git pull
+
+    4. Tee uus branch. Nimi kujuneb selliselt - feature/TH-23-uus-nupp. Ehk feature/jira-taski-nr-mida-branchis-tegema hakkad.
     git checkout -b feature/jira-taski-nr-mida-branchis-tegema hakkad
 
     3. Tee vajalik arendus. Kuna oled eraldi harus, siis saad rahulikult igalpool muudatusi teha. Rakendust jooksuta samamoodi nagu esimeses juhendis
 
-    4. Kui arendus valmis, laeme haru git'i ülesse
+    4. Kui arendus valmis, lae haru git'i ülesse
     git add .
     git commit -m "jira taski nr mida branchis tegid"
     git push --set-upstream origin feature/jira-taski-nr-mida-branchis-tegema hakkad (ehk hetkel aktiivne branch)
