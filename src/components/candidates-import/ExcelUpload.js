@@ -15,7 +15,7 @@ class ExcelUpload extends Component {
         });
     }
 
-    onClickHandler = () => {
+    onClickHandler = (e) => {
         
         // TODO: Make proper alerting box or sign that no file is selected. Current solution is for testing
         if (this.state.file == null) {
@@ -33,6 +33,9 @@ class ExcelUpload extends Component {
             .then(result => console.log(result));
 
             alert('File sent!')
+            this.setState({
+                file: null
+            });
         } catch (error) {
             console.log(error)
             return alert('Failed to send file')   
@@ -42,7 +45,7 @@ class ExcelUpload extends Component {
 
     render() {
         return (
-            <div className="tc">
+            <div className="text-center">
                 <h1>Upload candidates excel</h1>
                 <input name="Import" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
                 <button type="button" onClick={this.onClickHandler}>Upload</button>

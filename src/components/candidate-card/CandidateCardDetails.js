@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import { Col, Container, Row, Table } from 'react-bootstrap';
+import { withRouter } from 'react-router';
+ 
 class CandidateCardDetails extends Component {
     constructor(props) {
         super(props)
@@ -9,6 +11,7 @@ class CandidateCardDetails extends Component {
             lastName: '',
             email: '',
             personalId: null,
+            finalScore: null,
             phoneNumber: null,
             residence: '',
             scores: {
@@ -42,6 +45,7 @@ class CandidateCardDetails extends Component {
                 lastName,
                 email,
                 personalId,
+                finalScore,
                 phoneNumber,
                 residence,
                 scores,
@@ -54,6 +58,7 @@ class CandidateCardDetails extends Component {
                 lastName: lastName,
                 email: email,
                 personalId: personalId,
+                finalScore: finalScore,
                 phoneNumber: phoneNumber,
                 residence: residence,
                 scores: scores,
@@ -64,12 +69,11 @@ class CandidateCardDetails extends Component {
             console.log(error);
         }
     }
-
     render() {
 
         if (this.state.id == null) {
             return (
-                <h1 className="tc">Loading..</h1>
+                <h1 className="text-center">Loading..</h1>
             )
         }
 
@@ -80,18 +84,110 @@ class CandidateCardDetails extends Component {
         }
 
         return (
-            <div className="tc">
-                <h1>{this.state.firstName} {this.state.lastName}</h1>
-                <h2>{this.state.email}</h2>
-                <h2>{this.state.personalId}</h2>
-                <h2>{this.state.residence}</h2>
-                <h2>Scores</h2>
-                <h4>Kat1: {this.state.scores.kat1} &nbsp;    
-                    Kat2: {this.state.scores.kat2} &nbsp;   
-                    Kat3: {this.state.scores.kat3} &nbsp;    
-                    Kat4: {this.state.scores.kat4}</h4>
-                <h2>Studies</h2>
-                {/* <h4>{this.state.studies}</h4> */}
+            <div className="text-center">
+                <Container>
+                    <Row>
+                        <Col>
+                            <h1>{this.state.firstName} {this.state.lastName}</h1>            
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <p>{this.state.personalId}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={9}></Col>
+                        <Col sm={1}>14.10</Col>
+                        <Col sm={2}>Kohal <input type="checkbox"></input></Col>
+                    </Row>
+                    <br></br>
+                    <br></br>
+                    <Row>
+                        <Table striped>
+                            <thead>
+                                <tr>
+                                <th></th>
+                                <th>Kat1</th>
+                                <th>Kat2</th>
+                                <th>Kat3</th>
+                                <th>Kat4</th>
+                                <th>Kokku</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Test</td>
+                                    <td>{this.state.scores.kat1}</td>
+                                    <td>{this.state.scores.kat2}</td>
+                                    <td>{this.state.scores.kat3}</td>
+                                    <td>{this.state.scores.kat4}</td>
+                                    <td>{this.state.finalScore}</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </Row>
+                    <Row>
+                        <Col sm={4}>Tekst<br></br><textarea rows="4" cols="20"></textarea></Col>
+                        <Col sm={4}>Märkmed<br></br><textarea rows="4" cols="20"></textarea></Col>
+                        <Col sm={4}>
+                            <br></br>
+                            <p>{this.state.residence}</p>
+                            <p>{this.state.phoneNumber}</p>
+                            <p>{this.state.email}</p>
+                        </Col>
+                    </Row>
+                    <hr></hr>
+                    <Row>
+                        <Col sm={4}>Kommentaar<br></br><textarea rows="6" cols="20"></textarea></Col>
+                        <Col sm={2}>
+                            Kat 1.1
+                            <br></br>
+                            <select>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                            </select>
+                        </Col>
+                        <Col sm={2}>
+                            Kat 1.2
+                            <br></br>
+                            <select>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                            </select>
+                        </Col>
+                        <Col sm={2}>
+                            Kat 1.3
+                            <br></br>
+                            <select>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                            </select>
+                        </Col>
+                        <Col sm={2}>
+                            Kat 1.4
+                            <br></br>
+                            <select>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                                <option value="test">Test</option>
+                            </select>
+                        </Col>
+                    </Row>
+                    <br></br>
+                    <Row>
+                        <Col sm={9}></Col>
+                        <Col sm={1}><button>Sulge</button></Col>
+                        <Col sm={1}><button>Salvesta</button></Col>
+                    </Row>
+                </Container>
             </div>
         )
     }

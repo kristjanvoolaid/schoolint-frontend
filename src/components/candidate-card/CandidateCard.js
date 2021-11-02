@@ -1,31 +1,23 @@
 import React from "react";
 import './CandidatesCard.css';
 import { Link } from "react-router-dom";
+import { Col, Container, Row, Table } from "react-bootstrap";
 
 const CandidateCard = ({ id, name, score, email, personalId }) => {
     const candidateEndpoint = `/candidates/${id}`;
     return (
-        <div className='tc'>
-            <div id="candidates_table">
-                <table className="tc" id="candidates_row">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <Link id={id} className="f6 link dim br2 ph3 pv2 mh2 mb3 mt3 dib white bg-black" to={{
-                                    pathname: candidateEndpoint,
-                                    id: id
-                                }
-                                }>{name}</Link> 
-                            </td>
-                            <td>{score}</td>
-                            <td>{email}</td>
-                            <td>{personalId}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div>
-            </div>
+        <div>                                
+            <Container>
+                <Row>
+                    <Col>
+                        <Link id={id} to={{pathname: candidateEndpoint, id: id}}>{name}</Link>
+                    </Col>
+                    <Col>{score}</Col>
+                    <Col>{email}</Col>
+                    <Col>{personalId}</Col>
+                </Row>
+            </Container>
+
         </div>
     )
 }

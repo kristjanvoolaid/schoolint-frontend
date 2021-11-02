@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Menu = () => {
     return (
-        <div className="tc ph3">
+        <div>
             <Link className="f6 link dim br2 ph3 pv2 mh2 mb3 mt3 dib white bg-black" to="/">Home</Link>
-            <Link className="f6 link dim br2 ph3 pv2 mh2 mb3 mt3 dib white bg-black" to="/import">Import</Link>
-            <Link className="f6 link dim br2 ph3 pv2 mh2 mb3 mt3 dib white bg-black" to="/candidates">Candidates</Link>
+            <Link className="f6 link dim br2 ph3 pv2 mh2 mb3 mt3 dib white bg-black" to="/candidates">Töölaud</Link>
+            <Link className="f6 link dim br2 ph3 pv2 mh2 mb3 mt3 dib white bg-black" to="/lists">Nimekirjad</Link>        
         </div>
     )
 }

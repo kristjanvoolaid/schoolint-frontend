@@ -34,15 +34,15 @@ class Candidates extends Component {
         const { candidates, error } = this.state;
 
         if (error != null) {
-          return <h1 className="tc">{error}</h1>
+          return <h1 className="text-center">{error}</h1>
         }
 
         if (candidates.length < 1) {
-          return <h1 className="tc">No candidates to show!</h1>
+          return <h1 className="text-center">No candidates to show!</h1>
         }
 
         return (
-          <div className='tc'>
+          <div className='text-center'>
             <CandidateCardList candidates={this.state.candidates} />
           </div>
         )

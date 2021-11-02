@@ -1,22 +1,20 @@
 import React from 'react'
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import CandidateCard from './CandidateCard';
 import './CandidatesCard.css';
 
 const CandidateCardList = ({ candidates }) => {
     return (
-        <div className="tc">
-            <div id="candidates_table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Score</th>
-                            <th>Email</th>
-                            <th>PersonalId</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+        <div>
+
+            <Container>
+                <Row>
+                    <Col>Name</Col>
+                    <Col>Score</Col>
+                    <Col>Email</Col>
+                    <Col>PersonalID</Col>
+                </Row>    
+            </Container> 
             {
                 candidates.map((candidate, i) => {
                     return (

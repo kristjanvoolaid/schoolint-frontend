@@ -5,6 +5,7 @@ import Candidates from "./Candidates";
 import Home from "../components/home-page/Home";
 import { Route, Link } from "react-router-dom";
 import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
+import CandidatesLists from "../components/candidates-lists/CandidatesLists";
 
 class App extends Component {
   constructor() {
@@ -20,7 +21,8 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/import" component={Importpage} />
           <Route exact path="/candidates" component={Candidates} />
-          <Route exect path="/candidates/:id" component={CandidateCardDetails} />
+          <Route exact path="/candidates/:id" component={CandidateCardDetails} />
+          <Route exact path="/lists" component={CandidatesLists} />
       </div>
     )
   }
