@@ -1,44 +1,55 @@
-import React, { Component } from 'react'
-import Sidebar from 'react-sidebar';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import { BsPower } from 'react-icons/bs';
+import  { AppSideBarData } from './AppSideBarData';
+import './AppSideBar.css';
+import { IconContext } from 'react-icons';
 
-class AppSidebar extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            sidebarOpen: false
-        };
+function AppSideBar() {
+    const [sidebar, setSidebar] = useState(false);
 
-        this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-    };
+    const showSidebar = () => setSidebar(!sidebar);
 
-    onSetSidebarOpen(open) {
-        this.setState({ sidebarOpen: open});
-    }
-
-    closeSidebar() {
-        this.setState({ sidebarOpen: false});
-    }
-    
-    render() {
-        return (
-            <div>   
-            <Sidebar
-                sidebar={
-                    <button onClick={() => this.closeSidebar()}>
-                    Close sidebar
-                    </button>}
-                open={this.state.sidebarOpen}
-                onSetOpen={this.onSetSidebarOpen}
-                styles={{ sidebar: { background: "gray"}, root: { overflow: "auto" }}}
-            >  
-            <div id="toggleMenu">
-                <GiHamburgerMenu size={30} onClick={() => this.onSetSidebarOpen(true)}/>
-            </div>    
-            </Sidebar>
+    return (
+        <>
+        <IconContext.Provider value={{color: '#fff'}}>
+            <div className="navbar">
+                <Link to="#" className="menu-bars">
+                    <FaIcons.FaBars onClick={showSidebar} color="black"/>
+                </Link>
             </div>
-        );
-    }
+            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                <ul className="nav-menu-items" onClick={showSidebar}>
+                    <li className="navbar-toggle">
+                        <Link to="#" className="menu-bars">
+                            <AiIcons.AiOutlineClose />
+                        </Link>
+                    </li>
+                    <li className="navbar-user">
+                        <h5>Tere, kasutaja!</h5>
+                        <p>RIF</p>
+                    </li>
+                    {AppSideBarData.map((item, index) => {
+                        return (
+                            <li key={index} className={item.cname}>
+                                <Link to={item.path}>
+                                    {item.icon}
+                                    <span>{item.title}</span>
+                                </Link>
+                            </li>
+                        )
+                    })}
+                    <div className="navbar-logout">
+                        <BsPower />
+                        <span>Logi välja</span>
+                    </div>
+                </ul>
+            </nav>
+        </IconContext.Provider>  
+        </>
+    )
 }
 
-export default AppSidebar;
+export default AppSideBar;
