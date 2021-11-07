@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
-import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
  
 class CandidateCardDetails extends Component {
     constructor(props) {
@@ -184,8 +184,16 @@ class CandidateCardDetails extends Component {
                     <br></br>
                     <Row>
                         <Col sm={9}></Col>
-                        <Col sm={1}><button>Sulge</button></Col>
-                        <Col sm={1}><button>Salvesta</button></Col>
+                        <Col sm={1}>
+                            <Link to="/candidates">
+                                <button>Sulge</button>
+                            </Link>
+                        </Col>
+                        <Col sm={1}>
+                            <Link to="/candidates">
+                                <button>Salvesta</button>
+                            </Link>
+                        </Col>
                     </Row>
                 </Container>
             </div>
