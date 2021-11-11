@@ -8,7 +8,7 @@ const CandidateCardList = ({ candidates }) => {
         <div>
 
             <Container>
-                <Row>
+                <Row className="candidates-list-header">
                     <Col>Name</Col>
                     <Col>Score</Col>
                     <Col>Email</Col>

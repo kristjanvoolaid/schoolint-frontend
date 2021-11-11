@@ -8,16 +8,15 @@ const CandidateCard = ({ id, name, score, email, personalId }) => {
     return (
         <div>                                
             <Container>
-                <Row>
-                    <Col>
-                        <Link id={id} to={{pathname: candidateEndpoint, id: id}}>{name}</Link>
-                    </Col>
-                    <Col>{score}</Col>
-                    <Col>{email}</Col>
-                    <Col>{personalId}</Col>
-                </Row>
+                <Link id={id} to={{pathname: candidateEndpoint, id: id}} className="candidate-name">
+                    <Row className="list-item">
+                        <Col className="candidate-name">{name}</Col>
+                        <Col>{score}</Col>
+                        <Col>{email}</Col>
+                        <Col>{personalId}</Col>
+                    </Row>
+                </Link>
             </Container>
-
         </div>
     )
 }

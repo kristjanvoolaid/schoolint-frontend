@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
  
 class CandidateCardDetails extends Component {
     constructor(props) {
@@ -24,7 +26,9 @@ class CandidateCardDetails extends Component {
                 0: '',
                 0: '',
                 0: ''
-            }
+            },
+            background: '',
+            notes: ''
         }
     }
 
@@ -49,7 +53,9 @@ class CandidateCardDetails extends Component {
                 phoneNumber,
                 residence,
                 scores,
-                studies
+                studies,
+                background,
+                notes
             } = candidate.candidate;
             
             this.setState({
@@ -62,9 +68,10 @@ class CandidateCardDetails extends Component {
                 phoneNumber: phoneNumber,
                 residence: residence,
                 scores: scores,
-                studies: studies
+                studies: studies,
+                background: background,
+                notes: notes
             });
-
         } catch (error) {
             console.log(error);
         }
@@ -128,10 +135,9 @@ class CandidateCardDetails extends Component {
                         </Table>
                     </Row>
                     <Row>
-                        <Col sm={4}>Tekst<br></br><textarea rows="4" cols="20"></textarea></Col>
-                        <Col sm={4}>Märkmed<br></br><textarea rows="4" cols="20"></textarea></Col>
+                        <Col sm={4}><p>Tekst</p><p>{this.state.background}</p></Col>
+                        <Col sm={4}><p>Märkmed</p><p>{this.state.notes}</p></Col>
                         <Col sm={4}>
-                            <br></br>
                             <p>{this.state.residence}</p>
                             <p>{this.state.phoneNumber}</p>
                             <p>{this.state.email}</p>
@@ -190,9 +196,15 @@ class CandidateCardDetails extends Component {
                             </Link>
                         </Col>
                         <Col sm={1}>
-                            <Link to="/candidates">
-                                <button>Salvesta</button>
-                            </Link>
+                            <Popup trigger={<button>Salvesta</button>} modal>
+                                <div>
+                                    <p>Kas oled kindel, et soovid dalvestada ja väljuda?</p>
+                                </div>
+                                <button>Sulge</button>
+                                <Link to="/candidates">
+                                    <button>Salvesta</button>
+                                </Link>
+                            </Popup>
                         </Col>
                     </Row>
                 </Container>

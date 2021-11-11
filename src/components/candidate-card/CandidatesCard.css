@@ -1,13 +1,24 @@
-table {
-    border-collapse: collapse;
-    width: 100%;
+.candidate-name {
+    text-decoration: none;
+    color: black;
 }
 
-.candidates_table {
-    margin-top: 20px;
+.candidates-list-header {
+    font-size: 30px;
+    margin-bottom: 5px;
 }
 
-#candidates_row {
-    margin-left: auto;
-    margin-right: auto;
+.list-item {
+    margin-bottom: 15px;
+    background: lightgray;
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.list-item:hover {
+    background: white;
+    cursor: pointer;
 }
