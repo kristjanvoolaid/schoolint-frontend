@@ -9,26 +9,26 @@ class CandidateCardDetails extends Component {
         super(props)
         this.state = {
             id: null,
-            firstName: '',
-            lastName: '',
-            email: '',
-            personalId: null,
+            firstName: '-',
+            lastName: '-',
+            email: '-',
+            personalId: '-',
             finalScore: null,
-            phoneNumber: null,
-            residence: '',
+            phoneNumber: '-',
+            residence: '-',
             scores: {
-                kat1: null,
-                kat2: null,
-                kat3: null,
-                kat4: null,
+                kat1: '-',
+                kat2: '-',
+                kat3: '-',
+                kat4: '-',
             },
             studies: {
                 0: '',
                 0: '',
                 0: ''
             },
-            background: '',
-            notes: ''
+            background: '-',
+            notes: '-'
         }
     }
 
@@ -49,16 +49,18 @@ class CandidateCardDetails extends Component {
                 lastName,
                 email,
                 personalId,
-                finalScore,
                 phoneNumber,
                 residence,
+                finalScore,
                 scores,
                 studies,
                 background,
                 notes
             } = candidate.candidate;
-            
-            this.setState({
+
+            // Check if results are available
+            if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
+                this.setState({
                 id: id,
                 firstName: firstName,
                 lastName: lastName,
@@ -72,6 +74,16 @@ class CandidateCardDetails extends Component {
                 background: background,
                 notes: notes
             });
+            }            
+            
+            this.setState({
+                id: id,
+                firstName: firstName,
+                lastName: lastName,
+                personalId: personalId,
+                residence: residence,
+                phoneNumber: phoneNumber,
+            });
         } catch (error) {
             console.log(error);
         }
@@ -84,7 +96,7 @@ class CandidateCardDetails extends Component {
             )
         }
 
-        if (this.state.studies.length > 1) {
+        if (this.state.studies.length < 1) {
             this.setState({
                 studies: 'No studies'
             });
