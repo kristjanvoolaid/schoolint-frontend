@@ -5,8 +5,17 @@ class ExcelUpload extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            file: null
+            file: null,
+            selectedValue: 1
         }
+    }
+
+    handleSelectedChange = (e) => {
+        this.setState({
+            selectedValue: e.target.value
+        });
+
+        console.log(this.state.selectedValue);
     }
 
     onChangeHandler = (e) => {
@@ -25,9 +34,13 @@ class ExcelUpload extends Component {
         try {
             const dataToSend = new FormData();
             dataToSend.append('file', this.state.file);
+            dataToSend.append('templateValue', this.state.selectedValue);
         
             // Sending file to backend
-            axios.post("http://localhost:3001/import", dataToSend, {
+            axios({
+                method: "POST",
+                url: "http://localhost:3001/upload",
+                data: dataToSend,
             })
             .then(response => response.statusText)
             .then(result => console.log(result));
@@ -40,14 +53,17 @@ class ExcelUpload extends Component {
             console.log(error)
             return alert('Failed to send file')   
         }
-
     }
 
     render() {
         return (
             <div className="text-center">
                 <h1>Upload candidates excel</h1>
-                <input name="Import" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
+                <select name="templateValue" id="templateChoice" defaultValue={this.state.selectedValue} onChange={this.handleSelectedChange}>
+                        <option value="1">SAIS</option>
+                        <option value="2">Kandidaadid</option>
+                </select>
+                <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
                 <button type="button" onClick={this.onClickHandler}>Upload</button>
             </div>
         )
