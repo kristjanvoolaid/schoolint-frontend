@@ -4,9 +4,13 @@ import axios from 'axios'
 class ExcelUpload extends Component {
     constructor(props) {
         super(props)
+
+        let date = new Date();
+
         this.state = {
             file: null,
-            selectedValue: 1
+            selectedValue: 1,
+            year: date.getFullYear()
         }
     }
 
@@ -16,6 +20,13 @@ class ExcelUpload extends Component {
         });
 
         console.log(this.state.selectedValue);
+    }
+
+    handleSelectedYear = (e) => {
+        console.log(e.target.value);
+        this.setState({
+            year: e.target.value
+        })
     }
 
     onChangeHandler = (e) => {
@@ -35,6 +46,7 @@ class ExcelUpload extends Component {
             const dataToSend = new FormData();
             dataToSend.append('file', this.state.file);
             dataToSend.append('templateValue', this.state.selectedValue);
+            dataToSend.append('year', this.state.year);
         
             // Sending file to backend
             axios({
@@ -61,8 +73,9 @@ class ExcelUpload extends Component {
                 <h1>Upload candidates excel</h1>
                 <select name="templateValue" id="templateChoice" defaultValue={this.state.selectedValue} onChange={this.handleSelectedChange}>
                         <option value="1">SAIS</option>
-                        <option value="2">Kandidaadid</option>
+                        <option value="2">Tulemused</option>
                 </select>
+                <input name="year" type="number" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
                 <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
                 <button type="button" onClick={this.onClickHandler}>Upload</button>
             </div>
