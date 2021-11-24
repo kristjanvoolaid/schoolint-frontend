@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
 import CandidatesLists from "../components/candidates-lists/CandidatesLists";
 import AppSidebar from "../components/sidebar/AppSidebar";
+import AppHeader from "../components/header/AppHeader";
 
 class App extends Component {
   constructor() {
@@ -17,7 +18,8 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <AppSidebar />
+        <AppHeader />
+        {/* <AppSidebar /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/import" component={Importpage} />
