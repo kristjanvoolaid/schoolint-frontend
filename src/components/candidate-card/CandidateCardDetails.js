@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -30,6 +31,8 @@ class CandidateCardDetails extends Component {
             background: '-',
             notes: '-'
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -37,7 +40,6 @@ class CandidateCardDetails extends Component {
     }
 
     async fetchCandidate() {
-        const { id } = this.props.location;
         const endpoint = window.location.pathname;
         try {
             const response = await fetch(`http://127.0.0.1:3001${endpoint}`);
@@ -88,6 +90,34 @@ class CandidateCardDetails extends Component {
             console.log(error);
         }
     }
+
+    handleChange(e) {
+        console.log(e.target.value);
+        this.setState({
+            notes: e.target.value
+        });
+    }
+
+    candidateChanges = () => {
+        const candidateId = window.location.pathname;
+        const { id, firstName, lastName, email, personalId, notes } = this.state;
+
+        axios({
+            method: "PATCH",
+            url: `http://localhost:3001${candidateId}`,
+            data: {
+                id,
+                firstName,
+                lastName,
+                email,
+                personalId,
+                notes
+            }
+        })
+        .then(response => response.statusText)
+        .then(result => console.log(result))
+    }
+
     render() {
 
         if (this.state.id == null) {
@@ -157,7 +187,7 @@ class CandidateCardDetails extends Component {
                     </Row>
                     <hr></hr>
                     <Row>
-                        <Col sm={4}>Kommentaar<br></br><textarea rows="6" cols="20"></textarea></Col>
+                        <Col sm={4}>Kommentaar<br></br><textarea onChange={this.handleChange} rows="6" cols="20"></textarea></Col>
                         <Col sm={2}>
                             Kat 1.1
                             <br></br>
@@ -214,7 +244,7 @@ class CandidateCardDetails extends Component {
                                 </div>
                                 <button>Sulge</button>
                                 <Link to="/candidates">
-                                    <button>Salvesta</button>
+                                    <button onClick={this.candidateChanges}>Salvesta</button>
                                 </Link>
                             </Popup>
                         </Col>
