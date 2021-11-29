@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import CandidatesListItem from './CandidatesListItem';
+import CandidatesListsItem from './CandidatesListsItem';
 
 const CandidatesLists = ({ candidatesLists }) => {
     return (
@@ -19,7 +19,7 @@ const CandidatesLists = ({ candidatesLists }) => {
         {
             candidatesLists.map((listItem, i) => {
                 return (
-                    <CandidatesListItem
+                    <CandidatesListsItem
                         id={candidatesLists[i].id}
                         listCode={candidatesLists[i].listCode}
                         year={candidatesLists[i].year}

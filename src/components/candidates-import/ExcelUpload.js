@@ -42,12 +42,12 @@ class ExcelUpload extends Component {
             return alert('No file selected!');
         }
 
+        const dataToSend = new FormData();
+        dataToSend.append('file', this.state.file);
+        dataToSend.append('templateValue', this.state.selectedValue);
+        dataToSend.append('year', this.state.year);
+
         try {
-            const dataToSend = new FormData();
-            dataToSend.append('file', this.state.file);
-            dataToSend.append('templateValue', this.state.selectedValue);
-            dataToSend.append('year', this.state.year);
-        
             // Sending file to backend
             axios({
                 method: "POST",
