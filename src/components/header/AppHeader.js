@@ -1,101 +1,71 @@
 import './AppHeader.css';
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
 import { BsPower } from 'react-icons/bs';
-import { AppHeaderData } from './AppHeaderData';
 import { IconContext } from 'react-icons';
-
-
-import { Row, Container, Nav, Button, Form, FormControl } from 'react-bootstrap'
+import * as AiIcons from 'react-icons/ai';
+import * as IoIcons from 'react-icons/io';
+import * as CgIcons from 'react-icons/cg';
+import * as BsIcons from 'react-icons/bs';
+import { Container, Nav, Button, Form, FormControl } from 'react-bootstrap'
 import { Navbar } from 'react-bootstrap';
 
 function AppHeader() {
      {
         return (
-          <IconContext.Provider value={{color: '#fff'}}>
+          <IconContext.Provider value={{color: 'white', size: '30px', fontSize: '1em'}}>
             <div className="App-header">
-                <Navbar bg="medium" expand = "lg">
-                    <Container fluid>
 
-                    <Navbar.Brand href="./">
-                    <img 
-                    src= "https://www.tlu.ee/sites/default/files/TUKO/%C3%9Clikoolo%20logo/TLU-logo-pilt-vrv-suur.jpg"
-                    width="130"
-                    height="50"
-                    className="d-inline-block align-top"
-                    alt="TLU logo"/>
-                    </Navbar.Brand>
-
-                    <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
+                
+            <Navbar collapseOnSelect expand="sm" variant= 'dark'>
+               <Container>
+                <Navbar.Brand href="./">
+                <img 
+                src= "https://www.tlu.ee/sites/default/files/TUKO/%C3%9Clikoolo%20logo/TLU-logo-pilt-vrv-suur.jpg"
+                width="130"
+                height="50"
+                className="d-inline-block align-top"
+                alt="TLU logo"/>
+                </Navbar.Brand>
+                </Container>
+                
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Container>
                     <Nav
-                        className="me-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}
-                        navbarScroll
-                      >
+                    className="justify-content-end"
+                    >
 
-                {AppHeaderData.map((item, index) => {
-                        return (
-                            <li key={index} className={item.cname}>
-                                <Link to={item.path}>
-                                    {item.icon}
-                                    <span>{item.title}</span>
-                                </Link>
-                            </li>
-                        )
-                    })}
-                        <Nav.Link className="navbar-logout" exact to="./">
-                              <BsPower />
-                              <span>Logi välja</span>
-                              </Nav.Link>
-                         
-                      </Nav>
-      
 
-    </Navbar.Collapse>
+                            <Nav.Link eventKey='Töölaud' href="/lists"><CgIcons.CgMenuBoxed />Töölaud</Nav.Link>
+                            <Nav.Link eventKey='Nimekirjad' href="/candidates"><BsIcons.BsListUl />Nimekirjad</Nav.Link>
+                            <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link>
+                            <Nav.Link eventKey='Logout'  href="/"><BsPower />Välju</Nav.Link>
+
+                        {/* </Nav.Item> */}
+                    </Nav>
                     </Container>
-                    <Form className="d-flex">
+                    
+                </Navbar.Collapse>
+                
+            </Navbar>
+                      
+           
+            </div>
+            <div>
+                <p></p>
+            </div>
+          
+            <Form className="d-flex">
                         <FormControl
                           type="search"
-                          placeholder="Search"
-                          className="me-2"
+                          placeholder="Otsi"
+                          className="justify-content-xl-end"
                           aria-label="Search"
+
                         />
                         <Button variant="outline-success">Search</Button>
                       </Form>
-
-
-                </Navbar>
-
-
-
-                {/* <Row>  */}
-                    {/* <Col xs={2} md={2}> <Image src= "https://www.tlu.ee/sites/default/files/TUKO/%C3%9Clikoolo%20logo/TLU-logo-pilt-vrv-suur.jpg" thumbnail/></Col>
-                    <Col md={6}> Header </Col>
-                    <Col xs= {4} md={2}> 
-                    <ButtonGroup>
-                    <Link to="#" className="menu-bars">
-                        <Button className="button">
-                    <FaIcons.FaBars color="secondary"/>
-                        </Button>
-                    </Link>
-                    <Link to="#" className="menu-bars">
-                        <Button className="button">
-                    <FaIcons.FaBars color="secondary"/>
-                        </Button>
-                    </Link>
-                    <Link to="#" className="navbar-logout">
-                        <Button className="button">
-                        <BsPower />
-                        {/* <span>Logi välja</span> */}
-                        {/* </Button>
-                    </Link> */}
-{/* 
-                    </ButtonGroup></Col> */} 
-                 {/* </Row> */}
-
-             
-            </div>
+                     
             </IconContext.Provider>
         )
     }
