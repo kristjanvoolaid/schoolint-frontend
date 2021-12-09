@@ -4,7 +4,7 @@ import Candidates from "./Candidates";
 import Home from "../components/home-page/Home";
 import { Route, Switch } from "react-router-dom";
 import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
-import CandidatesLists from "../components/candidates-lists/CandidatesLists";
+import CandidatesListsFetch from "./CandidatesListsFetch";
 import AppSidebar from "../components/sidebar/AppSidebar";
 import AppHeader from "../components/header/AppHeader";
 
@@ -25,7 +25,7 @@ class App extends Component {
           <Route exact path="/import" component={Importpage} />
           <Route exact path="/candidates" component={Candidates} />
           <Route exact path="/candidates/:id" component={CandidateCardDetails} />
-          <Route exact path="/lists" component={CandidatesLists} />
+          <Route exact path="/lists" component={CandidatesListsFetch} />
         </Switch>
       </div>
     )

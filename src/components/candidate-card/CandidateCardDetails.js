@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -9,27 +10,29 @@ class CandidateCardDetails extends Component {
         super(props)
         this.state = {
             id: null,
-            firstName: '',
-            lastName: '',
-            email: '',
-            personalId: null,
+            firstName: '-',
+            lastName: '-',
+            email: '-',
+            personalId: '-',
             finalScore: null,
-            phoneNumber: null,
-            residence: '',
+            phoneNumber: '-',
+            residence: '-',
             scores: {
-                kat1: null,
-                kat2: null,
-                kat3: null,
-                kat4: null,
+                kat1: '-',
+                kat2: '-',
+                kat3: '-',
+                kat4: '-',
             },
             studies: {
                 0: '',
                 0: '',
                 0: ''
             },
-            background: '',
-            notes: ''
+            background: '-',
+            notes: '-'
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -37,7 +40,6 @@ class CandidateCardDetails extends Component {
     }
 
     async fetchCandidate() {
-        const { id } = this.props.location;
         const endpoint = window.location.pathname;
         try {
             const response = await fetch(`http://127.0.0.1:3001${endpoint}`);
@@ -49,16 +51,18 @@ class CandidateCardDetails extends Component {
                 lastName,
                 email,
                 personalId,
-                finalScore,
                 phoneNumber,
                 residence,
+                finalScore,
                 scores,
                 studies,
                 background,
                 notes
             } = candidate.candidate;
-            
-            this.setState({
+
+            // Check if results are available
+            if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
+                this.setState({
                 id: id,
                 firstName: firstName,
                 lastName: lastName,
@@ -72,10 +76,48 @@ class CandidateCardDetails extends Component {
                 background: background,
                 notes: notes
             });
+            }            
+            
+            this.setState({
+                id: id,
+                firstName: firstName,
+                lastName: lastName,
+                personalId: personalId,
+                residence: residence,
+                phoneNumber: phoneNumber,
+            });
         } catch (error) {
             console.log(error);
         }
     }
+
+    handleChange(e) {
+        console.log(e.target.value);
+        this.setState({
+            notes: e.target.value
+        });
+    }
+
+    candidateChanges = () => {
+        const candidateId = window.location.pathname;
+        const { id, firstName, lastName, email, personalId, notes } = this.state;
+
+        axios({
+            method: "PATCH",
+            url: `http://localhost:3001${candidateId}`,
+            data: {
+                id,
+                firstName,
+                lastName,
+                email,
+                personalId,
+                notes
+            }
+        })
+        .then(response => response.statusText)
+        .then(result => console.log(result))
+    }
+
     render() {
 
         if (this.state.id == null) {
@@ -84,7 +126,7 @@ class CandidateCardDetails extends Component {
             )
         }
 
-        if (this.state.studies.length > 1) {
+        if (this.state.studies.length < 1) {
             this.setState({
                 studies: 'No studies'
             });
@@ -145,7 +187,7 @@ class CandidateCardDetails extends Component {
                     </Row>
                     <hr></hr>
                     <Row>
-                        <Col sm={4}>Kommentaar<br></br><textarea rows="6" cols="20"></textarea></Col>
+                        <Col sm={4}>Kommentaar<br></br><textarea onChange={this.handleChange} rows="6" cols="20"></textarea></Col>
                         <Col sm={2}>
                             Kat 1.1
                             <br></br>
@@ -202,7 +244,7 @@ class CandidateCardDetails extends Component {
                                 </div>
                                 <button>Sulge</button>
                                 <Link to="/candidates">
-                                    <button>Salvesta</button>
+                                    <button onClick={this.candidateChanges}>Salvesta</button>
                                 </Link>
                             </Popup>
                         </Col>
