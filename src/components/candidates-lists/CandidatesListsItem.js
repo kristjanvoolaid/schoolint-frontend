@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
@@ -67,10 +67,11 @@ class CandidatesListsItem extends Component {
         const { id, listCode, year } = this.props;
         return (
             <div>
-                <Container>
+                <Container className="text-center">
                     <Row>
-                        <Col sm={2}>{year}</Col>
-                        <Col sm={8}>{listCode}</Col>
+                        <Col>{id}</Col>
+                        <Col>{year}</Col>
+                        <Col>{listCode}</Col>
                         <Col>
                         <Popup trigger={<button>Import</button>} modal>
                                 {/* <div> */}
@@ -108,8 +109,8 @@ class CandidatesListsItem extends Component {
                                     </Row>
                                 {/* </div> */}
                             </Popup>
+                            <button>Export</button>
                         </Col>
-                        <Col><button>Export</button></Col>
                     </Row>
                 </Container>
             </div>

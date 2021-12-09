@@ -1,12 +1,11 @@
 import React from 'react'
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import CandidateCard from './CandidateCard';
 import './CandidatesCard.css';
 
 const CandidateCardList = ({ candidates }) => {
     return (
         <div>
-
             <Container>
                 <Row className="candidates-list-header">
                     <Col>Nr</Col>
@@ -26,6 +25,7 @@ const CandidateCardList = ({ candidates }) => {
                             score={candidates[i].finalScore}
                             email={candidates[i].email}
                             personalId={candidates[i].personalId}
+                            present={candidates[i].present}
                         />
                     )
                 })
