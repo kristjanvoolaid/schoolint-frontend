@@ -9,6 +9,8 @@ class CandidateCardDetails extends Component {
     constructor(props) {
         super(props)
         this.state = {
+
+            // Candidate details
             id: null,
             firstName: '-',
             lastName: '-',
@@ -29,15 +31,34 @@ class CandidateCardDetails extends Component {
                 0: ''
             },
             background: '-',
-            notes: '-'
+            notes: '-',
+            comments: '',
+            room: '-',
+
+            // Candidate present
+            present: '',
+
+            // Stopwatch data
+            minutes: 0,
+            seconds: 0,
         }
 
         this.handleChange = this.handleChange.bind(this);
     }
 
+    candidatePresent = () => {
+        if (!this.state.present) {
+            this.startStopWatch();
+        }
+
+        this.setState({
+            present: !this.state.present,
+        });
+    };
+
     componentDidMount() {
         this.fetchCandidate();
-    }
+    };
 
     async fetchCandidate() {
         const endpoint = window.location.pathname;
@@ -57,7 +78,10 @@ class CandidateCardDetails extends Component {
                 scores,
                 studies,
                 background,
-                notes
+                notes,
+                comments,
+                room,
+                present
             } = candidate.candidate;
 
             // Check if results are available
@@ -74,7 +98,10 @@ class CandidateCardDetails extends Component {
                 scores: scores,
                 studies: studies,
                 background: background,
-                notes: notes
+                notes: notes,
+                comments: comments,
+                room: room,
+                present: present
             });
             }            
             
@@ -89,19 +116,18 @@ class CandidateCardDetails extends Component {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     handleChange(e) {
-        console.log(e.target.value);
         this.setState({
-            notes: e.target.value
+            comments: e.target.value
         });
-    }
+    };
 
     candidateChanges = () => {
         const candidateId = window.location.pathname;
-        const { id, firstName, lastName, email, personalId, notes } = this.state;
-
+        const { id, firstName, lastName, email, personalId, notes, present, comments } = this.state;
+        
         axios({
             method: "PATCH",
             url: `http://localhost:3001${candidateId}`,
@@ -111,15 +137,38 @@ class CandidateCardDetails extends Component {
                 lastName,
                 email,
                 personalId,
-                notes
+                notes,
+                present,
+                comments
             }
         })
         .then(response => response.statusText)
         .then(result => console.log(result))
     }
 
-    render() {
+    startStopWatch = () => {
+        clearInterval(this.myInterval);
+        this.myInterval = setInterval(() => {
+            if (this.state.seconds === 59) {
+                this.setState(prevState => ({
+                    minutes: prevState.minutes + 1,
+                    seconds: 0
+                }))
+            } else {
+                this.setState(prevState => ({
+                    seconds: prevState.seconds + 1
+                }))
+            }
+        }, 1000)
+    }
 
+    componentWillUnmount() {
+        clearInterval(this.myInterval);
+    }
+
+    render() {
+        const { minutes, seconds } = this.state;
+        let presentButtonClassName = this.state.present ? "present_btn_pressed" : "present_btn";
         if (this.state.id == null) {
             return (
                 <h1 className="text-center">Loading..</h1>
@@ -146,9 +195,9 @@ class CandidateCardDetails extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm={9}></Col>
-                        <Col sm={1}>14.10</Col>
-                        <Col sm={2}>Kohal <input type="checkbox"></input></Col>
+                        <Col sm={10}></Col>
+                        <Col sm={1}><h4>{minutes}:{seconds}</h4></Col>
+                        <Col sm={1}><button className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
                     </Row>
                     <br></br>
                     <br></br>
@@ -187,7 +236,7 @@ class CandidateCardDetails extends Component {
                     </Row>
                     <hr></hr>
                     <Row>
-                        <Col sm={4}>Kommentaar<br></br><textarea onChange={this.handleChange} rows="6" cols="20"></textarea></Col>
+                        <Col sm={4}>Kommentaar<br></br><textarea value={this.state.comments} onChange={this.handleChange} rows="6" cols="20"></textarea></Col>
                         <Col sm={2}>
                             Kat 1.1
                             <br></br>

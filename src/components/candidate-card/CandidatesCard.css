@@ -18,7 +18,31 @@
     padding-bottom: 10px;
 }
 
+.list-item_present {
+    margin-bottom: 15px;
+    background: lightgreen;
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .list-item:hover {
     background: white;
     cursor: pointer;
+}
+
+.present_btn {
+    background-color: #808080;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.present_btn_pressed {
+    background-color: #4CBB17;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
 }
