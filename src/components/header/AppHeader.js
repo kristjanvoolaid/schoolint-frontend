@@ -1,4 +1,5 @@
 import './AppHeader.css';
+import Logo from './images/logo.svg';
 import React, {useState} from 'react';
 import { BsPower } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
@@ -6,7 +7,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as CgIcons from 'react-icons/cg';
 import * as BsIcons from 'react-icons/bs';
-import { Container, Nav, Button, Form, FormControl } from 'react-bootstrap'
+import { Container, Nav, Button, Form, FormControl, Figure } from 'react-bootstrap'
 import { Navbar } from 'react-bootstrap';
 
 function AppHeader() {
@@ -19,10 +20,10 @@ function AppHeader() {
             <Navbar collapseOnSelect expand="sm" variant= 'dark'>
                <Container>
                 <Navbar.Brand href="./">
-                <img 
-                src= "https://www.tlu.ee/sites/default/files/TUKO/%C3%9Clikoolo%20logo/TLU-logo-pilt-vrv-suur.jpg"
-                width="130"
-                height="50"
+                <Figure.Image 
+                src= {Logo}
+                width="200"
+                height="100"
                 className="d-inline-block align-top"
                 alt="TLU logo"/>
                 </Navbar.Brand>
@@ -59,7 +60,7 @@ function AppHeader() {
                         <FormControl
                           type="search"
                           placeholder="Otsi"
-                          className="justify-content-xl-end"
+                          className="mb-1"
                           aria-label="Search"
 
                         />

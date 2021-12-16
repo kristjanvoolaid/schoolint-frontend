@@ -197,7 +197,7 @@ class CandidateCardDetails extends Component {
                     <Row>
                         <Col sm={10}></Col>
                         <Col sm={1}><h4>{minutes}:{seconds}</h4></Col>
-                        <Col sm={1}><button className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
+                        <Col sm={1}><button type="button1" className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
                     </Row>
                     <br></br>
                     <br></br>
@@ -283,17 +283,17 @@ class CandidateCardDetails extends Component {
                         <Col sm={9}></Col>
                         <Col sm={1}>
                             <Link to="/candidates">
-                                <button>Sulge</button>
+                                <button className="button2">Sulge</button>
                             </Link>
                         </Col>
                         <Col sm={1}>
-                            <Popup trigger={<button>Salvesta</button>} modal>
+                            <Popup trigger={<button className="button1">Salvesta</button>} modal>
                                 <div>
-                                    <p>Kas oled kindel, et soovid dalvestada ja väljuda?</p>
+                                    <p>Kas oled kindel, et soovid salvestada ja väljuda?</p>
                                 </div>
-                                <button>Sulge</button>
+                                <button className="button2">Sulge</button>
                                 <Link to="/candidates">
-                                    <button onClick={this.candidateChanges}>Salvesta</button>
+                                    <button className="button1" onClick={this.candidateChanges}>Salvesta</button>
                                 </Link>
                             </Popup>
                         </Col>

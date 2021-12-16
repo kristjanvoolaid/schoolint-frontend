@@ -6,7 +6,8 @@
     /* align-items: center; */
     justify-content: center;
     font-size: calc(9px + 1vmin);
-    color: rgb(187, 72, 72);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(184, 93, 93);
   }
 
   .button {
