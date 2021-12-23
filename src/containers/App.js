@@ -6,7 +6,6 @@ import { Route, Switch } from "react-router-dom";
 import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
 import CandidatesListsFetch from "./CandidatesListsFetch";
 import AppSidebar from "../components/sidebar/AppSidebar";
-import Settings from "../components/settings/Settings";
 import AppUsers from "./AppUsers";
 
 class App extends Component {

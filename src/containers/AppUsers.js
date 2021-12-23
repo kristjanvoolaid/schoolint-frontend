@@ -42,37 +42,51 @@ class AppUsers extends Component {
     }
 
     createUser(firstName, lastName, email, password, specialityCode) {
-        const userPostRequest = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ firstName, lastName, email, password, specialityCode})
-        };
-        
-        fetch('http://127.0.0.1:3001/users', userPostRequest)
-        .then(response => response.json())
-        .then(data => console.log(data));
+        try {
+            const userPostRequest = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ firstName, lastName, email, password, specialityCode})
+            };
+            
+            fetch('http://127.0.0.1:3001/users', userPostRequest)
+            .then(response => response.json())
+            .then(data => console.log(data));
+    
+            // Refresh page if user is created
+            window.location.reload(false);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     createTag(name, courseId) {
-        const tagPostRequest = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, courseId })
-        };
+        try {
+            const tagPostRequest = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, courseId })
+            };
+    
+            fetch('http://127.0.0.1:3001/tags', tagPostRequest)
+            .then(response => response.json())
+            .then(data => console.log(data));
 
-        fetch('http://127.0.0.1:3001/tags', tagPostRequest)
-        .then(response => response.json())
-        .then(data => console.log(data));
+            // Refresh page if tag is created
+            window.location.reload(false);
+        } catch (error) {
+            console.log(error);
+        }
     }
     
     render() {
         const { users, tags } = this.state;
         if (users.length < 1) {
-            return <h1>No users to show!</h1>
+            return <h1 className="text-center">No users to show!</h1>
         }
 
         if (tags.length < 1) {
-            return <h1>No tags to show!</h1>
+            return <h1 className="text-center">No tags to show!</h1>
         }
         
         return (

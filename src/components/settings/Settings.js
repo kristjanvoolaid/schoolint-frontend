@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import SettingsAppTags from './SettingsAppTags';
 import SettingsAppUser from './SettingsAppUser';
@@ -72,53 +73,57 @@ class Settings extends Component {
                         <Row>
                             <Col md={{ offset: 9 }}>
                                 <Popup trigger={<button>Lisa uus +</button>} modal>
-                                    <Row className="text-center">
-                                        <Col>Uus kasutaja</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Eesnimi</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleUserFirstName}></input></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Perekonnanimi</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleUserLastName}></input></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Email</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Email" onChange={this.handleUserEmail}></input></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Parool</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="password" placeholder="Parool" onChange={this.handleUserPassword}></input></Col>
-                                    </Row>
-                                    <Row className="text-center">
-                                        <Col>Õppekava</Col>
-                                    </Row>
-                                    <Row className="text-center">
-                                        <Col>
-                                            <select onChange={this.handleUserSpecialityCode}>
-                                                <option value="Vali" disabled hidden>Vali</option>
-                                                <option value="RIF">RIF</option>
-                                                <option value="KTD">KTD</option>
-                                                <option value="LO">LO</option>
-                                                <option value="TE">TE</option>
-                                            </select>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>
-                                            <button>Tagasi</button>
-                                            <button onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</button>
-                                        </Col>
-                                    </Row>
+                                    {close => (
+                                        <div>
+                                            <Row className="text-center">
+                                                <Col>Uus kasutaja</Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}>Eesnimi</Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleUserFirstName}></input></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}>Perekonnanimi</Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleUserLastName}></input></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}>Email</Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}><input type="text" placeholder="Email" onChange={this.handleUserEmail}></input></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}>Parool</Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}><input type="password" placeholder="Parool" onChange={this.handleUserPassword}></input></Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col>Õppekava</Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col>
+                                                    <select onChange={this.handleUserSpecialityCode}>
+                                                        <option value="Vali" disabled hidden>Vali</option>
+                                                        <option value="RIF">RIF</option>
+                                                        <option value="KTD">KTD</option>
+                                                        <option value="LO">LO</option>
+                                                        <option value="TE">TE</option>
+                                                    </select>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col md={{ offset: 4 }}>
+                                                    <button onClick={close}>Tagasi</button>
+                                                    <button onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</button>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    )}
                                 </Popup>
                             </Col>
                         </Row>
@@ -149,36 +154,40 @@ class Settings extends Component {
                             <Container className="text-center">
                                 <Row>
                                     <Col md={{ offset: 9 }}>
-                                        <Popup trigger={<button>Lisa +</button>} modal>
-                                            <Row className="text-center">
-                                                <Col>Uus silt</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}>Nimi</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleTagName}></input></Col>
-                                            </Row>
-                                            <Row className="text-center">
-                                                <Col>Õppekava</Col>
-                                            </Row>
-                                            <Row className="text-center">
-                                                <Col>
-                                                    <select onChange={this.handleTagCourseId}>
-                                                        <option value="Vali" disabled hidden>Vali</option>
-                                                        <option value="1">RIF</option>
-                                                        <option value="2">KTD</option>
-                                                        <option value="3">LO</option>
-                                                        <option value="4">TE</option>
-                                                    </select>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}>
-                                                    <button>Tagasi</button>
-                                                    <button onClick={() => createTag(tagName, tagCourseId)}>Lisa</button>
-                                                </Col>
-                                            </Row>
+                                        <Popup trigger={<button>Lisa +</button>} modal nested>
+                                            {close => (
+                                                <div>
+                                                    <Row className="text-center">
+                                                        <Col>Uus silt</Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col md={{ offset: 4 }}>Nimi</Col>
+                                                    </Row>                                        
+                                                    <Row>
+                                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleTagName}></input></Col>
+                                                    </Row>
+                                                    <Row className="text-center">
+                                                        <Col>Õppekava</Col>
+                                                    </Row>
+                                                    <Row className="text-center">
+                                                        <Col>
+                                                            <select onChange={this.handleTagCourseId}>
+                                                                <option value="Vali" disabled hidden>Vali</option>
+                                                                <option value="1">RIF</option>
+                                                                <option value="2">KTD</option>
+                                                                <option value="3">LO</option>
+                                                                <option value="4">TE</option>
+                                                            </select>                                       
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col md={{ offset: 4 }}>
+                                                            <button onClick={close}>Tagasi</button>
+                                                            <button onClick={() => createTag(tagName, tagCourseId)}>Lisa</button>
+                                                        </Col>
+                                                    </Row>
+                                                </div>     
+                                            )}
                                         </Popup>
                                     </Col>
                                 </Row>
