@@ -24,7 +24,7 @@ export const AppSideBarData = [
         cname: 'nav-text'
     },
     {
-        title: 'Abi',
+        title: 'Seaded',
         path: '/settings',
         icon: <IoIcons.IoMdHelpCircle />,
         cname: 'nav-text'
