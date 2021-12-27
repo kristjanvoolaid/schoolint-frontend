@@ -4,6 +4,12 @@ import { Col, Container, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import RifInformation from './detailsview-components/candidate-information/RifInformation';
+import LoInformation from './detailsview-components/candidate-information/LoInformation';
+import LoScores from './detailsview-components/candidate-scores/LoScores';
+import RifScores from './detailsview-components/candidate-scores/RifScores';
+import RifTags from './detailsview-components/candidate-tags/RifTags';
+import LoTags from './detailsview-components/candidate-tags/LoTags';
  
 class CandidateCardDetails extends Component {
     constructor(props) {
@@ -12,6 +18,7 @@ class CandidateCardDetails extends Component {
 
             // Candidate details
             id: null,
+            specialityCode: '',
             firstName: '-',
             lastName: '-',
             email: '-',
@@ -43,7 +50,8 @@ class CandidateCardDetails extends Component {
             seconds: 0,
         }
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleCommentsChange = this.handleCommentsChange.bind(this);
+        this.handleNotesChange = this.handleNotesChange.bind(this);
     }
 
     candidatePresent = () => {
@@ -67,7 +75,8 @@ class CandidateCardDetails extends Component {
             const candidate = await response.json();
 
             const { 
-                id, 
+                id,
+                specialityCode, 
                 firstName, 
                 lastName,
                 email,
@@ -88,6 +97,7 @@ class CandidateCardDetails extends Component {
             if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
                 this.setState({
                 id: id,
+                specialityCode: specialityCode,
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
@@ -118,9 +128,15 @@ class CandidateCardDetails extends Component {
         }
     };
 
-    handleChange(e) {
+    handleCommentsChange(e) {
         this.setState({
             comments: e.target.value
+        });
+    };
+
+    handleNotesChange(e) {
+        this.setState({
+            notes: e.target.value
         });
     };
 
@@ -167,6 +183,63 @@ class CandidateCardDetails extends Component {
     }
 
     render() {
+        let candidateCode;
+        let candidateScores;
+        let candidateInformation;
+        let candidateTags;
+
+        if (this.state.specialityCode.length == 5) {
+            candidateCode = this.state.specialityCode.slice(0, 3);
+        } else {
+            candidateCode = this.state.specialityCode.slice(0, 2)
+        }
+
+        if (candidateCode === 'RIF') {
+            candidateScores = <RifScores 
+                                scoresKat1={this.state.scores.kat1}
+                                scoresKat2={this.state.scores.kat2}
+                                scoresKat3={this.state.scores.kat3}
+                                scoresKat4={this.state.scores.kat4}
+                                finalScore={this.state.finalScore}
+                            />
+
+            candidateInformation = <RifInformation 
+                                        background={this.state.background}
+                                        notes={this.state.notes}
+                                        handleNotesChange={this.handleNotesChange}
+                                        residence={this.state.residence}
+                                        phoneNumber={this.state.phoneNumber}
+                                        email={this.state.email}
+                                />
+
+            candidateTags = <RifTags
+                                comments={this.state.comments}
+                                handleCommentsChange={this.handleCommentsChange}
+                            />
+        } else if (candidateCode === 'LO') {
+            candidateScores = <LoScores
+                                scoresKat1={this.state.scores.kat1}
+                                scoresKat2={this.state.scores.kat2}
+                                scoresKat3={this.state.scores.kat3}
+                                finalScore={this.state.finalScore}
+                            />
+
+            candidateInformation = <LoInformation 
+                                    notes={this.state.notes}
+                                    handleNotesChange={this.handleNotesChange}
+                                    residence={this.state.residence}
+                                    phoneNumber={this.state.phoneNumber}
+                                    email={this.state.email}
+                                />
+
+            candidateTags = <LoTags
+                                comments={this.state.comments}
+                                handleCommentsChange={this.handleCommentsChange}
+                            />
+        } else {
+            candidateScores = null;
+        }
+
         const { minutes, seconds } = this.state;
         let presentButtonClassName = this.state.present ? "present_btn_pressed" : "present_btn";
         if (this.state.id == null) {
@@ -200,83 +273,15 @@ class CandidateCardDetails extends Component {
                         <Col sm={1}><button className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
                     </Row>
                     <br></br>
-                    <br></br>
                     <Row>
-                        <Table striped>
-                            <thead>
-                                <tr>
-                                <th></th>
-                                <th>Kat1</th>
-                                <th>Kat2</th>
-                                <th>Kat3</th>
-                                <th>Kat4</th>
-                                <th>Kokku</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Test</td>
-                                    <td>{this.state.scores.kat1}</td>
-                                    <td>{this.state.scores.kat2}</td>
-                                    <td>{this.state.scores.kat3}</td>
-                                    <td>{this.state.scores.kat4}</td>
-                                    <td>{this.state.finalScore}</td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                        {candidateScores}
                     </Row>
                     <Row>
-                        <Col sm={4}><p>Tekst</p><p>{this.state.background}</p></Col>
-                        <Col sm={4}><p>Märkmed</p><p>{this.state.notes}</p></Col>
-                        <Col sm={4}>
-                            <p>{this.state.residence}</p>
-                            <p>{this.state.phoneNumber}</p>
-                            <p>{this.state.email}</p>
-                        </Col>
+                        {candidateInformation}
                     </Row>
                     <hr></hr>
                     <Row>
-                        <Col sm={4}>Kommentaar<br></br><textarea value={this.state.comments} onChange={this.handleChange} rows="6" cols="20"></textarea></Col>
-                        <Col sm={2}>
-                            Kat 1.1
-                            <br></br>
-                            <select>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                            </select>
-                        </Col>
-                        <Col sm={2}>
-                            Kat 1.2
-                            <br></br>
-                            <select>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                            </select>
-                        </Col>
-                        <Col sm={2}>
-                            Kat 1.3
-                            <br></br>
-                            <select>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                            </select>
-                        </Col>
-                        <Col sm={2}>
-                            Kat 1.4
-                            <br></br>
-                            <select>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                                <option value="test">Test</option>
-                            </select>
-                        </Col>
+                        {candidateTags}
                     </Row>
                     <br></br>
                     <Row>
