@@ -1,12 +1,15 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-function LoInformation({ notes, residence, phoneNumber, email, handleNotesChange }) {
+function CandidateInformation({ notes, residence, phoneNumber, email, handleNotesChange }) {
     return (
         <div>
             <Container>
                 <Row>
-                    <Col sm={6}><p>Admini märkmed</p><textarea value={notes} onChange={handleNotesChange}></textarea></Col>
+                    <Col sm={6}>
+                        <p>Admini märkmed</p>
+                        <textarea value={notes} onChange={handleNotesChange}></textarea>
+                    </Col>
                     <Col sm={6}>
                         <p>{residence}</p>
                         <p>{phoneNumber}</p>
@@ -18,4 +21,4 @@ function LoInformation({ notes, residence, phoneNumber, email, handleNotesChange
     )
 }
 
-export default LoInformation;
+export default CandidateInformation;

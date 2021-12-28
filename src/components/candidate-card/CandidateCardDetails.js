@@ -1,15 +1,16 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import RifInformation from './detailsview-components/candidate-information/RifInformation';
-import LoInformation from './detailsview-components/candidate-information/LoInformation';
-import LoScores from './detailsview-components/candidate-scores/LoScores';
-import RifScores from './detailsview-components/candidate-scores/RifScores';
+import CandidateInformation from './detailsview-components/candidate-information/CandidateInformation';
 import RifTags from './detailsview-components/candidate-tags/RifTags';
 import LoTags from './detailsview-components/candidate-tags/LoTags';
+import KtdCandidateTags from './detailsview-components/candidate-tags/KtdCandidateTags';
+import KtdCandidateAttachments from './detailsview-components/candidate-attachments/KtdCandidateAttachments';
+import CandidateScores from './detailsview-components/candidate-scores/CandidateScores';
  
 class CandidateCardDetails extends Component {
     constructor(props) {
@@ -187,22 +188,35 @@ class CandidateCardDetails extends Component {
         let candidateScores;
         let candidateInformation;
         let candidateTags;
+        let candidateAttachments;
 
+        // Kandidaadi õppekavakoodi parsimine
         if (this.state.specialityCode.length == 5) {
             candidateCode = this.state.specialityCode.slice(0, 3);
         } else {
             candidateCode = this.state.specialityCode.slice(0, 2)
         }
 
-        if (candidateCode === 'RIF') {
-            candidateScores = <RifScores 
-                                scoresKat1={this.state.scores.kat1}
-                                scoresKat2={this.state.scores.kat2}
-                                scoresKat3={this.state.scores.kat3}
-                                scoresKat4={this.state.scores.kat4}
-                                finalScore={this.state.finalScore}
-                            />
+        // Üldiste komponentide seadmine
+        candidateScores = <CandidateScores
+                            candidateCode={candidateCode}
+                            scoresKat1={this.state.scores.kat1}
+                            scoresKat2={this.state.scores.kat2}
+                            scoresKat3={this.state.scores.kat3}
+                            scoresKat4={this.state.scores.kat4}
+                            finalScore={this.state.finalScore}
+                        />
 
+        candidateInformation = <CandidateInformation 
+                                 notes={this.state.notes}
+                                 handleNotesChange={this.handleNotesChange}
+                                 residence={this.state.residence}
+                                 phoneNumber={this.state.phoneNumber}
+                                 email={this.state.email}
+                             />
+
+        // Komponentide seadmine õppekava järgi
+        if (candidateCode === 'RIF') {
             candidateInformation = <RifInformation 
                                         background={this.state.background}
                                         notes={this.state.notes}
@@ -216,35 +230,32 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                             />
-        } else if (candidateCode === 'LO') {
-            candidateScores = <LoScores
-                                scoresKat1={this.state.scores.kat1}
-                                scoresKat2={this.state.scores.kat2}
-                                scoresKat3={this.state.scores.kat3}
-                                finalScore={this.state.finalScore}
-                            />
 
-            candidateInformation = <LoInformation 
-                                    notes={this.state.notes}
-                                    handleNotesChange={this.handleNotesChange}
-                                    residence={this.state.residence}
-                                    phoneNumber={this.state.phoneNumber}
-                                    email={this.state.email}
-                                />
+            candidateAttachments = null;
+        } else if (candidateCode === 'LO') {
 
             candidateTags = <LoTags
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                             />
+
+            candidateAttachments = null;
         } else {
-            candidateScores = null;
+            candidateScores = null;            
+            candidateTags = <KtdCandidateTags
+                                comments={this.state.comments}
+                                handleCommentsChange={this.handleCommentsChange}
+                          />
+            
+            candidateAttachments = <KtdCandidateAttachments />
         }
 
         const { minutes, seconds } = this.state;
         let presentButtonClassName = this.state.present ? "present_btn_pressed" : "present_btn";
+
         if (this.state.id == null) {
             return (
-                <h1 className="text-center">Loading..</h1>
+                <h1 className="text-center">Kandidaadi laadmine.. Palun oodake</h1>
             )
         }
 
@@ -273,16 +284,11 @@ class CandidateCardDetails extends Component {
                         <Col sm={1}><button className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
                     </Row>
                     <br></br>
-                    <Row>
-                        {candidateScores}
-                    </Row>
-                    <Row>
-                        {candidateInformation}
-                    </Row>
+                    <Row>{candidateScores}</Row>
+                    <Row>{candidateInformation}</Row>
                     <hr></hr>
-                    <Row>
-                        {candidateTags}
-                    </Row>
+                    <Row>{candidateAttachments}</Row>
+                    <Row>{candidateTags}</Row>
                     <br></br>
                     <Row>
                         <Col sm={9}></Col>

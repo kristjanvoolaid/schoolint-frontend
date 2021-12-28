@@ -38,7 +38,7 @@ class Candidates extends Component {
         }
 
         if (candidates.length < 1) {
-          return <h1 className="text-center">No candidates to show!</h1>
+          return <h1 className="text-center">Kandidaatide laadimine.. Palun oodake!</h1>
         }
 
         return (
