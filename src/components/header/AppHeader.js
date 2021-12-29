@@ -1,9 +1,8 @@
 import './AppHeader.css';
 import Logo from './images/logo.svg';
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import { BsPower } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
-import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as CgIcons from 'react-icons/cg';
 import * as BsIcons from 'react-icons/bs';
@@ -52,25 +51,16 @@ function AppHeader() {
                       
            
             </div>
-            <div>
-                <p></p>
-            </div>
-          
-            <Form className="d-flex">
-                        <FormControl
-                          type="search"
-                          placeholder="Otsi"
-                          className="mb-1"
-                          aria-label="Search"
 
-                        />
-                        <Button variant="outline-success">Search</Button>
-                      </Form>
+          
+
                      
             </IconContext.Provider>
         )
     }
 }
+
+
 
 
 export default AppHeader;

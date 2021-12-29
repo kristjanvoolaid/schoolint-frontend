@@ -25,6 +25,10 @@
 }
 
 .popUp_buttons :hover {
-    color: rgb(164,214,94);
+    color: rgb(50, 65, 30);
     font-weight: bold;
 }
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }

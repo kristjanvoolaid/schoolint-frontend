@@ -185,20 +185,27 @@ class CandidateCardDetails extends Component {
             <div className="text-center">
                 <Container>
                     <Row>
-                        <Col>
+                        <Col sm={2}></Col>
+                        <Col sm={6}>
                             <h1>{this.state.firstName} {this.state.lastName}</h1>            
                         </Col>
+                        <Col md="auto"><h4>{minutes}:{seconds}</h4></Col>
+                        <Col xs lg="1"><button className={presentButtonClassName} onClick={this.candidatePresent}>Alusta</button></Col>
+                    
                     </Row>
                     <Row>
-                        <Col>
+                        <Col sm={2}></Col>
+                        <Col sm={6}>
                             <p>{this.state.personalId}</p>
                         </Col>
+
+
                     </Row>
-                    <Row>
-                        <Col sm={10}></Col>
+                    {/* <Row>
+                        <Col sm={8}></Col>
                         <Col sm={1}><h4>{minutes}:{seconds}</h4></Col>
-                        <Col sm={1}><button type="button1" className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
-                    </Row>
+                        <Col sm={1}><button className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
+                    </Row> */}
                     <br></br>
                     <br></br>
                     <Row>
@@ -280,18 +287,20 @@ class CandidateCardDetails extends Component {
                     </Row>
                     <br></br>
                     <Row>
-                        <Col sm={9}></Col>
+                        <Col sm={10}></Col>
+
                         <Col sm={1}>
                             <Link to="/candidates">
-                                <button className="button2">Sulge</button>
+                                <button className="button2">Katkesta</button>
                             </Link>
                         </Col>
+                        
                         <Col sm={1}>
-                            <Popup trigger={<button className="button1">Salvesta</button>} modal>
+                            <Popup md={4} trigger={<button className="button1">Salvesta</button>} modal>
                                 <div>
                                     <p>Kas oled kindel, et soovid salvestada ja väljuda?</p>
                                 </div>
-                                <button className="button2">Sulge</button>
+                                <button className="button2">Katkesta</button>
                                 <Link to="/candidates">
                                     <button className="button1" onClick={this.candidateChanges}>Salvesta</button>
                                 </Link>

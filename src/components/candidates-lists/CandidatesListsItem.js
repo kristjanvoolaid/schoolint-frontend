@@ -73,7 +73,7 @@ class CandidatesListsItem extends Component {
                         <Col>{year}</Col>
                         <Col>{listCode}</Col>
                         <Col>
-                        <Popup trigger={<button>Import</button>} modal>
+                        <Popup trigger={<button className="button1">Import</button>} modal>
                                 {/* <div> */}
                                     <Row className="text-center popUp_title">
                                         <Col><h2>Uus nimekiri</h2></Col>
@@ -96,20 +96,29 @@ class CandidatesListsItem extends Component {
                                     <Row className="text-center popUp_file">
                                         <Col>
                                             <label for="file_input">Vali fail: </label>
-                                            <input name="file" type="file" onChange={this.handleFileChange} accept=".xls, .xlsx"/>
+                                            <input name="file" type="file" onChange={this.handleFileChange} accept=".xls, .xlsx" className="button3"/>
                                         </Col>
                                     </Row>
                                     <Row className="text-center popUp_buttons">
                                         <Col>
-                                            <button>Tagasi</button>
+                                            <button className="button2">Tagasi</button>
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
                                             <Link to="/lists">
-                                                <button onClick={this.listDataToBackend}>Lae üles</button>
+                                                <button onClick={this.listDataToBackend} className="button1">Lae üles</button>
                                             </Link> 
                                         </Col>
                                     </Row>
                                 {/* </div> */}
                             </Popup>
-                            <button>Export</button>
+                            {/* nuppude vahele veidi õhku juurde "&nbsp;" kombinatsiooniga. Muidu nupud üksteisel väga seljas  */}
+                            &nbsp;
+                            &nbsp;
+
+                            
+                            <button className="button2">Export</button>
+                            <p></p>
                         </Col>
                     </Row>
                 </Container>

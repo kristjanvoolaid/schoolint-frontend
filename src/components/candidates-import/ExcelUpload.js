@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Modal } from 'react'
 import axios from 'axios'
+
+
+
+
 
 class ExcelUpload extends Component {
     constructor(props) {
@@ -39,7 +43,11 @@ class ExcelUpload extends Component {
         
         // TODO: Make proper alerting box or sign that no file is selected. Current solution is for testing
         if (this.state.file == null) {
-            return alert('No file selected!');
+
+            
+            alert('No file selected!');
+
+
         }
 
         const dataToSend = new FormData();
@@ -63,7 +71,8 @@ class ExcelUpload extends Component {
             });
         } catch (error) {
             console.log(error)
-            return alert('Failed to send file')   
+           
+            alert('Failed to send file')   
         }
     }
 
