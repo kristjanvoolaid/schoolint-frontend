@@ -9,8 +9,7 @@ import { Container } from 'react-bootstrap';
 import AppSidebar from "../components/sidebar/AppSidebar";
 import AppHeader from "../components/header/AppHeader";
 import HeaderBar from "../components/header/HeaderBar";
-
-
+import AppUsers from "./AppUsers";
 
 
 class App extends Component {
@@ -36,7 +35,11 @@ class App extends Component {
           <Route exact path="/import" component={Importpage} />
           <Route exact path="/candidates" component={Candidates} title="Nimekirjad" />
           <Route exact path="/candidates/:id" component={CandidateCardDetails} />
-          <Route exact path="/lists" component={CandidatesListsFetch} title="Töölaud"/>
+
+             <Route exact path="/lists" component={CandidatesListsFetch} title="Töölaud"/>
+             <Route exact path="/lists" component={CandidatesListsFetch} />
+             <Route exact path="/settings" component={AppUsers} /> 
+
         </Switch>
       </div>
     )
