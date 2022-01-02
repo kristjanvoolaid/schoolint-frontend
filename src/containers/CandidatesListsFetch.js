@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from "axios";
 import CandidatesLists from '../components/candidates-lists/CandidatesLists';
+import authHeader from "../services/auth.header";
+
+const API_URL = "http://localhost:3001";
 
 class CandidatesListsFetch extends Component {
     constructor() {
@@ -10,9 +14,15 @@ class CandidatesListsFetch extends Component {
     }
     
     componentDidMount() {
-        fetch('http://localhost:3001/lists')
-        .then(response => response.json())
-        .then(lists => this.setState({candidatesLists: lists.candidatesLists}))
+        axios.get(API_URL + '/lists', { headers: authHeader() })
+        .then((response) => {
+            this.setState({
+                candidatesLists: response.data.candidatesLists
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     render() {

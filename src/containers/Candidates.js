@@ -1,5 +1,9 @@
+import axios from "axios";
 import React, { Component } from "react";
 import CandidateCardList from "../components/candidate-card/CandidateCardList";
+import authHeader from "../services/auth.header";
+
+const API_URL = "http://localhost:3001";
 
 class Candidates extends Component {
     constructor() {
@@ -14,20 +18,16 @@ class Candidates extends Component {
         this.fetchCandidates();
     }
 
-    async fetchCandidates() {
-      try {
-        const response = await fetch('http://127.0.0.1:3001/candidates');
-        const candidates = await response.json();
-  
-        this.setState({
-          candidates: candidates.candidates
-        }) 
-      } catch (error) {
-        console.log(error)
-        this.setState({
-          error: 'There was error while loading candidates'
-        })
-      }
+    fetchCandidates() {
+      axios.get(API_URL + '/candidates', { headers: authHeader() })
+      .then((response) => {
+          this.setState({
+            candidates: response.data.candidates
+          })
+      })
+      .catch((error) => {
+          console.log(error);
+      });
     }
 
     render() {

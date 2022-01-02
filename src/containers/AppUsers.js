@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import axios from "axios";
 import Settings from '../components/settings/Settings';
+import authHeader from "../services/auth.header";
+
+const API_URL = "http://localhost:3001";
 
 class AppUsers extends Component {
     constructor(props) {
@@ -15,30 +19,28 @@ class AppUsers extends Component {
         this.fetchTags();
     }
 
-    async fetchUsers() {
-        try {
-            const response = await fetch('http://127.0.0.1:3001/users');
-            const users = await response.json();
-
+    fetchUsers() {
+        axios.get(API_URL + '/users', { headers: authHeader() })
+        .then((response) => {
             this.setState({
-                users: users.users
-            });
-        } catch (error) {
+                users: response.data.users
+            })
+        })
+        .catch((error) => {
             console.log(error);
-        }
+        });
     }
 
-    async fetchTags() {
-        try {
-            const response = await fetch('http://127.0.0.1:3001/tags');
-            const tags = await response.json();
-
+    fetchTags() {
+        axios.get(API_URL + '/tags', { headers: authHeader() })
+        .then((response) => {
             this.setState({
-                tags: tags.tags
+                tags: response.data.tags
             })
-        } catch (error) {
+        })
+        .catch((error) => {
             console.log(error);
-        }
+        });
     }
 
     createUser(firstName, lastName, email, password, specialityCode) {
