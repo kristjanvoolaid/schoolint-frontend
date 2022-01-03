@@ -11,7 +11,10 @@ import LoTags from './detailsview-components/candidate-tags/LoTags';
 import KtdCandidateTags from './detailsview-components/candidate-tags/KtdCandidateTags';
 import KtdCandidateAttachments from './detailsview-components/candidate-attachments/KtdCandidateAttachments';
 import CandidateScores from './detailsview-components/candidate-scores/CandidateScores';
- 
+import authHeader from "../../services/auth.header";
+
+const API_URL = "http://localhost:3001";
+
 class CandidateCardDetails extends Component {
     constructor(props) {
         super(props)
@@ -69,12 +72,66 @@ class CandidateCardDetails extends Component {
         this.fetchCandidate();
     };
 
-    async fetchCandidate() {
+    fetchCandidate() {
         const endpoint = window.location.pathname;
-        try {
-            const response = await fetch(`http://127.0.0.1:3001${endpoint}`);
-            const candidate = await response.json();
+        // try {
+        //     const response = await fetch(`http://127.0.0.1:3001${endpoint}`);
+        //     const candidate = await response.json();
 
+        //     const { 
+        //         id,
+        //         specialityCode, 
+        //         firstName, 
+        //         lastName,
+        //         email,
+        //         personalId,
+        //         phoneNumber,
+        //         residence,
+        //         finalScore,
+        //         scores,
+        //         studies,
+        //         background,
+        //         notes,
+        //         comments,
+        //         room,
+        //         present
+        //     } = candidate.candidate;
+
+        //     // Check if results are available
+        //     if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
+        //         this.setState({
+        //         id: id,
+        //         specialityCode: specialityCode,
+        //         firstName: firstName,
+        //         lastName: lastName,
+        //         email: email,
+        //         personalId: personalId,
+        //         finalScore: finalScore,
+        //         phoneNumber: phoneNumber,
+        //         residence: residence,
+        //         scores: scores,
+        //         studies: studies,
+        //         background: background,
+        //         notes: notes,
+        //         comments: comments,
+        //         room: room,
+        //         present: present
+        //     });
+        //     }            
+            
+        //     this.setState({
+        //         id: id,
+        //         firstName: firstName,
+        //         lastName: lastName,
+        //         personalId: personalId,
+        //         residence: residence,
+        //         phoneNumber: phoneNumber,
+        //     });
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        axios.get(API_URL + `${endpoint}`, { headers: authHeader() })
+        .then((response) => {
             const { 
                 id,
                 specialityCode, 
@@ -92,29 +149,29 @@ class CandidateCardDetails extends Component {
                 comments,
                 room,
                 present
-            } = candidate.candidate;
+            } = response.data.candidate;
 
             // Check if results are available
             if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
-                this.setState({
-                id: id,
-                specialityCode: specialityCode,
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                personalId: personalId,
-                finalScore: finalScore,
-                phoneNumber: phoneNumber,
-                residence: residence,
-                scores: scores,
-                studies: studies,
-                background: background,
-                notes: notes,
-                comments: comments,
-                room: room,
-                present: present
-            });
-            }            
+                    this.setState({
+                    id: id,
+                    specialityCode: specialityCode,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    personalId: personalId,
+                    finalScore: finalScore,
+                    phoneNumber: phoneNumber,
+                    residence: residence,
+                    scores: scores,
+                    studies: studies,
+                    background: background,
+                    notes: notes,
+                    comments: comments,
+                    room: room,
+                    present: present
+                });
+            }
             
             this.setState({
                 id: id,
@@ -124,9 +181,10 @@ class CandidateCardDetails extends Component {
                 residence: residence,
                 phoneNumber: phoneNumber,
             });
-        } catch (error) {
+        })
+        .catch((error) => {
             console.log(error);
-        }
+        });
     };
 
     handleCommentsChange(e) {
@@ -269,19 +327,18 @@ class CandidateCardDetails extends Component {
             <div className="text-center">
                 <Container>
                     <Row>
-                        <Col>
+                        <Col sm={2}></Col>
+                        <Col sm={6}>
                             <h1>{this.state.firstName} {this.state.lastName}</h1>            
                         </Col>
+                        <Col md="auto"><h4>{minutes}:{seconds}</h4></Col>
+                        <Col xs lg="1"><button className={presentButtonClassName} onClick={this.candidatePresent}>Alusta</button></Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col sm={2}></Col>
+                        <Col sm={6}>
                             <p>{this.state.personalId}</p>
                         </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={10}></Col>
-                        <Col sm={1}><h4>{minutes}:{seconds}</h4></Col>
-                        <Col sm={1}><button className={presentButtonClassName} onClick={this.candidatePresent}>Kohal</button></Col>
                     </Row>
                     <br></br>
                     <Row>{candidateScores}</Row>
@@ -294,19 +351,19 @@ class CandidateCardDetails extends Component {
                         <Col sm={9}></Col>
                         <Col sm={1}>
                             <Link to="/candidates">
-                                <button>Sulge</button>
+                                <button className="button2">Sulge</button>
                             </Link>
                         </Col>
                         <Col sm={1}>
-                            <Popup trigger={<button>Salvesta</button>} modal>
+                            <Popup trigger={<button className="button1">Salvesta</button>} modal>
                                 {close => (
                                     <div>
                                         <div>
                                             <p>Kas oled kindel, et soovid salvestada ja väljuda?</p>
                                         </div>
-                                        <button onClick={close}>Sulge</button>
+                                        <button className="button2" onClick={close}>Sulge</button>
                                         <Link to="/candidates">
-                                            <button onClick={this.candidateChanges}>Salvesta</button>
+                                            <button className="button1" onClick={this.candidateChanges}>Salvesta</button>
                                         </Link>
                                     </div>
                                 )}
