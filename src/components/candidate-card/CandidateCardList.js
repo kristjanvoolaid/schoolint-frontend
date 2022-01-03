@@ -1,18 +1,35 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { Col, Container, Row, Form, FormControl, Button } from 'react-bootstrap';
+import * as BsIcons from 'react-icons/bs';
 import CandidateCard from './CandidateCard';
 import './CandidatesCard.css';
+
 
 const CandidateCardList = ({ candidates }) => {
     return (
         <div>
+            <div className="page-name">
+              <Container> <p>{Component}</p></Container>
+            </div>
+
             <Container>
+                    <Form className="d-flex">
+                    
+                        <BsIcons.BsSearch />
+                        <FormControl
+                            type="search"
+                            placeholder="Nimi või isikukood"
+                            className="mx-2"
+                            aria-label="Search"/>
+                      </Form>
                 <Row className="candidates-list-header">
-                    <Col>Nr</Col>
+
+                    <Col>#</Col>
                     <Col>Name</Col>
                     <Col>Score</Col>
                     <Col>Email</Col>
                     <Col>PersonalID</Col>
+
                 </Row>    
             </Container> 
             {

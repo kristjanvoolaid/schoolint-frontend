@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
+import authHeader from '../../services/auth.header';
 
 class ExcelUpload extends Component {
     constructor(props) {
@@ -53,6 +54,7 @@ class ExcelUpload extends Component {
                 method: "POST",
                 url: "http://localhost:3001/upload",
                 data: dataToSend,
+                headers: authHeader()
             })
             .then(response => response.statusText)
             .then(result => console.log(result));

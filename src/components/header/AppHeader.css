@@ -1,0 +1,123 @@
+.App-header {
+    background-color: rgb(183, 18, 52);
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    font-size: calc(9px + 1vmin);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(184, 93, 93);
+  }
+
+  .button {
+    background-color: rgb(164,214,94);
+    border: none;
+    color: rgb(170, 56, 56);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+  
+  
+  }
+ 
+  
+  
+.menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+}
+
+.nav-menu {
+    background-color: rgb(255, 255, 255);
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+    box-shadow: 10px 0px 20px #888888;
+}
+
+.nav-menu.active {
+    left: 0;
+    transition: 350ms;
+}
+
+.nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+
+.nav-text a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+}
+
+.nav-text a:hover {
+    background-color: black;
+}
+
+.nav-menu-items {
+    width: 100%;
+}
+
+.navbar-toggle {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.navbar-user {
+    color: #c91212;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin-top: 15px;
+}
+
+.navbar-user h5 {
+    margin-left: 25px;
+}
+
+.navbar-user p {
+    margin-left: 75px;
+    color: rgb(174, 40, 40);
+}
+
+/* .navbar-logout {
+    margin-top: 170%;
+    margin-left: 40px;
+}
+.navbar-logout span {
+    color: white;
+} */
+
+span {
+    margin-left: 16px;
+}
+
+.headerbar1 {
+    background-color:#888888;
+    text-align: center;
+}

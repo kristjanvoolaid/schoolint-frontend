@@ -1,16 +1,32 @@
 .popUp_title {
     margin-top: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .popUp_listInfo {
     margin-top: 40px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .popUp_file {
     margin-top: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* background:  rgb(164,214,94); */
 }
 
 .popUp_buttons {
     margin-top: 40px;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
+    padding: 15px 10px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;   
+}
+
+.popUp_buttons :hover {
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+}
+
+.popup-overlay {
+    background: rgba(160, 160, 160, 0.5);
 }

@@ -1,48 +1,115 @@
+.page-name {
+    background-color:#eeeeee;
+    padding-top: none;
+    margin-top: none;
+    text-align: left;
+    font-size: calc(6px + 1vmin);
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
 .candidate-name {
     text-decoration: none;
     color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .candidates-list-header {
     font-size: 30px;
     margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .list-item {
-    margin-bottom: 15px;
-    background: lightgray;
-    border: 1px lightgray solid;
-    border-radius: 5px;
+    /* margin-bottom: 15px; */
+    background: rgb(252, 252, 252);
+    border: 0.5px rgb(218, 218, 218) solid;
+    /* border-radius: 5px; */
     color: black;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .list-item_present {
     margin-bottom: 15px;
-    background: lightgreen;
+    background:  rgb(164,214,94);
     border: 1px lightgray solid;
     border-radius: 5px;
     color: black;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .list-item:hover {
-    background: white;
+    background: rgb(204, 204, 204);
     cursor: pointer;
 }
 
 .present_btn {
-    background-color: #808080;
+    margin-bottom: 15px;
+    background-color: rgb(164,214,94);
     color: white;
     padding: 5px;
     border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .present_btn_pressed {
-    background-color: #4CBB17;
+    margin-bottom: 15px;
+    background-color:  rgb(164,214,94);
+    border: 2px solid  rgb(164,214,94);
     color: white;
     padding: 5px;
     border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.present_btn:hover {
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+}
+
+.present_btn_pressed:hover {
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+}
+
+.button1 {
+    background-color: rgb(164,214,94);
+    border: 2px solid  rgb(164,214,94);
+    color: white;
+    border-radius: 5px;
+    /* position: absolute; */
+    float: right;   
+}
+
+.button2 {
+    background-color: white;
+    color: rgb(164,214,94);
+    border: 2px solid  rgb(164,214,94);
+    border-radius: 5px;
+    float: left;
+    /* position: absolute; */
+}
+
+.button2:hover {
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+    border: 2px solid rgb(50, 65, 30);
+}
+
+.button1:hover {
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+    border: 2px solid rgb(50, 65, 30);
+}
+
+.button3 {
+    color: #000;
+    background-color: white;
+    border: none;
+    float: center;
 }
