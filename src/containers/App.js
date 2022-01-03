@@ -16,8 +16,12 @@ class App extends Component {
       <div className='App'>
         <AppSidebar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={
+            <RequireAuth redirectTo="/login">
+              <Home />
+            </RequireAuth>
+          } />
           <Route exact path="/import" element={
             <RequireAuth redirectTo="/login">
               <Importpage />
