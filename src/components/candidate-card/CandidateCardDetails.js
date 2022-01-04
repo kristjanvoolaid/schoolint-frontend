@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -11,9 +11,8 @@ import LoTags from './detailsview-components/candidate-tags/LoTags';
 import KtdCandidateTags from './detailsview-components/candidate-tags/KtdCandidateTags';
 import KtdCandidateAttachments from './detailsview-components/candidate-attachments/KtdCandidateAttachments';
 import CandidateScores from './detailsview-components/candidate-scores/CandidateScores';
-import authHeader from "../../services/auth.header";
-
-const API_URL = "http://localhost:3001";
+import authHeader from "../../services/AuthHeader";
+import config from "../../config";
 
 class CandidateCardDetails extends Component {
     constructor(props) {
@@ -74,63 +73,7 @@ class CandidateCardDetails extends Component {
 
     fetchCandidate() {
         const endpoint = window.location.pathname;
-        // try {
-        //     const response = await fetch(`http://127.0.0.1:3001${endpoint}`);
-        //     const candidate = await response.json();
-
-        //     const { 
-        //         id,
-        //         specialityCode, 
-        //         firstName, 
-        //         lastName,
-        //         email,
-        //         personalId,
-        //         phoneNumber,
-        //         residence,
-        //         finalScore,
-        //         scores,
-        //         studies,
-        //         background,
-        //         notes,
-        //         comments,
-        //         room,
-        //         present
-        //     } = candidate.candidate;
-
-        //     // Check if results are available
-        //     if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
-        //         this.setState({
-        //         id: id,
-        //         specialityCode: specialityCode,
-        //         firstName: firstName,
-        //         lastName: lastName,
-        //         email: email,
-        //         personalId: personalId,
-        //         finalScore: finalScore,
-        //         phoneNumber: phoneNumber,
-        //         residence: residence,
-        //         scores: scores,
-        //         studies: studies,
-        //         background: background,
-        //         notes: notes,
-        //         comments: comments,
-        //         room: room,
-        //         present: present
-        //     });
-        //     }            
-            
-        //     this.setState({
-        //         id: id,
-        //         firstName: firstName,
-        //         lastName: lastName,
-        //         personalId: personalId,
-        //         residence: residence,
-        //         phoneNumber: phoneNumber,
-        //     });
-        // } catch (error) {
-        //     console.log(error);
-        // }
-        axios.get(API_URL + `${endpoint}`, { headers: authHeader() })
+        axios.get(config.API_URL + `${endpoint}`, { headers: authHeader() })
         .then((response) => {
             const { 
                 id,
@@ -205,7 +148,7 @@ class CandidateCardDetails extends Component {
         
         axios({
             method: "PATCH",
-            url: `http://localhost:3001${candidateId}`,
+            url: config.API_URL + candidateId,
             data: {
                 id,
                 firstName,
@@ -215,7 +158,8 @@ class CandidateCardDetails extends Component {
                 notes,
                 present,
                 comments
-            }
+            },
+            headers: authHeader()
         })
         .then(response => response.statusText)
         .then(result => console.log(result))
@@ -313,7 +257,11 @@ class CandidateCardDetails extends Component {
 
         if (this.state.id == null) {
             return (
-                <h1 className="text-center">Kandidaadi laadmine.. Palun oodake</h1>
+                <div className="text-center">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
             )
         }
 

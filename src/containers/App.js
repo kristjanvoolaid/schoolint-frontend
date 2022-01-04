@@ -5,19 +5,18 @@ import Home from "../components/home-page/Home";
 import { Route, Routes } from "react-router-dom";
 import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
 import CandidatesListsFetch from "./CandidatesListsFetch";
-import AppSidebar from "../components/sidebar/AppSidebar";
 import AppUsers from "./AppUsers";
 import Login from "../components/login/Login";
 import RequireAuth from "../services/RequireAuth";
 import AppHeader from "../components/header/AppHeader";
+import HeaderInfo from "../components/header/HeaderBar";
 
 class App extends Component {
   render() {
     return (
       <div className='App'>
-        {/* <AppSidebar /> */}
         <AppHeader />
-        {/* <Heade */}
+        {/* <HeaderInfo /> */}
         <Routes>
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/" element={

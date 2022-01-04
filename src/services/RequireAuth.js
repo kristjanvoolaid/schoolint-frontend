@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router';
-import authHeader from "./auth.header";
+import authHeader from "./AuthHeader";
 
 function RequireAuth({ children, redirectTo }) {
     let isAuthenticated = false;

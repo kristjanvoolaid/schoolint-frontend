@@ -8,8 +8,8 @@ import * as CgIcons from 'react-icons/cg';
 import * as BsIcons from 'react-icons/bs';
 import { Container, Nav, Button, Form, FormControl, Figure } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
-import AuthService from "../../services/auth.service";
-import authHeader from "../../services/auth.header";
+import AuthService from "../../services/AuthService";
+import authHeader from "../../services/AuthHeader";
 
 function AppHeader() {
     let userBtn = "Login";

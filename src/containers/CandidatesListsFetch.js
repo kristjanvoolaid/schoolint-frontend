@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import CandidatesLists from '../components/candidates-lists/CandidatesLists';
-import authHeader from "../services/auth.header";
+import authHeader from "../services/AuthHeader";
+import { Spinner } from 'react-bootstrap';
 
 const API_URL = "http://localhost:3001";
 
@@ -29,7 +30,13 @@ class CandidatesListsFetch extends Component {
         const { candidatesLists } = this.state;
 
         if (candidatesLists.length < 1) {
-            return <h1>No list to show!</h1>
+            return (
+                <div className="text-center">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
+            )
         }
         return (
             <div>

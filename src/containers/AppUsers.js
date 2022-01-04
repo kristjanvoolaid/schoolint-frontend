@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Settings from '../components/settings/Settings';
-import authHeader from "../services/auth.header";
+import authHeader from "../services/AuthHeader";
+import { Spinner } from 'react-bootstrap';
+import config from "../config";
 
-const API_URL = "http://localhost:3001";
 
 class AppUsers extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class AppUsers extends Component {
     }
 
     fetchUsers() {
-        axios.get(API_URL + '/users', { headers: authHeader() })
+        axios.get(config.API_URL + '/users', { headers: authHeader() })
         .then((response) => {
             this.setState({
                 users: response.data.users
@@ -32,7 +33,7 @@ class AppUsers extends Component {
     }
 
     fetchTags() {
-        axios.get(API_URL + '/tags', { headers: authHeader() })
+        axios.get(config.API_URL + '/tags', { headers: authHeader() })
         .then((response) => {
             this.setState({
                 tags: response.data.tags
@@ -84,11 +85,23 @@ class AppUsers extends Component {
     render() {
         const { users, tags } = this.state;
         if (users.length < 1) {
-            return <h1 className="text-center">No users to show!</h1>
+            return (
+                <div className="text-center">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
+            )
         }
 
         if (tags.length < 1) {
-            return <h1 className="text-center">No tags to show!</h1>
+            return (
+                <div className="text-center">
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                </div>
+            )
         }
         
         return (

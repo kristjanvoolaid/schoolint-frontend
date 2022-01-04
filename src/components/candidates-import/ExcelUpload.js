@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import authHeader from '../../services/auth.header';
+import authHeader from '../../services/AuthHeader';
 
 class ExcelUpload extends Component {
     constructor(props) {
