@@ -31,9 +31,9 @@ class CandidatesListsFetch extends Component {
 
         if (candidatesLists.length < 1) {
             return (
-                <div className="text-center">
+                <div className="text-center" style={{ marginTop: 50 }}>
                     <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
+                        <span className="visually-hidden">Kandidaatide listide laadimine</span>
                     </Spinner>
                 </div>
             )

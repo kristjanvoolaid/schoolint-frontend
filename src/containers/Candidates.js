@@ -41,19 +41,18 @@ class Candidates extends Component {
     render() {
         const { candidates, error } = this.state;
         let emptySearch;
-        const fileteredCandidates = candidates.filter(candidates => {
-          const firstNameFilter = candidates.firstName.toLowerCase().includes(this.state.searchField.toLowerCase());
-          const lastNameFilter = candidates.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
-          const personalIdFilter = candidates.personalId.toLowerCase().includes(this.state.searchField.toLowerCase());
+        const fileteredCandidates = candidates;
+        // const fileteredCandidates = candidates.filter(candidates => {
+        //   const firstNameFilter = candidates.firstName.toLowerCase().includes(this.state.searchField.toLowerCase());
+        //   const lastNameFilter = candidates.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
+        //   // const personalIdFilter = candidates.personalId.includes(this.state.searchField);
 
-          if (firstNameFilter) {
-            return firstNameFilter;
-          } else if (lastNameFilter) {
-            return lastNameFilter;
-          } else {
-            return personalIdFilter;
-          }
-        });
+        //   if (firstNameFilter) {
+        //     return firstNameFilter;
+        //   } else {
+        //     return lastNameFilter;
+        //   } 
+        // });
 
         if (error != null) {
           return <h1 className="text-center">{error}</h1>
@@ -61,9 +60,9 @@ class Candidates extends Component {
 
         if (candidates.length < 1) {
           return (
-            <div className="text-center">
+            <div className="text-center" style={{ marginTop: 50 }}>
               <Spinner animation="border" role="status" size="lg">
-                  <span className="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Kandidaatie laadimine</span>
               </Spinner>
             </div>
           )

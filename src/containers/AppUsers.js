@@ -86,7 +86,7 @@ class AppUsers extends Component {
         const { users, tags } = this.state;
         if (users.length < 1) {
             return (
-                <div className="text-center">
+                <div className="text-center" style={{ marginTop: 50 }}>
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
@@ -96,7 +96,7 @@ class AppUsers extends Component {
 
         if (tags.length < 1) {
             return (
-                <div className="text-center">
+                <div className="text-center" style={{ marginTop: 50 }}>
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
