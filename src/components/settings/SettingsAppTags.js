@@ -45,14 +45,15 @@ class SettingsAppTags extends Component {
     }
 
     render() {
-        const { id, name } = this.props;
+        const { id, name, specialityCode } = this.props;
         const { tagNameToUpdate, tagCourseIdToUpdate } = this.state;
         return (
             <div>
                 <Container className="text-center">
                     <Row>
                         <Col md={3}>{id}</Col>
-                        <Col md={6}>{name}</Col>
+                        <Col md={3}>{name}</Col>
+                        <Col md={3}>{specialityCode}</Col>
                         <Col md={3}>
                             <Popup trigger={<button>Muuda</button>} modal>
                                 {close => (

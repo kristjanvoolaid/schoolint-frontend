@@ -5,7 +5,13 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const CandidateCard = ({ id, name, score, email, personalId, present }) => {
     const candidateEndpoint = `/candidates/${id}`;
-    let candidateBackground = present ? "list-item_present" : "list-item"; 
+    console.log(present);
+    let candidateBackground;
+    if (present === 1) {
+        candidateBackground = "list-item_present";
+    } else {
+        candidateBackground = "list-item";
+    }
     return (
         <div>                                
             <Container>

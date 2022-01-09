@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import SettingsAppTags from './SettingsAppTags';
 import SettingsAppUser from './SettingsAppUser';
+import AuthRoleService from "../../services/AuthRole";
 
 class Settings extends Component {
     constructor(props) {
@@ -14,9 +14,9 @@ class Settings extends Component {
             lastName: '',
             email: '',
             password: '',
-            specialityCode: '',
+            specialityCode: 1,
             tagName: '',
-            tagCourseId: ''
+            tagCourseId: 1,
         }
     }
 
@@ -67,7 +67,7 @@ class Settings extends Component {
         const { firstName, lastName, email, password, specialityCode, tagName, tagCourseId } = this.state;
         return (
             <div>
-                <Tabs defaultActiveKey="kasutajad">
+                <Tabs fill defaultActiveKey="kasutajad">
                     <Tab eventKey="kasutajad" title="Kasutajad">
                     <Container className="text-center">
                         <Row>
@@ -107,12 +107,11 @@ class Settings extends Component {
                                             </Row>
                                             <Row className="text-center">
                                                 <Col>
-                                                    <select onChange={this.handleUserSpecialityCode}>
+                                                    <select defaultValue={this.state.specialityCode} onChange={this.handleUserCourseId}>
                                                         <option value="Vali" disabled hidden>Vali</option>
-                                                        <option value="RIF">RIF</option>
-                                                        <option value="KTD">KTD</option>
-                                                        <option value="LO">LO</option>
-                                                        <option value="TE">TE</option>
+                                                        <option value="1">RIF</option>
+                                                        <option value="2">LO</option>
+                                                        <option value="3">KTD</option>
                                                     </select>
                                                 </Col>
                                             </Row>
@@ -171,12 +170,11 @@ class Settings extends Component {
                                                     </Row>
                                                     <Row className="text-center">
                                                         <Col>
-                                                            <select onChange={this.handleTagCourseId}>
+                                                            <select defaultValue={tagCourseId} onChange={this.handleTagCourseId}>
                                                                 <option value="Vali" disabled hidden>Vali</option>
                                                                 <option value="1">RIF</option>
-                                                                <option value="2">KTD</option>
-                                                                <option value="3">LO</option>
-                                                                <option value="4">TE</option>
+                                                                <option value="2">LO</option>
+                                                                <option value="3">KTD</option>
                                                             </select>                                       
                                                         </Col>
                                                     </Row>
@@ -193,8 +191,9 @@ class Settings extends Component {
                                 </Row>
                                 <Row>
                                     <Col md={3}>Nr</Col>
-                                    <Col md={6}>Nimi</Col>
-                                    <Col md={3}></Col>
+                                    <Col md={3}>Nimi</Col>
+                                    <Col md={3}>Õppekava</Col>
+                                    <Col></Col>
                                 </Row>
                                 {
                                 tags.map((tag, i) => {
@@ -203,7 +202,7 @@ class Settings extends Component {
                                             key={tags[i].id}
                                             id={tags[i].id}
                                             name={tags[i].name}
-                                            courseId={tags[i].courseId}
+                                            specialityCode={tags[i].specialityCode}
                                         />
                                     )
                                 })

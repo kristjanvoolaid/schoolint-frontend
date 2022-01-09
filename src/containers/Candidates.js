@@ -41,18 +41,19 @@ class Candidates extends Component {
     render() {
         const { candidates, error } = this.state;
         let emptySearch;
-        const fileteredCandidates = candidates;
-        // const fileteredCandidates = candidates.filter(candidates => {
-        //   const firstNameFilter = candidates.firstName.toLowerCase().includes(this.state.searchField.toLowerCase());
-        //   const lastNameFilter = candidates.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
-        //   // const personalIdFilter = candidates.personalId.includes(this.state.searchField);
+        const fileteredCandidates = candidates.filter(candidates => {
+          const firstNameFilter = candidates.firstName.toLowerCase().includes(this.state.searchField.toLowerCase());
+          const lastNameFilter = candidates.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
+          const personalIdFilter = candidates.personalId.includes(this.state.searchField);
 
-        //   if (firstNameFilter) {
-        //     return firstNameFilter;
-        //   } else {
-        //     return lastNameFilter;
-        //   } 
-        // });
+          if (firstNameFilter) {
+            return firstNameFilter;
+          } else if (lastNameFilter) {
+            return lastNameFilter;
+          } else {
+            return personalIdFilter;
+          }
+        });
 
         if (error != null) {
           return <h1 className="text-center">{error}</h1>

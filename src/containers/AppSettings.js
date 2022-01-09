@@ -6,12 +6,13 @@ import { Spinner } from 'react-bootstrap';
 import config from "../config";
 
 
-class AppUsers extends Component {
+class AppSettings extends Component {
     constructor(props) {
         super(props)
         this.state = {
             'users': [],
-            'tags': []
+            'tags': [],
+            status: ''
         }
     }
 
@@ -45,41 +46,36 @@ class AppUsers extends Component {
     }
 
     createUser(firstName, lastName, email, password, specialityCode) {
-        try {
-            const userPostRequest = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ firstName, lastName, email, password, specialityCode})
-            };
-            
-            fetch('http://127.0.0.1:3001/users', userPostRequest)
-            .then(response => response.json())
-            .then(data => console.log(data));
-    
-            // Refresh page if user is created
-            window.location.reload(false);
-        } catch (error) {
-            console.log(error);
-        }
+        axios({
+            method: 'POST',
+            url: config.API_URL + "/users",
+            data: {
+                firstName,
+                lastName,
+                email,
+                password,
+                specialityCode
+            },
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(status => console.log(status))
+        .catch(error => console.log(error));
     }
 
     createTag(name, courseId) {
-        try {
-            const tagPostRequest = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, courseId })
-            };
-    
-            fetch('http://127.0.0.1:3001/tags', tagPostRequest)
-            .then(response => response.json())
-            .then(data => console.log(data));
-
-            // Refresh page if tag is created
-            window.location.reload(false);
-        } catch (error) {
-            console.log(error);
-        }
+        axios({
+            method: 'POST',
+            url: config.API_URL + "/tags",
+            data: {
+                name,
+                courseId
+            },
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(status => console.log(status))
+        .catch(error => console.log(error))
     }
     
     render() {
@@ -112,4 +108,4 @@ class AppUsers extends Component {
     }
 }
 
-export default AppUsers;
+export default AppSettings;

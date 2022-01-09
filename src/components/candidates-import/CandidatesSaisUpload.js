@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import authHeader from '../../services/AuthHeader';
+import config from "../../config";
 
-class ExcelUpload extends Component {
+class CandidatesSaisUpload extends Component {
     constructor(props) {
         super(props)
 
@@ -10,21 +11,19 @@ class ExcelUpload extends Component {
 
         this.state = {
             file: null,
-            selectedValue: 1,
-            year: date.getFullYear()
+            templateId: 1,
+            year: date.getFullYear(),
+            listCode: 1,
         }
     }
 
-    handleSelectedChange = (e) => {
+    handleListCodeChange = (e) => {
         this.setState({
-            selectedValue: e.target.value
+            listCode: e.target.value
         });
-
-        console.log(this.state.selectedValue);
-    }
+    };
 
     handleSelectedYear = (e) => {
-        console.log(e.target.value);
         this.setState({
             year: e.target.value
         })
@@ -36,53 +35,53 @@ class ExcelUpload extends Component {
         });
     }
 
-    onClickHandler = (e) => {
-        
-        // TODO: Make proper alerting box or sign that no file is selected. Current solution is for testing
-        if (this.state.file == null) {
-            return alert('No file selected!');
-        }
+    listDataToBackend = () => {
 
         const dataToSend = new FormData();
         dataToSend.append('file', this.state.file);
-        dataToSend.append('templateValue', this.state.selectedValue);
+        dataToSend.append('templateId', this.state.selectedValue);
         dataToSend.append('year', this.state.year);
+        dataToSend.append('courseId', this.state.listCode);
 
         try {
-            // Sending file to backend
             axios({
                 method: "POST",
-                url: "http://localhost:3001/upload",
+                url: `${config.API_URL}/lists`,
                 data: dataToSend,
                 headers: authHeader()
             })
             .then(response => response.statusText)
             .then(result => console.log(result));
 
-            alert('File sent!')
             this.setState({
                 file: null
             });
         } catch (error) {
-            console.log(error)
-            return alert('Failed to send file')   
+            console.log(error);
         }
+
+        if (this.state.file == null) {
+            return alert('No file selected!');
+        }
+
+        return alert('File sent');
     }
 
     render() {
         return (
             <div className="text-center">
-                <h1>Upload candidates excel</h1>
-                <select name="templateValue" id="templateChoice" defaultValue={this.state.selectedValue} onChange={this.handleSelectedChange}>
-                        <option value="1">SAIS</option>
-                        <option value="2">Tulemused</option>
+                <h1>Uus nimekiri</h1>
+                <select defaultValue={this.state.listCode} onChange={this.handleListCodeChange}>
+                    <option value="1">RIF</option>
+                    <option value="2">LO</option>
+                    <option value="3">KTD</option>
                 </select>
                 <input name="year" type="number" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
                 <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
-                <button type="button" onClick={this.onClickHandler}>Upload</button>
+                <button type="button" onClick={this.listDataToBackend}>Upload</button>
             </div>
         )
     }
 }
 
-export default ExcelUpload;
+export default CandidatesSaisUpload;

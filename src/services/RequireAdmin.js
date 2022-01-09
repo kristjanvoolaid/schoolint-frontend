@@ -1,9 +1,10 @@
 import { Navigate } from 'react-router';
 import authHeader from "./AuthHeader";
 
-function RequireAuth({ children, redirectTo }) {    
-    let isAuthenticated = false;
+function RequireAdmin({ children, redirectTo }) {    
+    let isAuthenticated = true;
 
+    // TODO: get admin role for backend. Currently only validates token in localStore
     if (authHeader().authorization !== undefined) {
         isAuthenticated = true;
     }
@@ -11,4 +12,4 @@ function RequireAuth({ children, redirectTo }) {
     return isAuthenticated ? children : <Navigate to={redirectTo} />
 }
 
-export default RequireAuth;
+export default RequireAdmin;

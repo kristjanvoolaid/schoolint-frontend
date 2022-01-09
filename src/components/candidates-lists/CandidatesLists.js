@@ -11,10 +11,11 @@ const CandidatesLists = ({ candidatesLists }) => {
                     <Col md={{ offset: 11 }}><Link to="/import">Import</Link></Col>
                 </Row>
                 <Row className="candidates-list-header">
-                        <Col md={3}>Nr</Col>
-                        <Col md={3}>Aasta</Col>
-                        <Col md={3}>Õppekava</Col>
-                        <Col md={3}>Tegevus</Col>
+                        <Col>Nr</Col>
+                        <Col>Aasta</Col>
+                        <Col>Õppekava</Col>
+                        <Col>Loodud</Col>
+                        <Col>Tegevus</Col>
                 </Row>
             </Container>
             {
@@ -24,6 +25,7 @@ const CandidatesLists = ({ candidatesLists }) => {
                             id={candidatesLists[i].id}
                             listCode={candidatesLists[i].listCode}
                             year={candidatesLists[i].year}
+                            created={candidatesLists[i].created}
                         />
                     )
                 })

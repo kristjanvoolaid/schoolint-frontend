@@ -1,56 +1,48 @@
-import './AppHeader.css';
-import Logo from './images/logo.svg';
 import React, {Component} from 'react';
-import { BsPower } from 'react-icons/bs';
-import { IconContext } from 'react-icons';
-import * as IoIcons from 'react-icons/io';
-import * as CgIcons from 'react-icons/cg';
-import * as BsIcons from 'react-icons/bs';
-import { Container, Nav, Button, Form, FormControl, Figure } from 'react-bootstrap';
-import { Navbar } from 'react-bootstrap';
-import AuthService from "../../services/AuthService";
+import './AppHeader.css';
+import axios from "axios";
+import config from "../../config";
 import authHeader from "../../services/AuthHeader";
+import LoginHeader from './LoginHeader';
+import AdminHeader from './AdminHeader';
+import UserHeader from './UserHeader';
 
-function AppHeader() {
-    let userBtn = "Login";
+export class AppHeader extends Component {
+    constructor(props) {
+        super(props)
 
-    if (authHeader().authorization !== undefined) {
-        userBtn = "Välju";
+        this.state = {
+            role: null
+        };
     }
 
-    {
+    componentDidMount() {
+        axios({
+            method: "GET",
+            url: config.API_URL + "/users/role",
+            headers: authHeader()
+        })
+        .then(response => response)
+        .then(result => this.setState({
+            role: result.data.role
+        }))
+        .catch(error => console.log(error));
+    }
+
+    render() {
+        let userBtn = "Logi sisse";
+
+        if (authHeader().authorization !== undefined) {
+            userBtn = "Logi välja";
+        }
         return (
-          <IconContext.Provider value={{color: 'white', size: '30px', fontSize: '1em'}}>
-                <div className="App-header">      
-                    <Navbar collapseOnSelect expand="sm" variant= 'dark'>
-                        <Container>
-                            <Navbar.Brand href="./">
-                                <Figure.Image 
-                                    src= {Logo}
-                                    width="200"
-                                    height="100"
-                                    className="d-inline-block align-top"
-                                    alt="TLU logo"
-                                />
-                            </Navbar.Brand>
-                        </Container>
-                        
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav">
-                            <Container>
-                                <Nav className="justify-content-end">
-                                    <Nav.Link eventKey='Töölaud' href="/lists"><CgIcons.CgMenuBoxed />Töölaud</Nav.Link>
-                                    <Nav.Link eventKey='Nimekirjad' href="/candidates"><BsIcons.BsListUl />Nimekirjad</Nav.Link>
-                                    <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link>
-                                    <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower />{userBtn}</Nav.Link>
-                                </Nav>
-                            </Container>
-                        </Navbar.Collapse>   
-                    </Navbar>
-                </div>       
-            </IconContext.Provider>
+            <div>
+                {this.state.role == undefined && <LoginHeader />}
+                {this.state.role == "Admin" && <AdminHeader />}
+                {this.state.role == "User" && <UserHeader />}
+            </div>
         )
     }
 }
 
-export default AppHeader;
+export default AppHeader

@@ -5,11 +5,11 @@ import Home from "../components/home-page/Home";
 import { Route, Routes } from "react-router-dom";
 import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
 import CandidatesListsFetch from "./CandidatesListsFetch";
-import AppUsers from "./AppUsers";
+import AppSettings from "./AppSettings";
 import Login from "../components/login/Login";
 import RequireAuth from "../services/RequireAuth";
 import AppHeader from "../components/header/AppHeader";
-import HeaderInfo from "../components/header/HeaderBar";
+import RequireAdmin from "../services/RequireAdmin";
 
 class App extends Component {
   render() {
@@ -26,7 +26,9 @@ class App extends Component {
           } />
           <Route exact path="/import" element={
             <RequireAuth redirectTo="/login">
-              <Importpage />
+              <RequireAdmin redirectTo="/candidates">
+                <Importpage />
+              </RequireAdmin>
             </RequireAuth>
           } />
           <Route path="/candidates" element={
@@ -41,12 +43,14 @@ class App extends Component {
           } />
           <Route exact path="/lists" element={
             <RequireAuth redirectTo="/login">
-              <CandidatesListsFetch />
+              <RequireAdmin redirectTo="/candidates">
+                <CandidatesListsFetch />
+              </RequireAdmin>
             </RequireAuth>
           } />
           <Route exact path="/settings" element={
             <RequireAuth redirectTo="/login">
-              <AppUsers />
+              <AppSettings />
             </RequireAuth>
           } />
         </Routes>

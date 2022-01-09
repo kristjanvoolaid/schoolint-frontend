@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
+import config from "../../config";
+import authHeader from "../../services/AuthHeader";
 
 class SettingsAppUser extends Component {
     constructor(props) {
@@ -46,23 +49,23 @@ class SettingsAppUser extends Component {
     };
 
     changeUser(firstName, lastName, email, password, specialityCode) {
-        try {
-            const { id } = this.props;
-            const updatedUserRequest = {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ firstName, lastName, email, password, specialityCode })
-            }
-
-            fetch(`http://127.0.0.1:3001/users/${id}`, updatedUserRequest)
-            .then(response => response.json())
-            .then(data => console.log(data));
-
-            // Refresh page if user is updated
-            window.location.reload(false);
-        } catch (error) {
-            console.log(error);
-        }
+        const { id } = this.props;
+        axios({
+            method: 'PATCH',
+            url: config.API_URL + `/users/${id}`,
+            data: {
+                firstName,
+                lastName,
+                email,
+                password,
+                specialityCode
+            },
+            headers: authHeader()
+        })
+        .then(response => 
+            response.status, 
+            window.location.reload(false))
+        .catch(error => console.log(error));
     }
 
     render() {

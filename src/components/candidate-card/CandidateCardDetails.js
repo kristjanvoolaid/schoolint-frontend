@@ -35,18 +35,14 @@ class CandidateCardDetails extends Component {
                 kat3: '-',
                 kat4: '-',
             },
-            studies: {
-                0: '',
-                0: '',
-                0: ''
-            },
             background: '-',
             notes: '-',
             comments: '',
             room: '-',
+            tags: [],
 
             // Candidate present
-            present: '',
+            present: null,
 
             // Stopwatch data
             minutes: 0,
@@ -58,18 +54,30 @@ class CandidateCardDetails extends Component {
     }
 
     candidatePresent = () => {
-        if (!this.state.present) {
+        if (this.state.present == 0) {
             this.startStopWatch();
-        }
 
-        this.setState({
-            present: !this.state.present,
-        });
+            this.setState(prevState => ({
+                present: 1,
+            }));
+        } else {
+            this.setState({
+                present: 0
+            })
+        }
     };
 
     componentDidMount() {
         this.fetchCandidate();
+        this.fetchCourseTags();
     };
+
+    fetchCourseTags() {
+        const endpoint = 1;
+        axios.get(config.API_URL + `/tags/coursetags/${endpoint}`, { headers: authHeader() })
+        .then(response => this.setState({ tags: response.data.tags }))
+        .catch((error) => {console.log(error)});
+    }
 
     fetchCandidate() {
         const endpoint = window.location.pathname;
@@ -121,8 +129,12 @@ class CandidateCardDetails extends Component {
                 firstName: firstName,
                 lastName: lastName,
                 personalId: personalId,
+                email: email,
                 residence: residence,
                 phoneNumber: phoneNumber,
+                notes: notes,
+                specialityCode: specialityCode,
+                present: present
             });
         })
         .catch((error) => {
@@ -192,6 +204,8 @@ class CandidateCardDetails extends Component {
         let candidateTags;
         let candidateAttachments;
 
+        console.log("Kohal: " + this.state.present);
+
         // Kandidaadi õppekavakoodi parsimine
         if (this.state.specialityCode.length == 5) {
             candidateCode = this.state.specialityCode.slice(0, 3);
@@ -229,6 +243,7 @@ class CandidateCardDetails extends Component {
                                 />
 
             candidateTags = <RifTags
+                                tags={this.state.tags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                             />
@@ -237,6 +252,7 @@ class CandidateCardDetails extends Component {
         } else if (candidateCode === 'LO') {
 
             candidateTags = <LoTags
+                                tags={this.state.tags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                             />
@@ -245,6 +261,7 @@ class CandidateCardDetails extends Component {
         } else {
             candidateScores = null;            
             candidateTags = <KtdCandidateTags
+                                tags={this.state.tags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                           />
@@ -263,12 +280,6 @@ class CandidateCardDetails extends Component {
                     </Spinner>
                 </div>
             )
-        }
-
-        if (this.state.studies.length < 1) {
-            this.setState({
-                studies: 'No studies'
-            });
         }
 
         return (

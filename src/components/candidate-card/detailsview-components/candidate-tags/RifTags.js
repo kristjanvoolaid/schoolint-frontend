@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-function RifTags({ comments, handleCommentsChange }) {
+function RifTags({ tags, comments, handleCommentsChange }) {
     return (
         <div>
             <Container>
@@ -19,6 +19,7 @@ function RifTags({ comments, handleCommentsChange }) {
                         <br></br>
                         <label>Sildid</label>
                         <input type="text" placeholder="Search"></input>
+                        {/* <input type="checkbox"  name="kristjan"/> */}
                     </Col>
                     <Col sm={2}>
                         Kat 1.2

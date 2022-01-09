@@ -1,10 +1,11 @@
 import axios from 'axios';
-
-const API_URL = "http://127.0.0.1:3001/users";
+import config from "../config";
+import authHeader from './AuthHeader';
+import userRole from './AuthRole';
 
 const login = (email, password) => {
     return axios
-        .post(API_URL + "/login", {
+        .post(config.API_URL + "/users/login", {
             email,
             password
         })
@@ -28,7 +29,7 @@ const getCurrentUser = () => {
 const AuthService = {
     login,
     logout,
-    getCurrentUser
+    getCurrentUser,
 };
 
 export default AuthService;

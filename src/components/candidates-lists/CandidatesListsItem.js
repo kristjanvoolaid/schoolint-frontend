@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './PopUp.css';
+import authHeader from "../../services/AuthHeader";
 
 class CandidatesListsItem extends Component {
     constructor(props) {
@@ -14,9 +15,9 @@ class CandidatesListsItem extends Component {
 
         this.state = {
             file: null,
-            listCode: 'RIF',
+            listCode: 1,
             year: date.getFullYear(),
-            selectedValue: 2
+            selectedValue: 1
         };
     }
 
@@ -32,39 +33,43 @@ class CandidatesListsItem extends Component {
         });
     };
 
-    listDataToBackend = () => {
-
-        const dataToSend = new FormData();
-        dataToSend.append('file', this.state.file);
-        dataToSend.append('templateValue', this.state.selectedValue);
-        dataToSend.append('year', this.state.year);
-        dataToSend.append('listCode', this.state.listCode);
-
-        try {
-            axios({
-                method: "POST",
-                url: "http://localhost:3001/upload",
-                data: dataToSend
-            })
-            .then(response => response.statusText)
-            .then(result => console.log(result));
-
-            this.setState({
-                file: null
-            });
-        } catch (error) {
-            console.log(error);
-        }
-
+    onClickHandler = (e) => {
+        
+        // TODO: Make proper alerting box or sign that no file is selected. Current solution is for testing
         if (this.state.file == null) {
             return alert('No file selected!');
         }
 
-        return alert('File sent');
+        const dataToSend = new FormData();
+        dataToSend.append('file', this.state.file);
+        dataToSend.append('year', this.state.year);
+
+        // Listi id kaasa
+
+        try {
+            // Sending file to backend
+            axios({
+                method: "POST",
+                url: "http://localhost:3001/results",
+                data: dataToSend,
+                headers: authHeader()
+            })
+            .then(response => response.statusText)
+            .then(result => console.log(result));
+
+            alert('File sent!')
+            this.setState({
+                file: null
+            });
+        } catch (error) {
+            console.log(error)
+            return alert('Failed to send file')   
+        }
     }
 
     render() {
-        const { id, listCode, year } = this.props;
+        const { id, listCode, year, created } = this.props;
+        const formattedDate = created.slice(0, 10);
         return (
             <div>
                 <Container className="text-center">
@@ -72,29 +77,13 @@ class CandidatesListsItem extends Component {
                         <Col>{id}</Col>
                         <Col>{year}</Col>
                         <Col>{listCode}</Col>
+                        <Col>{formattedDate}</Col>
                         <Col>
                             <Popup trigger={<button className="button1">Import</button>} modal>
                                 {close => (
                                     <div>
                                         <Row className="text-center popUp_title">
-                                            <Col><h2>Uus nimekiri</h2></Col>
-                                        </Row>
-                                        <Row className="text-center popUp_listInfo">
-                                            <Col>Õppekava</Col>
-                                            <Col>Aasta</Col>
-                                        </Row>
-                                        <Row className="text-center">
-                                            <Col>
-                                                <select value={this.state.listCode} onChange={this.handleListCodeChange}>
-                                                    <option>KTD</option>
-                                                    <option>RIF</option>
-                                                    <option>LO</option>
-                                                    <option>TE</option>
-                                                </select>
-                                            </Col>
-                                            <Col>
-                                                <input defaultValue={this.state.year} type="number" />
-                                            </Col>
+                                            <Col><h2>Kandidaatide tulemused</h2></Col>
                                         </Row>
                                         <Row className="text-center popUp_file">
                                             <Col>
@@ -109,7 +98,7 @@ class CandidatesListsItem extends Component {
                                                 &nbsp;
                                                 &nbsp;
                                                 <Link to="/lists">
-                                                    <button onClick={this.listDataToBackend} className="button1">Lae üles</button>
+                                                    <button onClick={this.onClickHandler} className="button1">Lae üles</button>
                                                 </Link> 
                                             </Col>
                                         </Row>
