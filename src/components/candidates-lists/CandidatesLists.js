@@ -26,6 +26,7 @@ const CandidatesLists = ({ candidatesLists }) => {
                             listCode={candidatesLists[i].listCode}
                             year={candidatesLists[i].year}
                             created={candidatesLists[i].created}
+                            enabled={candidatesLists[i].enabled}
                         />
                     )
                 })
