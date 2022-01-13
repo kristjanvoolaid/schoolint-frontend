@@ -22,7 +22,7 @@ function LoginHeader() {
                 <div className="App-header">      
                      <Navbar collapseOnSelect expand="sm" variant= 'dark'>
                          <Container>
-                             <Navbar.Brand href="./">
+                             <Navbar.Brand href="./login">
                    <Figure.Image 
                                    src= {Logo}
                                  width="200"

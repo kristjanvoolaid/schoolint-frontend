@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
-function LoTags({ comments, handleCommentsChange }) {
+function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
     return (
         <div>
             <Container>
@@ -18,7 +18,13 @@ function LoTags({ comments, handleCommentsChange }) {
                         </select>
                         <br></br>
                         <label>Sildid</label>
-                        <input type="text" placeholder="Search"></input>
+                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
                     </Col>
                     <Col sm={2}>
                         Kat 1.2

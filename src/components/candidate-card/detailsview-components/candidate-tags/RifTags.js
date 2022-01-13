@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-function RifTags({ tags, comments, handleCommentsChange }) {
+function RifTags({ tags, comments, handleCommentsChange, onSearchChange }) {
     return (
         <div>
             <Container>
@@ -18,8 +18,13 @@ function RifTags({ tags, comments, handleCommentsChange }) {
                         </select>
                         <br></br>
                         <label>Sildid</label>
-                        <input type="text" placeholder="Search"></input>
-                        {/* <input type="checkbox"  name="kristjan"/> */}
+                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
                     </Col>
                     <Col sm={2}>
                         Kat 1.2
@@ -47,4 +52,4 @@ function RifTags({ tags, comments, handleCommentsChange }) {
     )
 }
 
-export default RifTags
+export default RifTags;

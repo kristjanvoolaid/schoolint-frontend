@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-export default function KtdCandidateTags({ comments, handleCommentsChange }) { 
+export default function KtdCandidateTags({ tags, comments, handleCommentsChange, onSearchChange }) { 
     return (
         <div>
             <Container>
@@ -9,7 +9,13 @@ export default function KtdCandidateTags({ comments, handleCommentsChange }) {
                     <Col sm={6}>
                         Sildid
                         <br></br>
-                        <input type="text" placeholder="Search"></input>
+                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
                     </Col>
                     <Col sm={1}>
                         Kat 1.1

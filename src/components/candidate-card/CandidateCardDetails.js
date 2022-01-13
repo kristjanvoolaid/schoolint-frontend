@@ -22,6 +22,7 @@ class CandidateCardDetails extends Component {
             // Candidate details
             id: null,
             specialityCode: '',
+            courseId: '',
             firstName: '-',
             lastName: '-',
             email: '-',
@@ -47,6 +48,9 @@ class CandidateCardDetails extends Component {
             // Stopwatch data
             minutes: 0,
             seconds: 0,
+
+            // Tags search
+            searchField: ''
         }
 
         this.handleCommentsChange = this.handleCommentsChange.bind(this);
@@ -73,10 +77,12 @@ class CandidateCardDetails extends Component {
     };
 
     fetchCourseTags() {
-        const endpoint = 1;
-        axios.get(config.API_URL + `/tags/coursetags/${endpoint}`, { headers: authHeader() })
-        .then(response => this.setState({ tags: response.data.tags }))
-        .catch((error) => {console.log(error)});
+        setTimeout(() => {
+            const endpoint = this.state.courseId;
+            axios.get(config.API_URL + `/tags/coursetags/${endpoint}`, { headers: authHeader() })
+            .then(response => this.setState({ tags: response.data.tags }))
+            .catch((error) => {console.log(error)});
+        }, 300)
     }
 
     fetchCandidate() {
@@ -85,7 +91,8 @@ class CandidateCardDetails extends Component {
         .then((response) => {
             const { 
                 id,
-                specialityCode, 
+                specialityCode,
+                courseId, 
                 firstName, 
                 lastName,
                 email,
@@ -107,6 +114,7 @@ class CandidateCardDetails extends Component {
                     this.setState({
                     id: id,
                     specialityCode: specialityCode,
+                    courseId: courseId,
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
@@ -134,6 +142,7 @@ class CandidateCardDetails extends Component {
                 phoneNumber: phoneNumber,
                 notes: notes,
                 specialityCode: specialityCode,
+                courseId: courseId,
                 present: present
             });
         })
@@ -197,14 +206,19 @@ class CandidateCardDetails extends Component {
         clearInterval(this.myInterval);
     }
 
+    onSearchChange = (e) => {
+        this.setState({
+          searchField: e.target.value
+        });
+      };
+
     render() {
+        console.log(this.state.courseId);
         let candidateCode;
         let candidateScores;
         let candidateInformation;
         let candidateTags;
         let candidateAttachments;
-
-        console.log("Kohal: " + this.state.present);
 
         // Kandidaadi õppekavakoodi parsimine
         if (this.state.specialityCode.length == 5) {
@@ -212,6 +226,19 @@ class CandidateCardDetails extends Component {
         } else {
             candidateCode = this.state.specialityCode.slice(0, 2)
         }
+
+        // Tagide edastamine
+        let emptySearch;
+        const fileteredTags = this.state.tags.filter(tag => {
+            const tagName = tag.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+            if (tagName) {
+              return tagName;
+            }
+        });
+
+        if (fileteredTags.length < 1) {
+            emptySearch = "Sellise nimega silte ei ole!";
+        };
 
         // Üldiste komponentide seadmine
         candidateScores = <CandidateScores
@@ -243,27 +270,30 @@ class CandidateCardDetails extends Component {
                                 />
 
             candidateTags = <RifTags
-                                tags={this.state.tags}
+                                tags={fileteredTags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
+                                onSearchChange={this.onSearchChange}
                             />
 
             candidateAttachments = null;
         } else if (candidateCode === 'LO') {
 
             candidateTags = <LoTags
-                                tags={this.state.tags}
+                                tags={fileteredTags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
+                                onSearchChange={this.onSearchChange}
                             />
 
             candidateAttachments = null;
         } else {
             candidateScores = null;            
             candidateTags = <KtdCandidateTags
-                                tags={this.state.tags}
+                                tags={fileteredTags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
+                                onSearchChange={this.onSearchChange}
                           />
             
             candidateAttachments = <KtdCandidateAttachments />
@@ -304,7 +334,10 @@ class CandidateCardDetails extends Component {
                     <Row>{candidateInformation}</Row>
                     <hr></hr>
                     <Row>{candidateAttachments}</Row>
-                    <Row>{candidateTags}</Row>
+                    <Row>
+                        {candidateTags}
+                        {emptySearch}
+                    </Row>
                     <br></br>
                     <Row>
                         <Col sm={9}></Col>
