@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Importpage from "../components/candidates-import/ImportPage";
 import Candidates from "./Candidates";
-import Home from "../components/home-page/Home";
 import { Route, Routes } from "react-router-dom";
 import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
 import CandidatesListsFetch from "./CandidatesListsFetch";
@@ -19,11 +18,6 @@ class App extends Component {
         {/* <HeaderInfo /> */}
         <Routes>
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/" element={
-            <RequireAuth redirectTo="/login">
-              <Home />
-            </RequireAuth>
-          } />
           <Route exact path="/import" element={
             <RequireAuth redirectTo="/login">
               <RequireAdmin redirectTo="/candidates">
