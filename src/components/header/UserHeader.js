@@ -36,7 +36,7 @@ function UserHeader() {
                         <Navbar.Collapse id="responsive-navbar-nav">
                            <Container>
                                 <Nav className="justify-content-end">
-                                    <Nav.Link eventKey='Nimekirjad' href="/candidates"><BsIcons.BsListUl />Nimekirjad</Nav.Link>
+                                    <Nav.Link eventKey='Töölaud' href="/candidates"><BsIcons.BsListUl />Töölaud</Nav.Link>
                                     <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link>   
                                     <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower />{userBtn}</Nav.Link>
                                 </Nav>
