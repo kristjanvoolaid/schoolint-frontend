@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Button, Col, Container, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -157,7 +157,7 @@ class CandidatesListsItem extends Component {
                                 >
                                 </Spinner>}
                             </Button> */}
-                            <button onClick={this.listStatusHandler} className="button1">{listStatus}</button>
+                            <button onClick={this.listStatusHandler} className="button3">{listStatus}</button>
                         </Col>
                     </Row>
                 </Container>

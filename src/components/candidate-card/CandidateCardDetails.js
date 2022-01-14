@@ -54,7 +54,8 @@ class CandidateCardDetails extends Component {
     }
 
     candidatePresent = () => {
-        if (this.state.present == 0) {
+        if (this.state.present === 0) {
+                    // siin pahandas vs koodiga, st vahetasin == välja === vastu.
             this.startStopWatch();
 
             this.setState(prevState => ({
@@ -207,7 +208,8 @@ class CandidateCardDetails extends Component {
         console.log("Kohal: " + this.state.present);
 
         // Kandidaadi õppekavakoodi parsimine
-        if (this.state.specialityCode.length == 5) {
+        if (this.state.specialityCode.length === 5) {
+            // siin pahandas vs koodiga, st vahetasin == välja === vastu.
             candidateCode = this.state.specialityCode.slice(0, 3);
         } else {
             candidateCode = this.state.specialityCode.slice(0, 2)

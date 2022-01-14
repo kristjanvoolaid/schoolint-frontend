@@ -1,10 +1,7 @@
 import React from 'react';
 import { BsPower } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
-import * as IoIcons from 'react-icons/io';
-import * as CgIcons from 'react-icons/cg';
-import * as BsIcons from 'react-icons/bs';
-import { Container, Nav, Button, Form, FormControl, Figure } from 'react-bootstrap';
+import { Container, Nav, Figure } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import Logo from './images/logo.svg';
 import AuthService from "../../services/AuthService";
@@ -20,17 +17,17 @@ function LoginHeader() {
         <div>
             <IconContext.Provider value={{color: 'white', size: '30px', fontSize: '1em'}}>
                 <div className="App-header">      
-                     <Navbar collapseOnSelect expand="sm" variant= 'dark'>
-                         <Container>
-                             <Navbar.Brand href="./">
-                   <Figure.Image 
-                                   src= {Logo}
-                                 width="200"
-                                  height="100"
-                                    className="d-inline-block align-top"
-                                    alt="TLU logo"
-                                />
-                            </Navbar.Brand>
+                    <Navbar collapseOnSelect expand="sm" variant= 'dark'>
+                    <Container>
+                        <Navbar.Brand href="./">
+                            <Figure.Image 
+                                src= {Logo}
+                                width="200"
+                                height="100"
+                                className="d-inline-block align-top"
+                                alt="TLU logo"
+                                        />
+                                </Navbar.Brand>
                        </Container>
                         
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

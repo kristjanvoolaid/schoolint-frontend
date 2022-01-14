@@ -1,13 +1,13 @@
-import React, { Component, useState } from 'react'
-import { Col, Container, Row, Form, FormControl, Button } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { Col, Container, Row, Form, FormControl } from 'react-bootstrap';
 import * as BsIcons from 'react-icons/bs';
 import CandidateCard from './CandidateCard';
 import './CandidatesCard.css';
 
 export class CandidateCardList extends Component {
-    constructor(props) {
-        super(props)
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
 
     render() {
         const { candidates } = this.props;

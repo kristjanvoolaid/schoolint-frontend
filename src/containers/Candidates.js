@@ -44,14 +44,14 @@ class Candidates extends Component {
         const fileteredCandidates = candidates.filter(candidates => {
           const firstNameFilter = candidates.firstName.toLowerCase().includes(this.state.searchField.toLowerCase());
           const lastNameFilter = candidates.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
-          const personalIdFilter = candidates.personalId.includes(this.state.searchField);
+          // const personalIdFilter = candidates.personalId.includes(this.state.searchField);
 
           if (firstNameFilter) {
             return firstNameFilter;
           } else if (lastNameFilter) {
             return lastNameFilter;
           } else {
-            return personalIdFilter;
+            // return personalIdFilter;
           }
         });
 
