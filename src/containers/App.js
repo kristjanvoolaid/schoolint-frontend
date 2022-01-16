@@ -1,24 +1,46 @@
 import React, { Component } from "react";
-import Menu from '../components/menu/Menu';
 import Importpage from "../components/candidates-import/ImportPage";
 import Candidates from "./Candidates";
-import Home from "../components/home-page/Home";
-import { Route, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import CandidateCardDetails from "../components/candidate-card/CandidateCardDetails";
+import CandidatesListsFetch from "./CandidatesListsFetch";
+import AppSettings from "./AppSettings";
+import Login from "../components/login/Login";
+import RequireAuth from "../services/RequireAuth";
+import AppHeader from "../components/header/AppHeader";
+import RequireAdmin from "../services/RequireAdmin";
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = { 
-    }
-  }
-
   render() {
     return (
       <div className='App'>
-        <Menu />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/import" component={Importpage} />
-          <Route exact path="/candidates" component={Candidates} />
+        <AppHeader />
+        <Routes>
+          <Route exact path="/" element={<Candidates />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route path="/candidates" element={
+            <RequireAuth redirectTo="/login">
+              <Candidates />
+            </RequireAuth>
+          } />
+          <Route exact path="/candidates/:id" element={
+            <RequireAuth redirectTo="/login">
+              <CandidateCardDetails />
+            </RequireAuth>
+          } />
+          <Route exact path="/lists" element={
+            <RequireAuth redirectTo="/login">
+              <RequireAdmin redirectTo="/candidates">
+                <CandidatesListsFetch />
+              </RequireAdmin>
+            </RequireAuth>
+          } />
+          <Route exact path="/settings" element={
+            <RequireAuth redirectTo="/login">
+              <AppSettings />
+            </RequireAuth>
+          } />
+        </Routes>
       </div>
     )
   }

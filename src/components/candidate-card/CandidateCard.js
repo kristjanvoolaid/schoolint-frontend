@@ -1,21 +1,40 @@
 import React from "react";
 import './CandidatesCard.css';
+import { Link } from "react-router-dom";
+import { Col, Container, Row } from "react-bootstrap";
 
-const CandidateCard = ({ name, score, email, active }) => {
+const CandidateCard = ({ id, name, score, email, personalId, present, time }) => {
+    const candidateEndpoint = `/candidates/${id}`;
+    let candidateBackground;
+    let startTime;
+    // Kandidaadi kohalolek
+    if (present === 1) {
+        candidateBackground = "list-item_present";
+    } else {
+        candidateBackground = "list-item";
+    }
+
+    // Intervjuu algus aeg
+    if (time !== null) {
+        startTime = time;
+    } else {
+        startTime = "-";
+    }
+
     return (
-        <div className='tc'>
-            <div id="candidates_table">
-                <table className="tc" id="candidates_row">
-                    <tbody>
-                        <tr>
-                            <td>{name}</td>
-                            <td>{score}</td>
-                            <td>{email}</td>
-                            <td>{active}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div>
+            <Container>
+                <Link id={id} to={{pathname: candidateEndpoint, id: id}} className="candidate-name">
+                    <Row className={candidateBackground}>
+                        <Col>{id}</Col>
+                        <Col className="candidate-name">{name}</Col>
+                        <Col>{score}</Col>
+                        <Col>{email}</Col>
+                        <Col>{personalId}</Col>
+                        <Col>{startTime}</Col>
+                    </Row>
+                </Link>
+            </Container>                               
         </div>
     )
 }
