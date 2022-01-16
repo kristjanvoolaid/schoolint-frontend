@@ -17,17 +17,17 @@ function LoginHeader() {
         <div>
             <IconContext.Provider value={{color: 'white', size: '30px', fontSize: '1em'}}>
                 <div className="App-header">      
-                    <Navbar collapseOnSelect expand="sm" variant= 'dark'>
-                    <Container>
-                        <Navbar.Brand href="./">
-                            <Figure.Image 
-                                src= {Logo}
-                                width="200"
-                                height="100"
-                                className="d-inline-block align-top"
-                                alt="TLU logo"
-                                        />
-                                </Navbar.Brand>
+                     <Navbar collapseOnSelect expand="sm" variant= 'dark'>
+                         <Container>
+                             <Navbar.Brand href="./login">
+                   <Figure.Image 
+                                   src= {Logo}
+                                 width="200"
+                                  height="100"
+                                    className="d-inline-block align-top"
+                                    alt="TLU logo"
+                                />
+                            </Navbar.Brand>
                        </Container>
                         
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -22,6 +22,7 @@ class CandidateCardDetails extends Component {
             // Candidate details
             id: null,
             specialityCode: '',
+            courseId: '',
             firstName: '-',
             lastName: '-',
             email: '-',
@@ -30,16 +31,27 @@ class CandidateCardDetails extends Component {
             phoneNumber: '-',
             residence: '-',
             scores: {
-                kat1: '-',
-                kat2: '-',
-                kat3: '-',
-                kat4: '-',
+                cat1: '-',
+                cat2: '-',
+                cat3: '-',
+                cat4: '-',
             },
             background: '-',
             notes: '-',
             comments: '',
             room: '-',
             tags: [],
+            interviewResult: {
+                interviewCat1: '',
+                interviewCat2: '',
+                interviewCat3: '',
+                interviewCat4: '',
+                interviewCat5: '',
+                interviewCat6: '',
+                interviewCat7: '',
+                interviewCat8: '',
+                tags: []
+            },
 
             // Candidate present
             present: null,
@@ -47,6 +59,9 @@ class CandidateCardDetails extends Component {
             // Stopwatch data
             minutes: 0,
             seconds: 0,
+
+            // Tags search
+            searchField: ''
         }
 
         this.handleCommentsChange = this.handleCommentsChange.bind(this);
@@ -55,7 +70,7 @@ class CandidateCardDetails extends Component {
 
     candidatePresent = () => {
         if (this.state.present === 0) {
-                    // siin pahandas vs koodiga, st vahetasin == välja === vastu.
+            // siin pahandas vs koodiga, st vahetasin == välja === vastu.
             this.startStopWatch();
 
             this.setState(prevState => ({
@@ -74,10 +89,12 @@ class CandidateCardDetails extends Component {
     };
 
     fetchCourseTags() {
-        const endpoint = 1;
-        axios.get(config.API_URL + `/tags/coursetags/${endpoint}`, { headers: authHeader() })
-        .then(response => this.setState({ tags: response.data.tags }))
-        .catch((error) => {console.log(error)});
+        setTimeout(() => {
+            const endpoint = this.state.courseId;
+            axios.get(config.API_URL + `/tags/coursetags/${endpoint}`, { headers: authHeader() })
+            .then(response => this.setState({ tags: response.data.tags }))
+            .catch((error) => {console.log(error)});
+        }, 300)
     }
 
     fetchCandidate() {
@@ -86,7 +103,8 @@ class CandidateCardDetails extends Component {
         .then((response) => {
             const { 
                 id,
-                specialityCode, 
+                specialityCode,
+                courseId, 
                 firstName, 
                 lastName,
                 email,
@@ -108,6 +126,7 @@ class CandidateCardDetails extends Component {
                     this.setState({
                     id: id,
                     specialityCode: specialityCode,
+                    courseId: courseId,
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
@@ -135,6 +154,7 @@ class CandidateCardDetails extends Component {
                 phoneNumber: phoneNumber,
                 notes: notes,
                 specialityCode: specialityCode,
+                courseId: courseId,
                 present: present
             });
         })
@@ -157,20 +177,16 @@ class CandidateCardDetails extends Component {
 
     candidateChanges = () => {
         const candidateId = window.location.pathname;
-        const { id, firstName, lastName, email, personalId, notes, present, comments } = this.state;
+        const { id, present, comments, interviewResult } = this.state;
         
         axios({
             method: "PATCH",
             url: config.API_URL + candidateId,
             data: {
                 id,
-                firstName,
-                lastName,
-                email,
-                personalId,
-                notes,
                 present,
-                comments
+                comments,
+                interviewResult
             },
             headers: authHeader()
         })
@@ -198,14 +214,38 @@ class CandidateCardDetails extends Component {
         clearInterval(this.myInterval);
     }
 
+    onSearchChange = (e) => {
+        this.setState({
+          searchField: e.target.value
+        });
+    };
+
+    handleInterviewCatScores = (e) => {
+        const { value, name } = e.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                [name]: value
+            }
+        }))
+    };
+
+    handleTagsCheckbox = (e) => {
+        const { id } = e.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                tags: [...this.state.interviewResult.tags, id]
+            }
+        }))
+    };
+
     render() {
         let candidateCode;
         let candidateScores;
         let candidateInformation;
         let candidateTags;
         let candidateAttachments;
-
-        console.log("Kohal: " + this.state.present);
 
         // Kandidaadi õppekavakoodi parsimine
         if (this.state.specialityCode.length === 5) {
@@ -214,6 +254,21 @@ class CandidateCardDetails extends Component {
         } else {
             candidateCode = this.state.specialityCode.slice(0, 2)
         }
+
+        // Tagide edastamine
+        let emptySearch;
+        const fileteredTags = this.state.tags.filter(tag => {
+            const tagName = tag.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+            if (tagName) {
+              return tagName;
+            }
+        });
+
+        if (fileteredTags.length < 1) {
+            emptySearch = <Spinner animation="border" role="status" size="lg">
+                            <span className="visually-hidden">Siltide laadimine</span>
+                        </Spinner>
+        };
 
         // Üldiste komponentide seadmine
         candidateScores = <CandidateScores
@@ -245,27 +300,36 @@ class CandidateCardDetails extends Component {
                                 />
 
             candidateTags = <RifTags
-                                tags={this.state.tags}
+                                tags={fileteredTags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
+                                onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                             />
 
             candidateAttachments = null;
         } else if (candidateCode === 'LO') {
 
             candidateTags = <LoTags
-                                tags={this.state.tags}
+                                tags={fileteredTags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
+                                onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                             />
 
             candidateAttachments = null;
         } else {
             candidateScores = null;            
             candidateTags = <KtdCandidateTags
-                                tags={this.state.tags}
+                                tags={fileteredTags}
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
+                                onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                           />
             
             candidateAttachments = <KtdCandidateAttachments />
@@ -306,7 +370,10 @@ class CandidateCardDetails extends Component {
                     <Row>{candidateInformation}</Row>
                     <hr></hr>
                     <Row>{candidateAttachments}</Row>
-                    <Row>{candidateTags}</Row>
+                    <Row>
+                        {candidateTags}
+                        {emptySearch}
+                    </Row>
                     <br></br>
                     <Row>
                         <Col sm={9}></Col>

@@ -52,5 +52,13 @@ Juhend:
 
     6. Anna teada tiimile, et tegid pull requesti.
 
+Docker
+
+Projekti juur kaustas jooksuta järgmised käsud:
+
+docker build -t schoolint-frontend:dev .
+
+docker run -it -d --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 schoolint-frontend:dev
+
 
 

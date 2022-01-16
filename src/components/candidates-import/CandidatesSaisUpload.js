@@ -14,6 +14,7 @@ class CandidatesSaisUpload extends Component {
             templateId: 1,
             year: date.getFullYear(),
             listCode: 1,
+            courses: []
         }
     }
 
@@ -39,7 +40,7 @@ class CandidatesSaisUpload extends Component {
 
         const dataToSend = new FormData();
         dataToSend.append('file', this.state.file);
-        dataToSend.append('templateId', this.state.selectedValue);
+        dataToSend.append('templateId', this.state.templateId);
         dataToSend.append('year', this.state.year);
         dataToSend.append('courseId', this.state.listCode);
 
@@ -67,14 +68,29 @@ class CandidatesSaisUpload extends Component {
         return alert('File sent');
     }
 
+    componentDidMount() {
+        axios({
+            method: "GET",
+            url: config.API_URL + "/courses",
+            headers: authHeader()
+        })
+        .then(response => {
+            this.setState({
+                courses: response.data.courses
+            })
+        })
+        .catch(error => console.log(error));
+    }
+
     render() {
         return (
             <div className="text-center">
                 <h1>Uus nimekiri</h1>
-                <select defaultValue={this.state.listCode} onChange={this.handleListCodeChange}>
-                    <option value="1">RIF</option>
-                    <option value="2">LO</option>
-                    <option value="3">KTD</option>
+                <select value={this.state.listCode} onChange={this.handleListCodeChange}>
+                    <option value="">Vali õppekava</option>
+                    {this.state.courses.map(course => (
+                        <option value={course.id}>{course.name}</option>
+                    ))}
                 </select>
                 <input name="year" type="number" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
                 <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>

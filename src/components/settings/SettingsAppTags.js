@@ -1,7 +1,10 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import Popup from 'reactjs-popup';
 import "../candidate-card/CandidatesCard.css";
+import config from '../../config';
+import authHeader from '../../services/AuthHeader';
 
 class SettingsAppTags extends Component {
     constructor(props) {
@@ -45,6 +48,17 @@ class SettingsAppTags extends Component {
         }
     }
 
+    deleteTag(id) {
+        axios({
+            method: "DELETE",
+            url: config.API_URL + `/tags/${id}`,
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(result => window.location.reload())
+        .catch(error => console.log(error))
+    }
+
     render() {
         const { id, name, specialityCode } = this.props;
         const { tagNameToUpdate, tagCourseIdToUpdate } = this.state;
@@ -55,8 +69,8 @@ class SettingsAppTags extends Component {
                         <Col md={3}>{id}</Col>
                         <Col md={3}>{name}</Col>
                         <Col md={3}>{specialityCode}</Col>
-                        <Col md={3}>
-                            <Popup trigger={<Button>Muuda</Button>} modal>
+                        <Col md={1}>
+                            <Popup trigger={<button>Muuda</button>} modal>
                                 {close => (
                                     <div>
                                         <Row className="text-center">
@@ -93,6 +107,9 @@ class SettingsAppTags extends Component {
                                     </div>
                                 )}
                             </Popup>
+                        </Col>
+                        <Col md={1}>
+                                    <button onClick={() => this.deleteTag(id)}>Kustuta</button>
                         </Col>
                     </Row>
                 </Container>

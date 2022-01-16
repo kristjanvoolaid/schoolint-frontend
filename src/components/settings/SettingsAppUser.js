@@ -69,6 +69,17 @@ class SettingsAppUser extends Component {
         .catch(error => console.log(error));
     }
 
+    deleteUser(id) {
+        axios({
+            method: "DELETE",
+            url: config.API_URL + `/users/${id}`,
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(result => window.location.reload())
+        .catch(error => console.log(error))
+    }
+
     render() {
         const { id, firstName, lastName, email, specialityCode } = this.props;
         const { firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate } = this.state;
@@ -77,12 +88,12 @@ class SettingsAppUser extends Component {
             <div>
                 <Container className="text-center">
                 <Row>
-                    <Col>{id}</Col>
-                    <Col>{name}</Col>
-                    <Col>{email}</Col>
-                    <Col>{specialityCode}</Col>
-                    <Col>
-                        <Popup trigger={<Button>Muuda</Button>} modal>
+                    <Col md={1}>{id}</Col>
+                    <Col md={3}>{name}</Col>
+                    <Col md={3}>{email}</Col>
+                    <Col md={3}>{specialityCode}</Col>
+                    <Col md={1}>
+                        <Popup trigger={<button>Muuda</button>} modal>
                             {close => (
                                 
                                 <div>
@@ -137,6 +148,9 @@ class SettingsAppUser extends Component {
                                 </div>
                             )}
                         </Popup>
+                    </Col>
+                    <Col md={1}>
+                                    <button onClick={() => this.deleteUser(id)}>Kustuta</button>
                     </Col>
                 </Row>
             </Container>

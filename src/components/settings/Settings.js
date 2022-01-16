@@ -128,11 +128,10 @@ class Settings extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>Nr</Col>
-                            <Col>Nimi</Col>
-                            <Col>Email</Col>
-                            <Col>Õppekava</Col>
-                            <Col></Col>
+                            <Col md={1}>Nr</Col>
+                            <Col md={3}>Nimi</Col>
+                            <Col md={3}>Email</Col>
+                            <Col md={3}>Õppekava</Col>
                         </Row>
                         {
                             users.map((user, i) => {

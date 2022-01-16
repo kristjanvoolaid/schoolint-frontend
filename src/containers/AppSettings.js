@@ -59,7 +59,7 @@ class AppSettings extends Component {
             headers: authHeader()
         })
         .then(response => response.data)
-        .then(status => console.log(status))
+        .then(status => window.location.reload(false))
         .catch(error => console.log(error));
     }
 
@@ -74,7 +74,7 @@ class AppSettings extends Component {
             headers: authHeader()
         })
         .then(response => response.data)
-        .then(status => console.log(status))
+        .then(status => window.location.reload(false))
         .catch(error => console.log(error))
     }
     

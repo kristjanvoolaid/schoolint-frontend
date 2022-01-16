@@ -21,11 +21,11 @@ function UserHeader() {
                 <div className="App-header">      
                      <Navbar collapseOnSelect expand="sm" variant= 'dark'>
                          <Container>
-                             <Navbar.Brand href="./">
-                                <Figure.Image 
-                                    src= {Logo}
-                                    width="200"
-                                    height="100"
+                             <Navbar.Brand href="/candidates">
+                   <Figure.Image 
+                                   src= {Logo}
+                                 width="200"
+                                  height="100"
                                     className="d-inline-block align-top"
                                     alt="TLU logo"
                                 />
