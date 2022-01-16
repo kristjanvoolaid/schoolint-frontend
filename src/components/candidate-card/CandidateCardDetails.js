@@ -31,16 +31,28 @@ class CandidateCardDetails extends Component {
             phoneNumber: '-',
             residence: '-',
             scores: {
-                kat1: '-',
-                kat2: '-',
-                kat3: '-',
-                kat4: '-',
+                cat1: '-',
+                cat2: '-',
+                cat3: '-',
+                cat4: '-',
             },
             background: '-',
             notes: '-',
             comments: '',
             room: '-',
             tags: [],
+            interviewResult: {
+                interviewCat1: '',
+                interviewCat2: '',
+                interviewCat3: '',
+                interviewCat4: '',
+                interviewCat5: '',
+                interviewCat6: '',
+                interviewCat7: '',
+                interviewCat8: '',
+                tags: []
+            },
+            choosedTags: [],
 
             // Candidate present
             present: null,
@@ -58,7 +70,7 @@ class CandidateCardDetails extends Component {
     }
 
     candidatePresent = () => {
-        if (this.state.present == 0) {
+        if (this.state.present === 0) {
             this.startStopWatch();
 
             this.setState(prevState => ({
@@ -165,20 +177,16 @@ class CandidateCardDetails extends Component {
 
     candidateChanges = () => {
         const candidateId = window.location.pathname;
-        const { id, firstName, lastName, email, personalId, notes, present, comments } = this.state;
+        const { id, present, comments, interviewResult } = this.state;
         
         axios({
             method: "PATCH",
             url: config.API_URL + candidateId,
             data: {
                 id,
-                firstName,
-                lastName,
-                email,
-                personalId,
-                notes,
                 present,
-                comments
+                comments,
+                interviewResult
             },
             headers: authHeader()
         })
@@ -210,10 +218,29 @@ class CandidateCardDetails extends Component {
         this.setState({
           searchField: e.target.value
         });
-      };
+    };
+
+    handleInterviewCatScores = (e) => {
+        const { value, name } = e.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                [name]: value
+            }
+        }))
+    };
+
+    handleTagsCheckbox = (e) => {
+        const { id } = e.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                tags: [...this.state.interviewResult.tags, id]
+            }
+        }))
+    };
 
     render() {
-        console.log(this.state.courseId);
         let candidateCode;
         let candidateScores;
         let candidateInformation;
@@ -237,7 +264,9 @@ class CandidateCardDetails extends Component {
         });
 
         if (fileteredTags.length < 1) {
-            emptySearch = "Sellise nimega silte ei ole!";
+            emptySearch = <Spinner animation="border" role="status" size="lg">
+                            <span className="visually-hidden">Siltide laadimine</span>
+                        </Spinner>
         };
 
         // Üldiste komponentide seadmine
@@ -274,6 +303,8 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                                 onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                             />
 
             candidateAttachments = null;
@@ -284,6 +315,8 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                                 onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                             />
 
             candidateAttachments = null;
@@ -294,6 +327,8 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                                 onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                           />
             
             candidateAttachments = <KtdCandidateAttachments />

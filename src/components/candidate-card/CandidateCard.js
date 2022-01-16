@@ -5,7 +5,6 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const CandidateCard = ({ id, name, score, email, personalId, present }) => {
     const candidateEndpoint = `/candidates/${id}`;
-    console.log(present);
     let candidateBackground;
     if (present === 1) {
         candidateBackground = "list-item_present";
@@ -13,7 +12,7 @@ const CandidateCard = ({ id, name, score, email, personalId, present }) => {
         candidateBackground = "list-item";
     }
     return (
-        <div>                                
+        <div>
             <Container>
                 <Link id={id} to={{pathname: candidateEndpoint, id: id}} className="candidate-name">
                     <Row className={candidateBackground}>
@@ -24,7 +23,7 @@ const CandidateCard = ({ id, name, score, email, personalId, present }) => {
                         <Col>{personalId}</Col>
                     </Row>
                 </Link>
-            </Container>
+            </Container>                               
         </div>
     )
 }
