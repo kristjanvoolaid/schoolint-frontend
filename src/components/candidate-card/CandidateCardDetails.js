@@ -52,6 +52,7 @@ class CandidateCardDetails extends Component {
                 interviewCat8: '',
                 tags: []
             },
+            attachments: [],
 
             // Candidate present
             present: null,
@@ -118,7 +119,8 @@ class CandidateCardDetails extends Component {
                 notes,
                 comments,
                 room,
-                present
+                present,
+                attachments
             } = response.data.candidate;
 
             // Check if results are available
@@ -140,7 +142,8 @@ class CandidateCardDetails extends Component {
                     notes: notes,
                     comments: comments,
                     room: room,
-                    present: present
+                    present: present,
+                    attachments: attachments
                 });
             }
             
@@ -155,7 +158,8 @@ class CandidateCardDetails extends Component {
                 notes: notes,
                 specialityCode: specialityCode,
                 courseId: courseId,
-                present: present
+                present: present,
+                attachments: attachments
             });
         })
         .catch((error) => {
@@ -192,6 +196,22 @@ class CandidateCardDetails extends Component {
         })
         .then(response => response.statusText)
         .then(result => console.log(result))
+    }
+
+    sendCandidateAttachment = (file) => {
+        const dataToSend = new FormData();
+        dataToSend.append('file', file);
+        dataToSend.append('candidateId', this.state.id);
+
+        axios({
+            method: "POST",
+            url: config.API_URL + "/candidates/attachment/",
+            data: dataToSend,
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(result => console.log(result))
+        .catch(error => console.log(error));
     }
 
     startStopWatch = () => {
@@ -332,7 +352,7 @@ class CandidateCardDetails extends Component {
                                 handleInterviewCatScores={this.handleInterviewCatScores}
                           />
             
-            candidateAttachments = <KtdCandidateAttachments />
+            candidateAttachments = <KtdCandidateAttachments attachments={this.state.attachments} id={this.state.id} />
         }
 
         const { minutes, seconds } = this.state;

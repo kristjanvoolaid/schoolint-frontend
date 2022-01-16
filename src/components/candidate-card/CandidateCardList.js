@@ -5,9 +5,9 @@ import CandidateCard from './CandidateCard';
 import './CandidatesCard.css';
 
 export class CandidateCardList extends Component {
-    // constructor(props) {
-    //     super(props)
-    // }
+    constructor(props) {
+        super(props)
+    }
 
     render() {
         const { candidates } = this.props;
