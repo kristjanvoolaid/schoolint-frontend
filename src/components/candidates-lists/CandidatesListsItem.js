@@ -8,6 +8,7 @@ import './PopUp.css';
 import authHeader from "../../services/AuthHeader";
 import config from "../../config";
 
+
 class CandidatesListsItem extends Component {
     constructor(props) {
         super(props)
@@ -40,7 +41,7 @@ class CandidatesListsItem extends Component {
         
         // TODO: Make proper alerting box or sign that no file is selected. Current solution is for testing
         if (this.state.file == null) {
-            return alert('No file selected!');
+            return alert('Ühtegi faili ei ole valitud!');
         }
 
         const dataToSend = new FormData();
@@ -60,13 +61,13 @@ class CandidatesListsItem extends Component {
             .then(response => response.statusText)
             .then(result => console.log(result));
 
-            alert('File sent!')
+            alert('Fail saadetud!')
             this.setState({
                 file: null
             });
         } catch (error) {
             console.log(error)
-            return alert('Failed to send file')   
+            return alert('Faili saatmine ebaõnnestus!')   
         }
     }
 
@@ -110,6 +111,7 @@ class CandidatesListsItem extends Component {
                 <Container className="text-center">
                     <Row>
                         <Col>{id}</Col>
+                        <Col><button onClick={this.listStatusHandler} className="button2">{listStatus}</button></Col>
                         <Col>{year}</Col>
                         <Col>{listCode}</Col>
                         <Col>{formattedDate}</Col>
@@ -122,16 +124,14 @@ class CandidatesListsItem extends Component {
                                         </Row>
                                         <Row className="text-center popUp_file">
                                             <Col>
-                                                <label for="file_input">Vali fail: </label>
-                                                <input name="file" type="file" onChange={this.handleFileChange} accept=".xls, .xlsx" className="button3"/>
+                                                <label for="file_input" > </label>
+                                                <input className="btn2" name="file" type="file" onChange={this.handleFileChange} accept=".xls, .xlsx" />
                                             </Col>
                                         </Row>
-                                        <Row className="text-center popUp_buttons">
+                                        <Row className="text-center popUp_buttons" class="px-auto">
                                             <Col>
                                                 <button className="button2" onClick={close}>Tagasi</button>
-                                                &nbsp;
-                                                &nbsp;
-                                                &nbsp;
+
                                                 <Link to="/lists">
                                                     <button onClick={this.onClickHandler} className="button1">Lae üles</button>
                                                 </Link> 
@@ -157,7 +157,7 @@ class CandidatesListsItem extends Component {
                                 >
                                 </Spinner>}
                             </Button> */}
-                            <button onClick={this.listStatusHandler} className="button3">{listStatus}</button>
+
                         </Col>
                     </Row>
                 </Container>

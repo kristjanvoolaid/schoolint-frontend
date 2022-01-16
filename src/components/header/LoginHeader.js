@@ -17,13 +17,13 @@ function LoginHeader() {
         <div>
             <IconContext.Provider value={{color: 'white', size: '30px', fontSize: '1em'}}>
                 <div className="App-header">      
-                    <Navbar collapseOnSelect expand="sm" variant= 'dark'>
+                    <Navbar collapseOnSelect expand="lg" variant= 'dark'>
                     <Container>
                         <Navbar.Brand href="./">
                             <Figure.Image 
                                 src= {Logo}
-                                width="200"
-                                height="100"
+                                width="300"
+                                height="150"
                                 className="d-inline-block align-top"
                                 alt="TLU logo"
                                         />
