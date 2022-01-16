@@ -52,7 +52,6 @@ class CandidateCardDetails extends Component {
                 interviewCat8: '',
                 tags: []
             },
-            choosedTags: [],
 
             // Candidate present
             present: null,

@@ -3,18 +3,24 @@ import axios from "axios";
 import CandidatesLists from '../components/candidates-lists/CandidatesLists';
 import authHeader from "../services/AuthHeader";
 import { Spinner, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 import config from "../config";
 
 class CandidatesListsFetch extends Component {
     constructor() {
         super()
         this.state = {
-            candidatesLists: []
+            candidatesLists: [],
+            courses: []
         };
     }
     
     componentDidMount() {
+        this.fetchCoursesLists();
+        this.fetchCourses();
+    }
+
+    fetchCoursesLists() {
         axios.get(config.API_URL + '/lists', { headers: authHeader() })
         .then((response) => {
             this.setState({
@@ -26,14 +32,45 @@ class CandidatesListsFetch extends Component {
         });
     }
 
+    fetchCourses() {
+        axios({
+            method: "GET",
+            url: config.API_URL + "/courses",
+            headers: authHeader()
+        })
+        .then(response => {
+            this.setState({
+                courses: response.data.courses
+            })
+        })
+        .catch(error => console.log(error));
+    }
+
     render() {
-        const { candidatesLists } = this.state;
+        const { candidatesLists, courses } = this.state;
 
         if (candidatesLists.length < 1) {
             return (
                 <div className="text-center" style={{ marginTop: 50 }}>
                     <Row>
-                        <Col md={{ offset: 0 }}><Link to="/import">Import</Link></Col>
+                        <Col md={{ offset: 0 }}>
+                        <Popup trigger={<button className="button1">Import</button>} modal>
+                            {close => (
+                                <div className="text-center">
+                                    <h1>Uus nimekiri</h1>
+                                    <select value={this.state.listCode} onChange={this.handleListCodeChange}>
+                                        <option value="">Vali õppekava</option>
+                                        {this.state.courses.map(course => (
+                                            <option value={course.id}>{course.name}</option>
+                                        ))}
+                                        </select>
+                                    <input name="year" type="number" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
+                                    <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
+                                    <button type="button" onClick={this.listDataToBackend}>Upload</button>
+                                </div>
+                            )}
+                        </Popup>
+                        </Col>
                     </Row>
                     <Row>
                         <Col>
