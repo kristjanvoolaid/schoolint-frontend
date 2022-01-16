@@ -6,7 +6,61 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
         <div>
             <Container>
                 <Row>
-                    <Col sm={6}>
+                    <Col sm={1}></Col>
+                    <Col sm={2}>
+                        Kat 1.1
+                        <br></br>
+                        <select className="text-box">
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                        </select>
+                    </Col>
+                    <Col sm={2}>
+                        Kat 1.2
+                        <br></br>
+                        <select className="text-box">
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                        </select>
+                    </Col>
+                    <Col sm={2}>
+                        Kat 1.3
+                        <br></br>
+                        <select className="text-box">
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                        </select>
+                    </Col>
+                    <Col sm={2}>
+                        Kat 1.4
+                        <br></br>
+                        <select className="text-box">
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                        </select>
+                    </Col>
+                    <Col sm={2}>
+                        Kat 1.5
+                        <br></br>
+                        <select className="text-box">
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                            <option value="test">Test</option>
+                        </select>
+                    </Col>
+                </Row>
+                <Row>
+                <Col sm={6}>
+                    <br></br>
                         Sildid
                         <br></br>
                         <input type="text" placeholder="Search" onChange={onSearchChange}></input>
@@ -17,63 +71,8 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
                             </div>
                         ))}
                     </Col>
-                    <Col sm={1}>
-                        Kat 1.1
-                        <br></br>
-                        <select>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                        </select>
-                    </Col>
-                    <Col sm={1}>
-                        Kat 1.2
-                        <br></br>
-                        <select>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                        </select>
-                    </Col>
-                    <Col sm={1}>
-                        Kat 1.3
-                        <br></br>
-                        <select>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                        </select>
-                    </Col>
-                    <Col sm={1}>
-                        Kat 1.4
-                        <br></br>
-                        <select>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                        </select>
-                    </Col>
-                    <Col sm={1}>
-                        Kat 1.5
-                        <br></br>
-                        <select>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                        </select>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={6}></Col>
-                    <Col sm={4}>
-                        Kommentaar
-                        <br></br>
-                        <textarea value={comments} onChange={handleCommentsChange} rows="6" cols="70"></textarea>
+                    <Col sm={5}> <br></br>Kommentaar<br></br>
+                        <textarea className="text-box comments-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea>
                     </Col>
                 </Row>
             </Container>

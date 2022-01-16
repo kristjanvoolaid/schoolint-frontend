@@ -9,7 +9,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                 <Row>
                     <Col md={2}></Col>
                     <Col md={2}>
-                        Kat 1.1
+                        Motivatsioon
                         <br></br>
                         <select className="text-box">
                             <option value="test">Test</option>
@@ -20,7 +20,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                         <br></br>
                     </Col>
                     <Col md={2}>
-                        Kat 1.2
+                        Väljendusoskus
                         <br></br>
                         <select className="text-box">
                             <option value="test">Test</option>
@@ -30,7 +30,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                         </select>
                     </Col>
                     <Col md={2}>
-                        Kat 1.3
+                        Üldteadmised
                         <br></br>
                         <select className="text-box">
                             <option value="test">Test</option>
@@ -40,7 +40,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                         </select>
                     </Col>
                     <Col md={2}>
-                        Kat 1.4
+                        Boonus
                         <br></br>
                         <select className="text-box">
                             <option value="test">Test</option>
@@ -53,8 +53,9 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                 </Row>
                 <Row>
                 <Col md={2}></Col>
-                <Col md={4}>Kommentaar<br></br><textarea class="comments-box text-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col md={4}><br></br>Kommentaar<br></br><textarea class="comments-box text-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
                 <Col md={4}>
+                <br></br>
                 <label>Sildid</label><br></br>
                         <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
                         {tags.map(tag => (

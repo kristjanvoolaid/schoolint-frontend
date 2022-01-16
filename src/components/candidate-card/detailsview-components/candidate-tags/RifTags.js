@@ -6,30 +6,22 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange }) {
         <div>
             <Container>
                 <Row>
-                    <Col sm={4}>Kommentaar<br></br><textarea value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col sm={3}></Col>
                     <Col sm={2}>
-                        Kat 1.1
+                        Mulje/isiksus
                         <br></br>
-                        <select>
+                        <select className="text-box">
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                         </select>
                         <br></br>
-                        <label>Sildid</label>
-                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
-                        {tags.map(tag => (
-                            <div>
-                                <input type="checkbox" id={tag.name} />
-                                <label for={tag.name}>{tag.name}</label>    
-                            </div>
-                        ))}
                     </Col>
                     <Col sm={2}>
-                        Kat 1.2
+                        Teadmised/kogemused
                         <br></br>
-                        <select>
+                        <select className="text-box">
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
@@ -39,13 +31,30 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                     <Col sm={2}>
                         Kat 1.3
                         <br></br>
-                        <select>
+                        <select className="text-box">
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                         </select>
                     </Col>
+                    <Col sm={3}></Col>
+                </Row>
+                <Row>
+                <Col md={2}></Col>
+                <Col md={4}><br></br>Kommentaar<br></br><textarea class="comments-box text-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col md={4}>
+                <br></br>
+                <label>Sildid</label><br></br>
+                        <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
+                </Col>
+                <Col md={2}></Col>
                 </Row>
             </Container>
         </div>

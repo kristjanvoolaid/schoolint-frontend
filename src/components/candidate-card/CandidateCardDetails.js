@@ -328,6 +328,7 @@ class CandidateCardDetails extends Component {
                         <Col md={8} className="secondary-text">
                             <p>{this.state.personalId}</p>
                         </Col>
+                        <hr></hr>
                     </Row>
                     <br></br>
                     <Row>{candidateScores}</Row>

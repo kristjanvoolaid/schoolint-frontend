@@ -7,13 +7,9 @@ function KtdCandidateAttachments() {
         <div>
             <Container>
                 <Row>
-                    <Col sm={{ span: 1, offset: 6 }}>Kat 1.1</Col>
-                    <Col sm={1}>Kat 1.2</Col>
-                    <Col sm={1}>Kat 1.3</Col>
-                </Row>
-                <Row>
-                    <Col sm={{ span: 2, offset: 4 }}>
-                        <Popup trigger={<button>Lisa makett +</button>} modal>
+                    <Col md={2}></Col>
+                    <Col md={2}>
+                        <Popup trigger={<button className="button1">Lisa makett +</button>} modal>
                             {close => (
                                 <div>
                                     <input type="file"></input>
@@ -24,30 +20,35 @@ function KtdCandidateAttachments() {
                             )}
                         </Popup>
                     </Col>
-                    <Col sm={1}>
-                        <select>
+                    <Col md={1}></Col>
+                    <Col md={2}>
+                        Originaalsus <br></br>
+                        <select className="text-box">
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                         </select>
                     </Col>
-                    <Col sm={1}>
-                        <select>
+                    <Col md={2}>
+                        Kvaliteet<br></br>
+                        <select className="text-box">
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                         </select>
                     </Col>
-                    <Col sm={1}>
-                        <select>
+                    <Col md={2}>
+                        Presentatsoon<br></br>
+                        <select className="text-box">
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                             <option value="test">Test</option>
                         </select>
                     </Col>
+                    <Col md={2}></Col>
                 </Row>
             </Container>
             <hr></hr>
