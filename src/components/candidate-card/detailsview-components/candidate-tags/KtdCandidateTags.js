@@ -63,7 +63,7 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
                     <br></br>
                         Sildid
                         <br></br>
-                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
+                        <input className="text-box" type="text" placeholder="Search" onChange={onSearchChange}></input>
                         {tags.map(tag => (
                             <div>
                                 <input type="checkbox" id={tag.name} />
