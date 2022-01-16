@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import Popup from 'reactjs-popup';
+import "../candidate-card/CandidatesCard.css";
 import config from '../../config';
 import authHeader from '../../services/AuthHeader';
 
@@ -99,8 +100,8 @@ class SettingsAppTags extends Component {
                                         </Row>
                                         <Row>
                                             <Col md={{ offset: 4 }}>
-                                                <button onClick={close}>Tagasi</button>
-                                                <button onClick={() => this.updateTag(tagNameToUpdate, tagCourseIdToUpdate)}>Lisa</button>
+                                                <Button onClick={close}>Tagasi</Button>
+                                                <Button onClick={() => this.updateTag(tagNameToUpdate, tagCourseIdToUpdate)}>Lisa</Button>
                                             </Col>
                                         </Row>
                                     </div>

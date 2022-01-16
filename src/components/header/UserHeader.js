@@ -2,9 +2,8 @@ import React from 'react';
 import { BsPower } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
 import * as IoIcons from 'react-icons/io';
-import * as CgIcons from 'react-icons/cg';
 import * as BsIcons from 'react-icons/bs';
-import { Container, Nav, Button, Form, FormControl, Figure } from 'react-bootstrap';
+import { Container, Nav, Figure } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import Logo from './images/logo.svg';
 import AuthService from "../../services/AuthService";
@@ -34,7 +33,7 @@ function UserHeader() {
                        </Container>
                         
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                      <Navbar.Collapse id="responsive-navbar-nav">
+                        <Navbar.Collapse id="responsive-navbar-nav">
                            <Container>
                                 <Nav className="justify-content-end">
                                     <Nav.Link eventKey='Nimekirjad' href="/candidates"><BsIcons.BsListUl />Nimekirjad</Nav.Link>
