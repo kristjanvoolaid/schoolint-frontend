@@ -7,7 +7,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
         <div>
             <Container>
                 <Row>
-                    <Col md={4}>Kommentaar<br></br><textarea class="comments-box text-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                    <Col md={2}></Col>
                     <Col md={2}>
                         Kat 1.1
                         <br></br>
@@ -18,14 +18,6 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                             <option value="test">Test</option>
                         </select>
                         <br></br>
-                        <label>Sildid</label>
-                        <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
-                        {tags.map(tag => (
-                            <div>
-                                <input type="checkbox" id={tag.name} />
-                                <label for={tag.name}>{tag.name}</label>    
-                            </div>
-                        ))}
                     </Col>
                     <Col md={2}>
                         Kat 1.2
@@ -57,6 +49,22 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                             <option value="test">Test</option>
                         </select>
                     </Col>
+                    <Col md={2}></Col>
+                </Row>
+                <Row>
+                <Col md={2}></Col>
+                <Col md={4}>Kommentaar<br></br><textarea class="comments-box text-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col md={4}>
+                <label>Sildid</label><br></br>
+                        <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
+                </Col>
+                <Col md={2}></Col>
                 </Row>
             </Container>
         </div>
