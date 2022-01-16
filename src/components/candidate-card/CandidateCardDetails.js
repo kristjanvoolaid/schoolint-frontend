@@ -317,15 +317,15 @@ class CandidateCardDetails extends Component {
                 <Container>
                     <Row>
                         <Col sm={2}></Col>
-                        <Col sm={6}>
+                        <Col sm={8} className="candidate-name-card secondary-text">
                             <h1>{this.state.firstName} {this.state.lastName}</h1>            
                         </Col>
-                        <Col md="auto"><h4>{minutes}:{seconds}</h4></Col>
+                        <Col md="auto" className="timer-button secondary-text"><h4>{minutes}:{seconds}</h4></Col>
                         <Col xs lg="1"><button className={presentButtonClassName} onClick={this.candidatePresent}>Alusta</button></Col>
                     </Row>
                     <Row>
-                        <Col sm={2}></Col>
-                        <Col sm={6}>
+                        <Col md={2}></Col>
+                        <Col md={8} className="secondary-text">
                             <p>{this.state.personalId}</p>
                         </Col>
                     </Row>
@@ -340,13 +340,13 @@ class CandidateCardDetails extends Component {
                     </Row>
                     <br></br>
                     <Row>
-                        <Col sm={9}></Col>
-                        <Col sm={1}>
+                        <Col md={9}></Col>
+                        <Col md={1}>
                             <Link to="/candidates">
                                 <button className="button2">Sulge</button>
                             </Link>
                         </Col>
-                        <Col sm={1}>
+                        <Col md={1}>
                             <Popup trigger={<button className="button1">Salvesta</button>} modal>
                                 {close => (
                                     <div>
