@@ -3,7 +3,6 @@ import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import SettingsAppTags from './SettingsAppTags';
 import SettingsAppUser from './SettingsAppUser';
-import AuthRoleService from "../../services/AuthRole";
 
 class Settings extends Component {
     constructor(props) {
