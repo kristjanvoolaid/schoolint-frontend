@@ -48,14 +48,19 @@ class CandidatesLists extends Component {
         dataToSend.append('courseId', this.state.listCode);
 
         try {
+
+            if (this.state.file == null) {
+                return alert('No file selected!');
+            }
+
             axios({
                 method: "POST",
                 url: `${config.API_URL}/lists`,
                 data: dataToSend,
                 headers: authHeader()
             })
-            .then(response => response.statusText)
-            .then(result => console.log(result));
+            .then(response => response.data)
+            .then(result => window.location.reload());
 
             this.setState({
                 file: null
@@ -63,12 +68,6 @@ class CandidatesLists extends Component {
         } catch (error) {
             console.log(error);
         }
-
-        if (this.state.file == null) {
-            return alert('No file selected!');
-        }
-
-        return alert('File sent');
     }
 
     componentDidMount() {
