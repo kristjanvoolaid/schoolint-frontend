@@ -1,9 +1,5 @@
 import axios from "axios";
 import authHeader from "./AuthHeader";
-<<<<<<< HEAD
-// import AuthService from "./AuthService";
-=======
->>>>>>> 6695b3fd9da9e74e870c597fdf19ff0eaef4141d
 import config from "../config";
 
 let r;

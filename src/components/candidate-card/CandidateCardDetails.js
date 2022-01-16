@@ -70,7 +70,7 @@ class CandidateCardDetails extends Component {
 
     candidatePresent = () => {
         if (this.state.present === 0) {
-                    // siin pahandas vs koodiga, st vahetasin == välja === vastu.
+            // siin pahandas vs koodiga, st vahetasin == välja === vastu.
             this.startStopWatch();
 
             this.setState(prevState => ({

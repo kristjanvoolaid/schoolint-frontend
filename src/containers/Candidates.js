@@ -45,8 +45,6 @@ class Candidates extends Component {
           const firstNameFilter = candidates.firstName.toLowerCase().includes(this.state.searchField.toLowerCase());
           const lastNameFilter = candidates.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
           // const personalIdFilter = candidates.personalId.includes(this.state.searchField);
-<<<<<<< HEAD
-=======
 
           // if (firstNameFilter) {
           //   return firstNameFilter;
@@ -55,20 +53,13 @@ class Candidates extends Component {
           // } else {
           //   return personalIdFilter;
           // }
->>>>>>> 6695b3fd9da9e74e870c597fdf19ff0eaef4141d
 
           if (firstNameFilter) {
             return firstNameFilter;
           } else if (lastNameFilter) {
             return lastNameFilter;
-<<<<<<< HEAD
-          } else {
-            // return personalIdFilter;
-          }
-=======
           } 
           
->>>>>>> 6695b3fd9da9e74e870c597fdf19ff0eaef4141d
         });
 
         if (error != null) {
