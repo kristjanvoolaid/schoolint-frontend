@@ -17,6 +17,7 @@ function LoginHeader() {
         <div>
             <IconContext.Provider value={{color: 'white', size: '30px', fontSize: '1em'}}>
                 <div className="App-header">      
+<<<<<<< HEAD
                     <Navbar collapseOnSelect expand="sm" variant= 'dark'>
                     <Container>
                         <Navbar.Brand href="./">
@@ -28,6 +29,19 @@ function LoginHeader() {
                                 alt="TLU logo"
                                         />
                                 </Navbar.Brand>
+=======
+                     <Navbar collapseOnSelect expand="sm" variant= 'dark'>
+                         <Container>
+                             <Navbar.Brand href="./login">
+                   <Figure.Image 
+                                   src= {Logo}
+                                 width="200"
+                                  height="100"
+                                    className="d-inline-block align-top"
+                                    alt="TLU logo"
+                                />
+                            </Navbar.Brand>
+>>>>>>> 6695b3fd9da9e74e870c597fdf19ff0eaef4141d
                        </Container>
                         
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

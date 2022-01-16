@@ -1,7 +1,5 @@
 import axios from 'axios';
 import config from "../config";
-// import authHeader from './AuthHeader';
-// import userRole from './AuthRole';
 
 const login = (email, password) => {
     return axios
