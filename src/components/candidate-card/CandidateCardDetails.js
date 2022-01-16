@@ -123,8 +123,6 @@ class CandidateCardDetails extends Component {
                 attachments
             } = response.data.candidate;
 
-            console.log(response.data.candidate);
-
             // Check if results are available
             if (background && scores) {
                     this.setState({

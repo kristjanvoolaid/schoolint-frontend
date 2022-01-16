@@ -11,6 +11,7 @@ export class CandidateCardList extends Component {
 
     render() {
         const { candidates } = this.props;
+        console.log(candidates);
         return (
             <div>
                 <div className="page-name">
@@ -33,6 +34,7 @@ export class CandidateCardList extends Component {
                         <Col>Score</Col>
                         <Col>Email</Col>
                         <Col>PersonalID</Col>
+                        <Col>Algus</Col>
     
                     </Row>    
                 </Container> 
@@ -47,6 +49,7 @@ export class CandidateCardList extends Component {
                                 email={candidates[i].email}
                                 personalId={candidates[i].personalId}
                                 present={candidates[i].present}
+                                time={candidates[i].time}
                             />
                         )
                     })

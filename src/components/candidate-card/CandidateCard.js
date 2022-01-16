@@ -3,14 +3,24 @@ import './CandidatesCard.css';
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 
-const CandidateCard = ({ id, name, score, email, personalId, present }) => {
+const CandidateCard = ({ id, name, score, email, personalId, present, time }) => {
     const candidateEndpoint = `/candidates/${id}`;
     let candidateBackground;
+    let startTime;
+    // Kandidaadi kohalolek
     if (present === 1) {
         candidateBackground = "list-item_present";
     } else {
         candidateBackground = "list-item";
     }
+
+    // Intervjuu algus aeg
+    if (time !== null) {
+        startTime = time;
+    } else {
+        startTime = "-";
+    }
+
     return (
         <div>
             <Container>
@@ -21,6 +31,7 @@ const CandidateCard = ({ id, name, score, email, personalId, present }) => {
                         <Col>{score}</Col>
                         <Col>{email}</Col>
                         <Col>{personalId}</Col>
+                        <Col>{startTime}</Col>
                     </Row>
                 </Link>
             </Container>                               
