@@ -123,8 +123,10 @@ class CandidateCardDetails extends Component {
                 attachments
             } = response.data.candidate;
 
+            console.log(response.data.candidate);
+
             // Check if results are available
-            if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
+            if (background && scores) {
                     this.setState({
                     id: id,
                     specialityCode: specialityCode,
@@ -293,10 +295,10 @@ class CandidateCardDetails extends Component {
         // Üldiste komponentide seadmine
         candidateScores = <CandidateScores
                             candidateCode={candidateCode}
-                            scoresKat1={this.state.scores.kat1}
-                            scoresKat2={this.state.scores.kat2}
-                            scoresKat3={this.state.scores.kat3}
-                            scoresKat4={this.state.scores.kat4}
+                            scoresKat1={this.state.scores.cat1}
+                            scoresKat2={this.state.scores.cat2}
+                            scoresKat3={this.state.scores.cat3}
+                            scoresKat4={this.state.scores.cat4}
                             finalScore={this.state.finalScore}
                         />
 

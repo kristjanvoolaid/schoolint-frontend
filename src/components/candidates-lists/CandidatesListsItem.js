@@ -46,8 +46,7 @@ class CandidatesListsItem extends Component {
         const dataToSend = new FormData();
         dataToSend.append('file', this.state.file);
         dataToSend.append('year', this.state.year);
-
-        // Listi id kaasa
+        dataToSend.append('id', this.props.id);
 
         try {
             // Sending file to backend
@@ -57,8 +56,8 @@ class CandidatesListsItem extends Component {
                 data: dataToSend,
                 headers: authHeader()
             })
-            .then(response => response.statusText)
-            .then(result => console.log(result));
+            .then(response => response.data)
+            .then(result => window.location.reload());
 
             alert('File sent!')
             this.setState({

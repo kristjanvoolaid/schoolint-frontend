@@ -12,7 +12,8 @@ class KtdCandidateAttachments extends Component {
 
         this.state = {
             file: null,
-            attachmentId: ''
+            attachmentId: '',
+            attachments: props.attachments,
         }
     }
 
@@ -34,7 +35,7 @@ class KtdCandidateAttachments extends Component {
             headers: authHeader()
         })
         .then(response => response.data)
-        .then(result => window.location.reload())
+        .then(result => console.log(result))
         .catch(error => console.log(error));
     }
 
@@ -58,6 +59,8 @@ class KtdCandidateAttachments extends Component {
 
     render() {
         const { attachments } = this.props;
+        // const { attachments } = this.state;
+
         return (
             <div>
                 <Container>
@@ -75,9 +78,7 @@ class KtdCandidateAttachments extends Component {
                                     <input type="file" onChange={this.setFile}></input>
                                     <br></br>
                                     <button onClick={close}>Sulge</button>
-                                    <Link to="/candidates/14">
                                         <button onClick={this.sendCandidateAttachment}>Vali</button>
-                                    </Link>
                                 </div>
                             )}
                             </Popup>
