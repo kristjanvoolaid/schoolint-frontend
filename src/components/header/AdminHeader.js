@@ -4,7 +4,8 @@ import { IconContext } from 'react-icons';
 import * as IoIcons from 'react-icons/io';
 import * as CgIcons from 'react-icons/cg';
 import * as BsIcons from 'react-icons/bs';
-import { Container, Nav, Button, Form, FormControl, Figure } from 'react-bootstrap';
+import { BsFillGearFill } from "react-icons/bs";
+import { Container, Nav, Figure } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import Logo from './images/logo.svg';
 import AuthService from "../../services/AuthService";
@@ -37,9 +38,11 @@ function AdminHeader() {
                       <Navbar.Collapse id="responsive-navbar-nav">
                            <Container>
                                 <Nav className="justify-content-end">
-                                     <Nav.Link eventKey='Töölaud' href="/lists"><CgIcons.CgMenuBoxed />Töölaud</Nav.Link>
-                                     <Nav.Link eventKey='Nimekirjad' href="/candidates"><BsIcons.BsListUl />Nimekirjad</Nav.Link>
-                                     <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link>
+                                     <Nav.Link eventKey='Nimekirjad' href="/lists"><BsIcons.BsListUl />Nimekirjad</Nav.Link>
+                                     <Nav.Link eventKey='Töölaud' href="/candidates"><CgIcons.CgMenuBoxed />Töölaud</Nav.Link>
+                                     <Nav.Link eventKey='Seaded' href="/settings"><BsFillGearFill />Seaded</Nav.Link>
+                                     {/* siia tuleb abilehekülje nupp link peab muutuma> hetkel viib seadete lehele*/}
+                                     <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link> 
                                      <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower />{userBtn}</Nav.Link>
                                 </Nav>
                              </Container>

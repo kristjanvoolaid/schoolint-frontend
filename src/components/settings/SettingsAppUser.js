@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import config from "../../config";
 import authHeader from "../../services/AuthHeader";
+import "../candidate-card/CandidatesCard.css";
 
 class SettingsAppUser extends Component {
     constructor(props) {
@@ -68,6 +69,17 @@ class SettingsAppUser extends Component {
         .catch(error => console.log(error));
     }
 
+    deleteUser(id) {
+        axios({
+            method: "DELETE",
+            url: config.API_URL + `/users/${id}`,
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(result => window.location.reload())
+        .catch(error => console.log(error))
+    }
+
     render() {
         const { id, firstName, lastName, email, specialityCode } = this.props;
         const { firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate } = this.state;
@@ -76,14 +88,16 @@ class SettingsAppUser extends Component {
             <div>
                 <Container className="text-center">
                 <Row>
-                    <Col>{id}</Col>
-                    <Col>{name}</Col>
-                    <Col>{email}</Col>
-                    <Col>{specialityCode}</Col>
-                    <Col>
+                    <Col md={1}>{id}</Col>
+                    <Col md={3}>{name}</Col>
+                    <Col md={3}>{email}</Col>
+                    <Col md={3}>{specialityCode}</Col>
+                    <Col md={1}>
                         <Popup trigger={<button>Muuda</button>} modal>
                             {close => (
+                                
                                 <div>
+                                    
                                     <Row className="text-center">
                                         <Col>Muuda kasutajat</Col>
                                     </Row>
@@ -127,13 +141,16 @@ class SettingsAppUser extends Component {
                                     </Row>
                                     <Row>
                                         <Col md={{ offset: 4 }}>
-                                            <button onClick={close}>Tagasi</button>
-                                            <button onClick={() => this.changeUser(firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate)}>Muuda</button>
+                                            <Button onClick={close}>Tagasi</Button>
+                                            <Button onClick={() => this.changeUser(firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate)}>Muuda</Button>
                                         </Col>
                                     </Row>
                                 </div>
                             )}
                         </Popup>
+                    </Col>
+                    <Col md={1}>
+                                    <button onClick={() => this.deleteUser(id)}>Kustuta</button>
                     </Col>
                 </Row>
             </Container>

@@ -15,16 +15,14 @@ class App extends Component {
     return (
       <div className='App'>
         <AppHeader />
-        {/* <HeaderInfo /> */}
         <Routes>
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/import" element={
+          <Route exact path="/" element={
             <RequireAuth redirectTo="/login">
-              <RequireAdmin redirectTo="/candidates">
-                <Importpage />
-              </RequireAdmin>
+              <Candidates />
             </RequireAuth>
-          } />
+          } 
+          />
           <Route path="/candidates" element={
             <RequireAuth redirectTo="/login">
               <Candidates />

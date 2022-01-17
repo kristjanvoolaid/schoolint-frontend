@@ -1,6 +1,5 @@
 import axios from "axios";
 import authHeader from "./AuthHeader";
-import AuthService from "./AuthService";
 import config from "../config";
 
 let r;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
+import { Col, Container, Row, Tab, Tabs, Button } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import SettingsAppTags from './SettingsAppTags';
 import SettingsAppUser from './SettingsAppUser';
 import AuthRoleService from "../../services/AuthRole";
+import "../candidate-card/CandidatesCard.css";
 
 class Settings extends Component {
     constructor(props) {
@@ -72,7 +73,7 @@ class Settings extends Component {
                     <Container className="text-center">
                         <Row>
                             <Col md={{ offset: 9 }}>
-                                <Popup trigger={<button>Lisa uus +</button>} modal>
+                                <Popup trigger={<Button>Lisa uus +</Button>} modal>
                                     {close => (
                                         <div>
                                             <Row className="text-center">
@@ -117,8 +118,8 @@ class Settings extends Component {
                                             </Row>
                                             <Row>
                                                 <Col md={{ offset: 4 }}>
-                                                    <button onClick={close}>Tagasi</button>
-                                                    <button onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</button>
+                                                    <Button className="btn" onClick={close}>Tagasi</Button>
+                                                    <Button onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</Button>
                                                 </Col>
                                             </Row>
                                         </div>
@@ -127,11 +128,10 @@ class Settings extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>Nr</Col>
-                            <Col>Nimi</Col>
-                            <Col>Email</Col>
-                            <Col>Õppekava</Col>
-                            <Col></Col>
+                            <Col md={1}>Nr</Col>
+                            <Col md={3}>Nimi</Col>
+                            <Col md={3}>Email</Col>
+                            <Col md={3}>Õppekava</Col>
                         </Row>
                         {
                             users.map((user, i) => {
@@ -153,7 +153,7 @@ class Settings extends Component {
                             <Container className="text-center">
                                 <Row>
                                     <Col md={{ offset: 9 }}>
-                                        <Popup trigger={<button>Lisa +</button>} modal nested>
+                                        <Popup trigger={<Button>Lisa +</Button>} modal nested>
                                             {close => (
                                                 <div>
                                                     <Row className="text-center">
@@ -180,8 +180,8 @@ class Settings extends Component {
                                                     </Row>
                                                     <Row>
                                                         <Col md={{ offset: 4 }}>
-                                                            <button onClick={close}>Tagasi</button>
-                                                            <button onClick={() => createTag(tagName, tagCourseId)}>Lisa</button>
+                                                            <Button onClick={close}>Tagasi</Button>
+                                                            <Button onClick={() => createTag(tagName, tagCourseId)}>Lisa</Button>
                                                         </Col>
                                                     </Row>
                                                 </div>     

@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import Popup from 'reactjs-popup';
+import "../candidate-card/CandidatesCard.css";
+import config from '../../config';
+import authHeader from '../../services/AuthHeader';
 
 class SettingsAppTags extends Component {
     constructor(props) {
@@ -33,7 +37,7 @@ class SettingsAppTags extends Component {
                 body: JSON.stringify({ name, courseId })
             }
 
-            fetch(`http://127.0.0.1:3001/tags/${id}`, updateTagRequest)
+            fetch(`${config.API_URL}/tags/${id}`, updateTagRequest)
             .then(response => response.json())
             .then(data => console.log(data));
 
@@ -42,6 +46,17 @@ class SettingsAppTags extends Component {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    deleteTag(id) {
+        axios({
+            method: "DELETE",
+            url: config.API_URL + `/tags/${id}`,
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(result => window.location.reload())
+        .catch(error => console.log(error))
     }
 
     render() {
@@ -54,7 +69,7 @@ class SettingsAppTags extends Component {
                         <Col md={3}>{id}</Col>
                         <Col md={3}>{name}</Col>
                         <Col md={3}>{specialityCode}</Col>
-                        <Col md={3}>
+                        <Col md={1}>
                             <Popup trigger={<button>Muuda</button>} modal>
                                 {close => (
                                     <div>
@@ -85,13 +100,16 @@ class SettingsAppTags extends Component {
                                         </Row>
                                         <Row>
                                             <Col md={{ offset: 4 }}>
-                                                <button onClick={close}>Tagasi</button>
-                                                <button onClick={() => this.updateTag(tagNameToUpdate, tagCourseIdToUpdate)}>Lisa</button>
+                                                <Button onClick={close}>Tagasi</Button>
+                                                <Button onClick={() => this.updateTag(tagNameToUpdate, tagCourseIdToUpdate)}>Lisa</Button>
                                             </Col>
                                         </Row>
                                     </div>
                                 )}
                             </Popup>
+                        </Col>
+                        <Col md={1}>
+                                    <button onClick={() => this.deleteTag(id)}>Kustuta</button>
                         </Col>
                     </Row>
                 </Container>

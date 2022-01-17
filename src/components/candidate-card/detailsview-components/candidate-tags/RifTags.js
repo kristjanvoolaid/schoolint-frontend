@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-function RifTags({ tags, comments, handleCommentsChange, onSearchChange }) {
+function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleTagsCheckbox, handleInterviewCatScores  }) {
     return (
         <div>
             <Container>
@@ -10,32 +10,43 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange }) {
                     <Col sm={2}>
                         Mulje/isiksus
                         <br></br>
-                        <select className="text-box">
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
+                        <select onChange={handleInterviewCatScores} name="interviewCat1">
+                            <option value="">VALI</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </select>
                         <br></br>
+                        <label>Sildid</label>
+                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
+                        {tags.map((tag, i) => (
+                            <div>
+                                <input key={tags[i].id} type="checkbox" id={tags[i].id} name={tags[i].name} onChange={handleTagsCheckbox}/>
+                                <label htmlFor={tags[i].name}>{tags[i].name}</label>
+                            </div>
+                        ))}
                     </Col>
                     <Col sm={2}>
                         Teadmised/kogemused
                         <br></br>
-                        <select className="text-box">
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
+                        <select onChange={handleInterviewCatScores} name="interviewCat2">
+                            <option value="">VALI</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </select>
                     </Col>
                     <Col sm={2}>
                         Kat 1.3
                         <br></br>
-                        <select className="text-box">
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
-                            <option value="test">Test</option>
+                        <select onChange={handleInterviewCatScores} name="interviewCat3">
+                            <option value="">VALI</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </select>
                     </Col>
                     <Col sm={3}></Col>

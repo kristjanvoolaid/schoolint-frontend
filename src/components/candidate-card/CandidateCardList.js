@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react'
-import { Col, Container, Row, Form, FormControl, Button } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { Col, Container, Row, Form, FormControl } from 'react-bootstrap';
 import * as BsIcons from 'react-icons/bs';
 import CandidateCard from './CandidateCard';
 import './CandidatesCard.css';
@@ -11,7 +11,7 @@ export class CandidateCardList extends Component {
 
     render() {
         const { candidates } = this.props;
-        
+        console.log(candidates);
         return (
             <div>
                 <div className="page-name">
@@ -34,6 +34,7 @@ export class CandidateCardList extends Component {
                         <Col>Score</Col>
                         <Col>Email</Col>
                         <Col>PersonalID</Col>
+                        <Col>Algus</Col>
     
                     </Row>    
                 </Container> 
@@ -48,6 +49,7 @@ export class CandidateCardList extends Component {
                                 email={candidates[i].email}
                                 personalId={candidates[i].personalId}
                                 present={candidates[i].present}
+                                time={candidates[i].time}
                             />
                         )
                     })

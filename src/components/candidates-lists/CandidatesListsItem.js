@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Button, Col, Container, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -46,19 +46,18 @@ class CandidatesListsItem extends Component {
         const dataToSend = new FormData();
         dataToSend.append('file', this.state.file);
         dataToSend.append('year', this.state.year);
-
-        // Listi id kaasa
+        dataToSend.append('id', this.props.id);
 
         try {
             // Sending file to backend
             axios({
                 method: "POST",
-                url: "http://localhost:3001/results",
+                url: config.API_URL + "/results",
                 data: dataToSend,
                 headers: authHeader()
             })
-            .then(response => response.statusText)
-            .then(result => console.log(result));
+            .then(response => response.data)
+            .then(result => window.location.reload());
 
             alert('File sent!')
             this.setState({
@@ -157,7 +156,7 @@ class CandidatesListsItem extends Component {
                                 >
                                 </Spinner>}
                             </Button> */}
-                            <button onClick={this.listStatusHandler} className="button1">{listStatus}</button>
+                            <button onClick={this.listStatusHandler} className="button3">{listStatus}</button>
                         </Col>
                     </Row>
                 </Container>

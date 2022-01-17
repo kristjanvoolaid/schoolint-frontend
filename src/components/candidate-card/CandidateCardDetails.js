@@ -31,16 +31,28 @@ class CandidateCardDetails extends Component {
             phoneNumber: '-',
             residence: '-',
             scores: {
-                kat1: '-',
-                kat2: '-',
-                kat3: '-',
-                kat4: '-',
+                cat1: '-',
+                cat2: '-',
+                cat3: '-',
+                cat4: '-',
             },
             background: '-',
             notes: '-',
             comments: '',
             room: '-',
             tags: [],
+            interviewResult: {
+                interviewCat1: '',
+                interviewCat2: '',
+                interviewCat3: '',
+                interviewCat4: '',
+                interviewCat5: '',
+                interviewCat6: '',
+                interviewCat7: '',
+                interviewCat8: '',
+                tags: []
+            },
+            attachments: [],
 
             // Candidate present
             present: null,
@@ -58,7 +70,8 @@ class CandidateCardDetails extends Component {
     }
 
     candidatePresent = () => {
-        if (this.state.present == 0) {
+        if (this.state.present === 0) {
+            // siin pahandas vs koodiga, st vahetasin == välja === vastu.
             this.startStopWatch();
 
             this.setState(prevState => ({
@@ -82,7 +95,7 @@ class CandidateCardDetails extends Component {
             axios.get(config.API_URL + `/tags/coursetags/${endpoint}`, { headers: authHeader() })
             .then(response => this.setState({ tags: response.data.tags }))
             .catch((error) => {console.log(error)});
-        }, 300)
+        }, 1000)
     }
 
     fetchCandidate() {
@@ -106,11 +119,12 @@ class CandidateCardDetails extends Component {
                 notes,
                 comments,
                 room,
-                present
+                present,
+                attachments
             } = response.data.candidate;
 
             // Check if results are available
-            if (background !== undefined && scores !== undefined && notes !== undefined && studies !== undefined) {
+            if (background && scores) {
                     this.setState({
                     id: id,
                     specialityCode: specialityCode,
@@ -128,7 +142,8 @@ class CandidateCardDetails extends Component {
                     notes: notes,
                     comments: comments,
                     room: room,
-                    present: present
+                    present: present,
+                    attachments: attachments
                 });
             }
             
@@ -143,7 +158,8 @@ class CandidateCardDetails extends Component {
                 notes: notes,
                 specialityCode: specialityCode,
                 courseId: courseId,
-                present: present
+                present: present,
+                attachments: attachments
             });
         })
         .catch((error) => {
@@ -165,25 +181,37 @@ class CandidateCardDetails extends Component {
 
     candidateChanges = () => {
         const candidateId = window.location.pathname;
-        const { id, firstName, lastName, email, personalId, notes, present, comments } = this.state;
+        const { id, present, comments, interviewResult } = this.state;
         
         axios({
             method: "PATCH",
             url: config.API_URL + candidateId,
             data: {
                 id,
-                firstName,
-                lastName,
-                email,
-                personalId,
-                notes,
                 present,
-                comments
+                comments,
+                interviewResult
             },
             headers: authHeader()
         })
         .then(response => response.statusText)
         .then(result => console.log(result))
+    }
+
+    sendCandidateAttachment = (file) => {
+        const dataToSend = new FormData();
+        dataToSend.append('file', file);
+        dataToSend.append('candidateId', this.state.id);
+
+        axios({
+            method: "POST",
+            url: config.API_URL + "/candidates/attachment/",
+            data: dataToSend,
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(result => console.log(result))
+        .catch(error => console.log(error));
     }
 
     startStopWatch = () => {
@@ -210,10 +238,29 @@ class CandidateCardDetails extends Component {
         this.setState({
           searchField: e.target.value
         });
-      };
+    };
+
+    handleInterviewCatScores = (e) => {
+        const { value, name } = e.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                [name]: value
+            }
+        }))
+    };
+
+    handleTagsCheckbox = (e) => {
+        const { id } = e.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                tags: [...this.state.interviewResult.tags, id]
+            }
+        }))
+    };
 
     render() {
-        console.log(this.state.courseId);
         let candidateCode;
         let candidateScores;
         let candidateInformation;
@@ -221,7 +268,8 @@ class CandidateCardDetails extends Component {
         let candidateAttachments;
 
         // Kandidaadi õppekavakoodi parsimine
-        if (this.state.specialityCode.length == 5) {
+        if (this.state.specialityCode.length === 5) {
+            // siin pahandas vs koodiga, st vahetasin == välja === vastu.
             candidateCode = this.state.specialityCode.slice(0, 3);
         } else {
             candidateCode = this.state.specialityCode.slice(0, 2)
@@ -237,16 +285,18 @@ class CandidateCardDetails extends Component {
         });
 
         if (fileteredTags.length < 1) {
-            emptySearch = "Sellise nimega silte ei ole!";
+            emptySearch = <Spinner animation="border" role="status" size="lg">
+                            <span className="visually-hidden">Siltide laadimine</span>
+                        </Spinner>
         };
 
         // Üldiste komponentide seadmine
         candidateScores = <CandidateScores
                             candidateCode={candidateCode}
-                            scoresKat1={this.state.scores.kat1}
-                            scoresKat2={this.state.scores.kat2}
-                            scoresKat3={this.state.scores.kat3}
-                            scoresKat4={this.state.scores.kat4}
+                            scoresKat1={this.state.scores.cat1}
+                            scoresKat2={this.state.scores.cat2}
+                            scoresKat3={this.state.scores.cat3}
+                            scoresKat4={this.state.scores.cat4}
                             finalScore={this.state.finalScore}
                         />
 
@@ -274,6 +324,8 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                                 onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                             />
 
             candidateAttachments = null;
@@ -284,6 +336,8 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                                 onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                             />
 
             candidateAttachments = null;
@@ -294,9 +348,11 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                                 onSearchChange={this.onSearchChange}
+                                handleTagsCheckbox={this.handleTagsCheckbox}
+                                handleInterviewCatScores={this.handleInterviewCatScores}
                           />
             
-            candidateAttachments = <KtdCandidateAttachments />
+            candidateAttachments = <KtdCandidateAttachments attachments={this.state.attachments} id={this.state.id} />
         }
 
         const { minutes, seconds } = this.state;

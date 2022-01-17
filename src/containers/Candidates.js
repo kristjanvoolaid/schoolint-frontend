@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { Spinner } from "react-bootstrap";
 import CandidateCardList from "../components/candidate-card/CandidateCardList";
 import authHeader from "../services/AuthHeader";
-
-const API_URL = "http://localhost:3001";
+import config from "../config";
 
 class Candidates extends Component {
     constructor() {
@@ -21,7 +20,7 @@ class Candidates extends Component {
     }
 
     fetchCandidates() {
-      axios.get(API_URL + '/candidates', { headers: authHeader() })
+      axios.get(config.API_URL + '/candidates', { headers: authHeader() })
       .then((response) => {
           this.setState({
             candidates: response.data.candidates
