@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Form, Button, Row, Col, Toast, Container } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import "../login/Login.css"; 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [err, setErr] = useState('');
 
     const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ const Login = () => {
                     window.location.reload();    
                 },
                 (error) => {
-                    console.log(error);
+                    setErr(error.message);
                 }
             )
         } catch (error) {
@@ -43,18 +44,11 @@ const Login = () => {
                 {/* <FloatingLabel controlId="floatingInput" label= "nimi@domeeninimi.ee"></FloatingLabel> */}
                     <Form.Control
                         type="text"
-                        placeholder="e-mail" 
+                        placeholder="E-mail" 
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)}
                         size="lg">
                         </Form.Control>
-                        
-                    {/* <input
-                        type="text"
-                        placeholder="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                /> */}
                 </Col>
                 </Form.Group>
                <br></br>
@@ -66,27 +60,29 @@ const Login = () => {
             {/* <FloatingLabel controlId="floatingPassword" label= "midagikeerulist"></FloatingLabel> */}
                     <Form.Control
                         type="password" 
-                        placeholder="salasõna" 
+                        placeholder="Salasõna" 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         size="lg">
                         </Form.Control>
-                        
-                    {/* <input
-                        type="password"
-                        placeholder="salasõna"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    /> */} 
             </Col>
             </Form.Group>
             </Row>
             <br></br>
-       
                 <Col sm={{span:10, offset:8}}>
                 <Button type="submit" className="btn" size = "lg" disabled={!validateForm()}>Logi sisse</Button>
                 </Col>
-   
+                <Row>
+                    {err && 
+                        <Container>
+                            <Row className="text-center">
+                                <Col className="error_box">
+                                    <span className="error_message">Sisselogimine ebaõnnestus! Proovige uuesti!</span>
+                                </Col>
+                            </Row>
+                        </Container>
+                    }
+                </Row>
         </Form>
         </div>
     )

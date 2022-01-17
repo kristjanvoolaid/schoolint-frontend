@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Toast, ToastBody, ToastContainer, ToastHeader } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import CandidatesListsItem from './CandidatesListsItem';
 import authHeader from '../../services/AuthHeader';
@@ -18,7 +18,8 @@ class CandidatesLists extends Component {
             templateId: 1,
             year: date.getFullYear(),
             listCode: 1,
-            courses: []
+            courses: [],
+            err: ''
         }
     }
 
@@ -48,27 +49,25 @@ class CandidatesLists extends Component {
         dataToSend.append('year', this.state.year);
         dataToSend.append('courseId', this.state.listCode);
 
-        try {
-
-            if (this.state.file == null) {
-                return alert('No file selected!');
-            }
-
-            axios({
-                method: "POST",
-                url: `${config.API_URL}/lists`,
-                data: dataToSend,
-                headers: authHeader()
-            })
-            .then(response => response.data)
-            .then(result => window.location.reload());
-
+        if (this.state.file == null) {
             this.setState({
-                file: null
-            });
-        } catch (error) {
-            console.log(error);
+                err: 'Faili ei ole valitud!'
+            })
+
+            return (
+                <div></div>
+            )
         }
+
+        axios({
+            method: "POST",
+            url: `${config.API_URL}/lists`,
+            data: dataToSend,
+            headers: authHeader()
+        })
+        .then(response => response.data)
+        .then(result => window.location.reload())
+        .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!' }))
     }
 
     componentDidMount() {
@@ -132,6 +131,15 @@ class CandidatesLists extends Component {
                                                 <Button type="button" className="upload_btn" onClick={this.listDataToBackend}>Import</Button>
                                             </Col>
                                         </Row>
+                                        {this.state.err &&
+                                            <Row className="text-center">
+                                                <Col>
+                                                    <div className="error_box_list">
+                                                        <span className="error_message">{this.state.err}</span>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        }
                                     </div>
                                 )}
                             </Popup>
