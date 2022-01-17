@@ -10,7 +10,7 @@
     color: rgb(184, 93, 93);
   }
 
-  .button {
+.button {
     background-color: rgb(164,214,94);
     border: none;
     color: rgb(170, 56, 56);
@@ -19,12 +19,8 @@
     text-decoration: none;
     display: inline-block;
     font-size: 32px;
-  
-  
-  }
- 
-  
-  
+}
+
 .menu-bars {
     margin-left: 2rem;
     font-size: 2rem;

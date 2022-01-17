@@ -19,15 +19,14 @@ function AdminHeader() {
     }
     return (
         <div>
-            <IconContext.Provider value={{color: 'white', size: '30px', fontSize: '1em'}}>
+            <IconContext.Provider value={{color: 'white', size: '25px', fontSize: '0.5em'}}>
                 <div className="App-header">      
                      <Navbar collapseOnSelect expand="sm" variant= 'dark'>
                          <Container>
                              <Navbar.Brand href="/lists">
                                 <Figure.Image 
                                     src= {Logo}
-                                    width="200"
-                                    height="100"
+                                    width="175"
                                     className="d-inline-block align-top"
                                     alt="TLU logo"
                                 />
@@ -38,12 +37,12 @@ function AdminHeader() {
                       <Navbar.Collapse id="responsive-navbar-nav">
                            <Container>
                                 <Nav className="justify-content-end">
-                                     <Nav.Link eventKey='Nimekirjad' href="/lists"><BsIcons.BsListUl />Nimekirjad</Nav.Link>
-                                     <Nav.Link eventKey='Töölaud' href="/candidates"><CgIcons.CgMenuBoxed />Töölaud</Nav.Link>
-                                     <Nav.Link eventKey='Seaded' href="/settings"><BsFillGearFill />Seaded</Nav.Link>
+                                     <Nav.Link eventKey='Nimekirjad' href="/lists"><BsIcons.BsListUl /> Nimekirjad</Nav.Link>
+                                     <Nav.Link eventKey='Töölaud' href="/candidates"><CgIcons.CgMenuBoxed /> Töölaud</Nav.Link>
+                                     <Nav.Link eventKey='Seaded' href="/settings"><BsFillGearFill /> Seaded</Nav.Link>
                                      {/* siia tuleb abilehekülje nupp link peab muutuma> hetkel viib seadete lehele*/}
-                                     <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link> 
-                                     <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower />{userBtn}</Nav.Link>
+                                     <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle /> Abi</Nav.Link> 
+                                     <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower /> {userBtn}</Nav.Link>
                                 </Nav>
                              </Container>
                       </Navbar.Collapse>   

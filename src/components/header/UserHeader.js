@@ -3,6 +3,7 @@ import { BsPower } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
 import * as IoIcons from 'react-icons/io';
 import * as BsIcons from 'react-icons/bs';
+import * as CgIcons from 'react-icons/cg';
 import { Container, Nav, Figure } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import Logo from './images/logo.svg';
@@ -22,10 +23,9 @@ function UserHeader() {
                      <Navbar collapseOnSelect expand="sm" variant= 'dark'>
                          <Container>
                              <Navbar.Brand href="/candidates">
-                   <Figure.Image 
-                                   src= {Logo}
-                                 width="200"
-                                  height="100"
+                                <Figure.Image 
+                                    src= {Logo}
+                                    width="175"
                                     className="d-inline-block align-top"
                                     alt="TLU logo"
                                 />
@@ -36,7 +36,7 @@ function UserHeader() {
                         <Navbar.Collapse id="responsive-navbar-nav">
                            <Container>
                                 <Nav className="justify-content-end">
-                                    <Nav.Link eventKey='Töölaud' href="/candidates"><BsIcons.BsListUl />Töölaud</Nav.Link>
+                                    <Nav.Link eventKey='Töölaud' href="/candidates"><CgIcons.CgMenuBoxed />Töölaud</Nav.Link>
                                     <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link>   
                                     <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower />{userBtn}</Nav.Link>
                                 </Nav>

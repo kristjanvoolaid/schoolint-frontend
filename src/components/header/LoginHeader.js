@@ -20,10 +20,9 @@ function LoginHeader() {
                      <Navbar collapseOnSelect expand="sm" variant= 'dark'>
                          <Container>
                              <Navbar.Brand href="./login">
-                   <Figure.Image 
-                                   src= {Logo}
-                                 width="200"
-                                  height="100"
+                                <Figure.Image 
+                                    src= {Logo}
+                                    width="175"
                                     className="d-inline-block align-top"
                                     alt="TLU logo"
                                 />
@@ -34,7 +33,7 @@ function LoginHeader() {
                       <Navbar.Collapse id="responsive-navbar-nav">
                            <Container>
                                 <Nav className="justify-content-end">
-                                     <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower />{userBtn}</Nav.Link>
+                                     <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower /> {userBtn}</Nav.Link>
                                 </Nav>
                              </Container>
                       </Navbar.Collapse>   
