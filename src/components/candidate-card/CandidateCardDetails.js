@@ -95,7 +95,7 @@ class CandidateCardDetails extends Component {
             axios.get(config.API_URL + `/tags/coursetags/${endpoint}`, { headers: authHeader() })
             .then(response => this.setState({ tags: response.data.tags }))
             .catch((error) => {console.log(error)});
-        }, 300)
+        }, 1000)
     }
 
     fetchCandidate() {
