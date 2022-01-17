@@ -91,7 +91,7 @@ class CandidatesLists extends Component {
                 <Container className="text-center">
                 <Row>
                     <Col md={{ offset: 11 }}>
-                        <Popup trigger={<button className="button1">Import</button>} modal>
+                        <Popup trigger={<button className="button1 list_import">Import</button>} modal>
                                 {close => (
                                     <div className="text-center">
                                         <h1>Uus nimekiri</h1>

@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import config from "../../config";
 import authHeader from "../../services/AuthHeader";
 import "../candidate-card/CandidatesCard.css";
+import * as AiIcons from 'react-icons/ai';
 
 class SettingsAppUser extends Component {
     constructor(props) {
@@ -87,46 +88,44 @@ class SettingsAppUser extends Component {
         return (
             <div>
                 <Container className="text-center">
-                <Row>
+                <Row className="settings_data">
                     <Col md={1}>{id}</Col>
                     <Col md={3}>{name}</Col>
                     <Col md={3}>{email}</Col>
                     <Col md={3}>{specialityCode}</Col>
                     <Col md={1}>
-                        <Popup trigger={<button>Muuda</button>} modal>
+                        <Popup trigger={<AiIcons.AiTwotoneEdit size={25} className="change_btn" />} modal>
                             {close => (
-                                
-                                <div>
-                                    
+                                <div>               
                                     <Row className="text-center">
-                                        <Col>Muuda kasutajat</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Eesnimi</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" defaultValue={firstName} onChange={this.handleUserFirstNameChange}></input></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Perekonnanimi</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" defaultValue={lastName} onChange={this.handleUserLastNameChange}></input></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Email</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Email" defaultValue={email} onChange={this.handleUserEmailChange}></input></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>Parool</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}><input type="password" placeholder="Parool" onChange={this.handleUserPasswordChange}></input></Col>
+                                        <Col className="settings_title"><h2>Muuda kasutajat</h2></Col>
                                     </Row>
                                     <Row className="text-center">
-                                        <Col>Õppekava</Col>
+                                        <Col><br></br>Eesnimi</Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col><input type="text" placeholder="Nimi" defaultValue={firstName} onChange={this.handleUserFirstNameChange}></input></Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col>Perekonnanimi</Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col><input type="text" placeholder="Nimi" defaultValue={lastName} onChange={this.handleUserLastNameChange}></input></Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col>Email</Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col><input type="text" placeholder="Email" defaultValue={email} onChange={this.handleUserEmailChange}></input></Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col>Parool</Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col><input type="password" placeholder="Parool" onChange={this.handleUserPasswordChange}></input></Col>
+                                    </Row>
+                                    <Row className="text-center">
+                                        <Col><br></br>Õppekava</Col>
                                     </Row>
                                     <Row className="text-center">
                                         <Col>
@@ -139,10 +138,11 @@ class SettingsAppUser extends Component {
                                             </select>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col md={{ offset: 4 }}>
+                                    <Row className="text-center">
+                                        <Col>
+                                            <br></br>
                                             <Button onClick={close}>Tagasi</Button>
-                                            <Button onClick={() => this.changeUser(firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate)}>Muuda</Button>
+                                            <Button className="create_user_btn" onClick={() => this.changeUser(firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate)}>Muuda</Button>
                                         </Col>
                                     </Row>
                                 </div>
@@ -150,7 +150,7 @@ class SettingsAppUser extends Component {
                         </Popup>
                     </Col>
                     <Col md={1}>
-                                    <button onClick={() => this.deleteUser(id)}>Kustuta</button>
+                                    <AiIcons.AiFillDelete size={25} className="delete_btn" onClick={() => this.deleteUser(id)} />
                     </Col>
                 </Row>
             </Container>

@@ -30,3 +30,7 @@
 .popup-overlay {
     background: rgba(160, 160, 160, 0.5);
 }
+
+.list_import {
+    margin-top: 10px;
+}

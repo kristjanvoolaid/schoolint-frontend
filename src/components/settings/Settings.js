@@ -3,7 +3,7 @@ import { Col, Container, Row, Tab, Tabs, Button } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import SettingsAppTags from './SettingsAppTags';
 import SettingsAppUser from './SettingsAppUser';
-import AuthRoleService from "../../services/AuthRole";
+import "./Settings.css";
 import "../candidate-card/CandidatesCard.css";
 
 class Settings extends Component {
@@ -73,38 +73,38 @@ class Settings extends Component {
                     <Container className="text-center">
                         <Row>
                             <Col md={{ offset: 9 }}>
-                                <Popup trigger={<Button>Lisa uus +</Button>} modal>
+                                <Popup trigger={<Button className="new_user">Lisa +</Button>} modal>
                                     {close => (
                                         <div>
                                             <Row className="text-center">
-                                                <Col>Uus kasutaja</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}>Eesnimi</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleUserFirstName}></input></Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}>Perekonnanimi</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleUserLastName}></input></Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}>Email</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}><input type="text" placeholder="Email" onChange={this.handleUserEmail}></input></Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}>Parool</Col>
-                                            </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}><input type="password" placeholder="Parool" onChange={this.handleUserPassword}></input></Col>
+                                                <Col className="settings_title"><h2>Uus kasutaja</h2></Col>
                                             </Row>
                                             <Row className="text-center">
-                                                <Col>Õppekava</Col>
+                                                <Col><br></br>Eesnimi</Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col><input type="text" placeholder="Nimi" onChange={this.handleUserFirstName}></input></Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col>Perekonnanimi</Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col><input type="text" placeholder="Nimi" onChange={this.handleUserLastName}></input></Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col>Email</Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col><input type="text" placeholder="Email" onChange={this.handleUserEmail}></input></Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col>Parool</Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col><input type="password" placeholder="Parool" onChange={this.handleUserPassword}></input></Col>
+                                            </Row>
+                                            <Row className="text-center">
+                                                <Col><br></br>Õppekava</Col>
                                             </Row>
                                             <Row className="text-center">
                                                 <Col>
@@ -116,10 +116,11 @@ class Settings extends Component {
                                                     </select>
                                                 </Col>
                                             </Row>
-                                            <Row>
-                                                <Col md={{ offset: 4 }}>
+                                            <Row className="text-center">
+                                                <Col>
+                                                    <br></br>
                                                     <Button className="btn" onClick={close}>Tagasi</Button>
-                                                    <Button onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</Button>
+                                                    <Button className="create_user_btn" onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</Button>
                                                 </Col>
                                             </Row>
                                         </div>
@@ -127,8 +128,8 @@ class Settings extends Component {
                                 </Popup>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col md={1}>Nr</Col>
+                        <Row className="settings_header">
+                            <Col md={1}>ID</Col>
                             <Col md={3}>Nimi</Col>
                             <Col md={3}>Email</Col>
                             <Col md={3}>Õppekava</Col>
@@ -153,20 +154,22 @@ class Settings extends Component {
                             <Container className="text-center">
                                 <Row>
                                     <Col md={{ offset: 9 }}>
-                                        <Popup trigger={<Button>Lisa +</Button>} modal nested>
+                                        <Popup trigger={<Button className="new_tag">Lisa +</Button>} modal nested>
                                             {close => (
                                                 <div>
                                                     <Row className="text-center">
-                                                        <Col>Uus silt</Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col md={{ offset: 4 }}>Nimi</Col>
-                                                    </Row>                                        
-                                                    <Row>
-                                                        <Col md={{ offset: 4 }}><input type="text" placeholder="Nimi" onChange={this.handleTagName}></input></Col>
+                                                        <Col className="settings_title"><h2>Uus silt</h2></Col>
                                                     </Row>
                                                     <Row className="text-center">
-                                                        <Col>Õppekava</Col>
+                                                        <Col><br></br>Nimi</Col>
+                                                    </Row>                                        
+                                                    <Row className="text-center">
+                                                        <Col>
+                                                            <input type="text" placeholder="Nimi" onChange={this.handleTagName}></input>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row className="text-center">
+                                                        <Col><br></br>Õppekava</Col>
                                                     </Row>
                                                     <Row className="text-center">
                                                         <Col>
@@ -178,10 +181,11 @@ class Settings extends Component {
                                                             </select>                                       
                                                         </Col>
                                                     </Row>
-                                                    <Row>
-                                                        <Col md={{ offset: 4 }}>
+                                                    <Row className="text-center">
+                                                        <Col>
+                                                            <br></br>
                                                             <Button onClick={close}>Tagasi</Button>
-                                                            <Button onClick={() => createTag(tagName, tagCourseId)}>Lisa</Button>
+                                                            <Button className="create_tag_btn" onClick={() => createTag(tagName, tagCourseId)}>Lisa</Button>
                                                         </Col>
                                                     </Row>
                                                 </div>     
@@ -189,7 +193,7 @@ class Settings extends Component {
                                         </Popup>
                                     </Col>
                                 </Row>
-                                <Row>
+                                <Row className="settings_header">
                                     <Col md={3}>Nr</Col>
                                     <Col md={3}>Nimi</Col>
                                     <Col md={3}>Õppekava</Col>

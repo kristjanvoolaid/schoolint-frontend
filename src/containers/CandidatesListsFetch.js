@@ -46,6 +46,37 @@ class CandidatesListsFetch extends Component {
         .catch(error => console.log(error));
     }
 
+    listDataToBackend = () => {
+
+        const dataToSend = new FormData();
+        dataToSend.append('file', this.state.file);
+        dataToSend.append('templateId', this.state.templateId);
+        dataToSend.append('year', this.state.year);
+        dataToSend.append('courseId', this.state.listCode);
+
+        try {
+
+            if (this.state.file == null) {
+                return alert('No file selected!');
+            }
+
+            axios({
+                method: "POST",
+                url: `${config.API_URL}/lists`,
+                data: dataToSend,
+                headers: authHeader()
+            })
+            .then(response => response.data)
+            .then(result => window.location.reload());
+
+            this.setState({
+                file: null
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     render() {
         const { candidatesLists, courses } = this.state;
 
