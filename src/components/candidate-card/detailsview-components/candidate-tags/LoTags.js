@@ -6,9 +6,9 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
         <div>
             <Container>
                 <Row>
-                    <Col sm={4}>Kommentaar<br></br><textarea value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
-                    <Col sm={2}>
-                        Kat 1.1
+                    <Col md={2}></Col>
+                    <Col md={2}>
+                        Motivatsioon
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat1">
                             <option value="">VALI</option>
@@ -27,8 +27,8 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                             </div>
                         ))}
                     </Col>
-                    <Col sm={2}>
-                        Kat 1.2
+                    <Col md={2}>
+                        Väljendusoskus
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat2">
                             <option value="">VALI</option>
@@ -38,8 +38,8 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                             <option value="4">4</option>
                         </select>
                     </Col>
-                    <Col sm={2}>
-                        Kat 1.3
+                    <Col md={2}>
+                        Üldteadmised
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat3">
                             <option value="">VALI</option>
@@ -49,8 +49,8 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                             <option value="4">4</option>
                         </select>
                     </Col>
-                    <Col sm={2}>
-                        Kat 1.4
+                    <Col md={2}>
+                        Boonus
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat4">
                             <option value="">VALI</option>
@@ -60,6 +60,23 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                             <option value="4">4</option>
                         </select>
                     </Col>
+                    <Col md={2}></Col>
+                </Row>
+                <Row>
+                <Col md={2}></Col>
+                <Col md={4}><br></br>Kommentaar<br></br><textarea class="comments-box text-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col md={4}>
+                <br></br>
+                <label>Sildid</label><br></br>
+                        <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
+                </Col>
+                <Col md={2}></Col>
                 </Row>
             </Container>
         </div>

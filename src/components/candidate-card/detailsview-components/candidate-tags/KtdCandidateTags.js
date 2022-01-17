@@ -28,7 +28,7 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
                             <option value="4">4</option>
                         </select>
                     </Col>
-                    <Col sm={1}>
+                    <Col sm={2}>
                         Kat 1.2
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat2">
@@ -39,7 +39,7 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
                             <option value="4">4</option>
                         </select>
                     </Col>
-                    <Col sm={1}>
+                    <Col sm={2}>
                         Kat 1.3
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat3">
@@ -50,7 +50,7 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
                             <option value="4">4</option>
                         </select>
                     </Col>
-                    <Col sm={1}>
+                    <Col sm={2}>
                         Kat 1.4
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat4">
@@ -61,7 +61,7 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
                             <option value="4">4</option>
                         </select>
                     </Col>
-                    <Col sm={1}>
+                    <Col sm={2}>
                         Kat 1.5
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat5">
@@ -74,11 +74,20 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={6}></Col>
-                    <Col sm={4}>
-                        Kommentaar
+                <Col sm={6}>
+                    <br></br>
+                        Sildid
                         <br></br>
-                        <textarea value={comments} onChange={handleCommentsChange} rows="6" cols="70"></textarea>
+                        <input className="text-box" type="text" placeholder="Search" onChange={onSearchChange}></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
+                    </Col>
+                    <Col sm={5}> <br></br>Kommentaar<br></br>
+                        <textarea className="text-box comments-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea>
                     </Col>
                 </Row>
             </Container>

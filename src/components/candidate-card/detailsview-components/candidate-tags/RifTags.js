@@ -6,9 +6,9 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleT
         <div>
             <Container>
                 <Row>
-                    <Col sm={4}>Kommentaar<br></br><textarea value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col sm={3}></Col>
                     <Col sm={2}>
-                        Kat 1.1
+                        Mulje/isiksus
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat1">
                             <option value="">VALI</option>
@@ -18,17 +18,9 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleT
                             <option value="4">4</option>
                         </select>
                         <br></br>
-                        <label>Sildid</label>
-                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
-                        {tags.map((tag, i) => (
-                            <div>
-                                <input key={tags[i].id} type="checkbox" id={tags[i].id} name={tags[i].name} onChange={handleTagsCheckbox}/>
-                                <label htmlFor={tags[i].name}>{tags[i].name}</label>
-                            </div>
-                        ))}
                     </Col>
                     <Col sm={2}>
-                        Kat 1.2
+                        Teadmised/kogemused
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat2">
                             <option value="">VALI</option>
@@ -49,6 +41,23 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleT
                             <option value="4">4</option>
                         </select>
                     </Col>
+                    <Col sm={3}></Col>
+                </Row>
+                <Row>
+                <Col md={2}></Col>
+                <Col md={4}><br></br>Kommentaar<br></br><textarea class="comments-box text-box" value={comments} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col md={4}>
+                <br></br>
+                <label>Sildid</label><br></br>
+                        <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
+                        {tags.map(tag => (
+                            <div>
+                                <input type="checkbox" id={tag.name} />
+                                <label for={tag.name}>{tag.name}</label>    
+                            </div>
+                        ))}
+                </Col>
+                <Col md={2}></Col>
                 </Row>
             </Container>
         </div>
