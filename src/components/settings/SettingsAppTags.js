@@ -37,7 +37,7 @@ class SettingsAppTags extends Component {
                 body: JSON.stringify({ name, courseId })
             }
 
-            fetch(`http://127.0.0.1:3001/tags/${id}`, updateTagRequest)
+            fetch(`${config.API_URL}/tags/${id}`, updateTagRequest)
             .then(response => response.json())
             .then(data => console.log(data));
 

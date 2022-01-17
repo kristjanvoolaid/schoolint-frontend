@@ -52,7 +52,7 @@ class CandidatesListsItem extends Component {
             // Sending file to backend
             axios({
                 method: "POST",
-                url: "http://localhost:3001/results",
+                url: config.API_URL + "/results",
                 data: dataToSend,
                 headers: authHeader()
             })
