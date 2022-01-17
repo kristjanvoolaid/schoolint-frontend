@@ -65,12 +65,8 @@ class KtdCandidateAttachments extends Component {
             <div>
                 <Container>
                 <Row>
-                    <Col sm={{ span: 1, offset: 6 }}>Kat 1.1</Col>
-                    <Col sm={1}>Kat 1.2</Col>
-                    <Col sm={1}>Kat 1.3</Col>
-                </Row>
-                <Row>
-                    <Col sm={{ span: 2, offset: 4 }}>
+                    <Col md={2}></Col>
+                    <Col md={2}>
                         {attachments.length < 1 && 
                             <Popup trigger={<button>Lisa makett +</button>} modal>
                             {close => (

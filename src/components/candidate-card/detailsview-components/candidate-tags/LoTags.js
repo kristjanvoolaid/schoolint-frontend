@@ -18,14 +18,6 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                             <option value="4">4</option>
                         </select>
                         <br></br>
-                        <label>Sildid</label>
-                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
-                        {tags.map((tag, i) => (
-                            <div>
-                                <input key={tags[i].id} type="checkbox" id={tags[i].id} name={tags[i].name} onChange={handleTagsCheckbox}/>
-                                <label htmlFor={tags[i].name}>{tags[i].name}</label>
-                            </div>
-                        ))}
                     </Col>
                     <Col md={2}>
                         Väljendusoskus

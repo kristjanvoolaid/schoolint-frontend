@@ -6,18 +6,8 @@ export default function KtdCandidateTags({ tags, comments, handleCommentsChange,
         <div>
             <Container>
                 <Row>
-                    <Col sm={6}>
-                        Sildid
-                        <br></br>
-                        <input type="text" placeholder="Search" onChange={onSearchChange}></input>
-                        {tags.map((tag, i) => (
-                            <div>
-                                <input key={tags[i].id} type="checkbox" id={tags[i].id} name={tags[i].name} onChange={handleTagsCheckbox}/>
-                                <label htmlFor={tags[i].name}>{tags[i].name}</label>
-                            </div>
-                        ))}
-                    </Col>
-                    <Col sm={1}>
+                    <Col sm={1}></Col>
+                    <Col sm={2}>
                         Kat 1.1
                         <br></br>
                         <select onChange={handleInterviewCatScores} name="interviewCat1">
