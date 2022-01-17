@@ -7,6 +7,7 @@ import 'reactjs-popup/dist/index.css';
 import './PopUp.css';
 import authHeader from "../../services/AuthHeader";
 import config from "../../config";
+import "./Lists.css";
 
 class CandidatesListsItem extends Component {
     constructor(props) {
@@ -108,12 +109,12 @@ class CandidatesListsItem extends Component {
             <div>
                 <Container className="text-center">
                     <Row>
-                        <Col>{id}</Col>
-                        <Col>{year}</Col>
-                        <Col>{listCode}</Col>
-                        <Col>{formattedDate}</Col>
-                        <Col>
-                            <Popup trigger={<button className="button1">Import</button>} modal>
+                        <Col className="lists_data">{id}</Col>
+                        <Col className="lists_data">{year}</Col>
+                        <Col className="lists_data">{listCode}</Col>
+                        <Col className="lists_data">{formattedDate}</Col>
+                        <Col className="lists_data" md={4}>
+                            <Popup trigger={<button className="import_btn">Lisa tulemused +</button>} modal>
                                 {close => (
                                     <div>
                                         <Row className="text-center popUp_title">
@@ -141,7 +142,7 @@ class CandidatesListsItem extends Component {
                             </Popup>
                             &nbsp;
                             &nbsp;
-                            <button className="button2">Export</button>
+                            <button className="export_btn">Expordi</button>
                             &nbsp;
                             {/* // TODO: Loading spinner tuleb siia juurde lisada
                             <Button onClick={this.listStatusHandler} className="button1">
@@ -156,7 +157,7 @@ class CandidatesListsItem extends Component {
                                 >
                                 </Spinner>}
                             </Button> */}
-                            <button onClick={this.listStatusHandler} className="button3">{listStatus}</button>
+                            <button onClick={this.listStatusHandler} className="enable_btn">{listStatus}</button>
                         </Col>
                     </Row>
                 </Container>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import CandidatesListsItem from './CandidatesListsItem';
 import authHeader from '../../services/AuthHeader';
 import config from "../../config";
+import "./Lists.css";
 
 class CandidatesLists extends Component {
     constructor(props) {
@@ -91,30 +92,57 @@ class CandidatesLists extends Component {
                 <Container className="text-center">
                 <Row>
                     <Col md={{ offset: 11 }}>
-                        <Popup trigger={<button className="button1 list_import">Import</button>} modal>
+                        <Popup trigger={<button className="list_import_btn">Import</button>} modal>
                                 {close => (
                                     <div className="text-center">
-                                        <h1>Uus nimekiri</h1>
-                                        <select value={this.state.listCode} onChange={this.handleListCodeChange}>
-                                            <option value="">Vali õppekava</option>
-                                            {this.state.courses.map(course => (
-                                                <option value={course.id}>{course.name}</option>
-                                            ))}
-                                            </select>
-                                        <input name="year" type="number" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
-                                        <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
-                                        <button type="button" onClick={this.listDataToBackend}>Upload</button>
+                                        <Row className="text-center">
+                                            <Col className="list_import_title"><h2>Uus nimekiri</h2></Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col><br></br>Õppekava</Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col>
+                                                <select value={this.state.listCode} onChange={this.handleListCodeChange}>
+                                                    <option value="">Vali õppekava</option>
+                                                    {this.state.courses.map(course => (
+                                                        <option value={course.id}>{course.name}</option>
+                                                    ))}
+                                                </select>
+                                            </Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col><br></br>Aasta</Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col>        
+                                                <input name="year" type="number" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
+                                            </Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col>
+                                                <br></br>        
+                                                <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
+                                            </Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col>
+                                                <br></br>
+                                                <Button onClick={close} className="close_upload_btn">Tagasi</Button>
+                                                <Button type="button" className="upload_btn" onClick={this.listDataToBackend}>Import</Button>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 )}
                             </Popup>
                     </Col>
                 </Row>
-                <Row className="candidates-list-header">
+                <Row className="lists_header">
                         <Col>Nr</Col>
                         <Col>Aasta</Col>
                         <Col>Õppekava</Col>
                         <Col>Loodud</Col>
-                        <Col>Tegevus</Col>
+                        <Col md={4}>Tegevus</Col>
                 </Row>
             </Container>
             {

@@ -1,0 +1,71 @@
+.lists_header {
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.lists_data {
+    font-size: 15px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    border-bottom: 1px solid lightgray;
+}
+
+.import_btn, .enable_btn {
+    background-color: rgb(164,214,94);
+    color: white;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid  rgb(164,214,94);
+    font-size: 15px;
+}
+
+.export_btn {
+    background-color: white;
+    padding: 5px 5px;
+    color: rgb(164,214,94);
+    border: 2px solid  rgb(164,214,94);
+    border-radius: 8px;
+    font-size: 15px;
+    display: inline-block;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.list_import_btn {
+    background-color: rgb(164,214,94);
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid  rgb(164,214,94);
+    font-size: 15px;
+}
+
+.list_import_title {
+    margin-top: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.upload_btn {
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+.close_upload_btn {
+    margin-bottom: 10px;
+}
+
