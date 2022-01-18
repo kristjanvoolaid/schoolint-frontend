@@ -55,7 +55,7 @@
     font-size: 15px;
 }
 
-.list_import_title {
+.list_import_title, .delete_list_title {
     margin-top: 40px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -76,4 +76,8 @@
 
 .loading_spinner {
     padding: 10px;
+}
+
+.delete_list_spinner {
+    margin-top: 10px;
 }
