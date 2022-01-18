@@ -71,7 +71,7 @@ const Login = () => {
             </Row>
             <br></br>
                 <Col sm={{span:10, offset:8}}>
-                <Button type="submit" className="btn" size = "lg" disabled={!validateForm()}>Logi sisse</Button>
+                <Button type="submit" className="btn-login" size = "lg" disabled={!validateForm()}>Logi sisse</Button>
                 </Col>
                 <Row>
                     {err && 

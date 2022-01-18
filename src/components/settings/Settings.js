@@ -73,7 +73,7 @@ class Settings extends Component {
                     <Container className="text-center">
                         <Row>
                             <Col md={{ offset: 9 }}>
-                                <Popup trigger={<Button className="new_user">Lisa +</Button>} modal>
+                                <Popup trigger={<Button className="sett_primary">Lisa +</Button>} modal>
                                     {close => (
                                         <div>
                                             <Row className="text-center">
@@ -83,32 +83,32 @@ class Settings extends Component {
                                                 <Col><br></br>Eesnimi</Col>
                                             </Row>
                                             <Row className="text-center">
-                                                <Col><input type="text" placeholder="Nimi" onChange={this.handleUserFirstName}></input></Col>
+                                                <Col><input className="text-box" type="text" placeholder="Nimi" onChange={this.handleUserFirstName}></input></Col>
                                             </Row>
                                             <Row className="text-center">
                                                 <Col>Perekonnanimi</Col>
                                             </Row>
                                             <Row className="text-center">
-                                                <Col><input type="text" placeholder="Nimi" onChange={this.handleUserLastName}></input></Col>
+                                                <Col><input className="text-box" type="text" placeholder="Nimi" onChange={this.handleUserLastName}></input></Col>
                                             </Row>
                                             <Row className="text-center">
                                                 <Col>Email</Col>
                                             </Row>
                                             <Row className="text-center">
-                                                <Col><input type="text" placeholder="Email" onChange={this.handleUserEmail}></input></Col>
+                                                <Col><input className="text-box" type="text" placeholder="Email" onChange={this.handleUserEmail}></input></Col>
                                             </Row>
                                             <Row className="text-center">
                                                 <Col>Parool</Col>
                                             </Row>
                                             <Row className="text-center">
-                                                <Col><input type="password" placeholder="Parool" onChange={this.handleUserPassword}></input></Col>
+                                                <Col><input className="text-box" type="password" placeholder="Parool" onChange={this.handleUserPassword}></input></Col>
                                             </Row>
                                             <Row className="text-center">
                                                 <Col><br></br>Õppekava</Col>
                                             </Row>
                                             <Row className="text-center">
                                                 <Col>
-                                                    <select defaultValue={this.state.specialityCode} onChange={this.handleUserCourseId}>
+                                                    <select className="text-box" defaultValue={this.state.specialityCode} onChange={this.handleUserCourseId}>
                                                         <option value="Vali" disabled hidden>Vali</option>
                                                         <option value="1">RIF</option>
                                                         <option value="2">LO</option>
@@ -119,8 +119,8 @@ class Settings extends Component {
                                             <Row className="text-center">
                                                 <Col>
                                                     <br></br>
-                                                    <Button className="btn" onClick={close}>Tagasi</Button>
-                                                    <Button className="create_user_btn" onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</Button>
+                                                    <Button className="sett_secondary" onClick={close}>Tagasi</Button>
+                                                    <Button className="sett_primary" onClick={() => createUser(firstName, lastName, email, password, specialityCode)}>Lisa</Button>
                                                 </Col>
                                             </Row>
                                         </div>
@@ -154,7 +154,7 @@ class Settings extends Component {
                             <Container className="text-center">
                                 <Row>
                                     <Col md={{ offset: 9 }}>
-                                        <Popup trigger={<Button className="new_tag">Lisa +</Button>} modal nested>
+                                        <Popup trigger={<Button className="sett_primary">Lisa +</Button>} modal nested>
                                             {close => (
                                                 <div>
                                                     <Row className="text-center">
@@ -165,7 +165,7 @@ class Settings extends Component {
                                                     </Row>                                        
                                                     <Row className="text-center">
                                                         <Col>
-                                                            <input type="text" placeholder="Nimi" onChange={this.handleTagName}></input>
+                                                            <input className="text-box" type="text" placeholder="Nimi" onChange={this.handleTagName}></input>
                                                         </Col>
                                                     </Row>
                                                     <Row className="text-center">
@@ -173,7 +173,7 @@ class Settings extends Component {
                                                     </Row>
                                                     <Row className="text-center">
                                                         <Col>
-                                                            <select defaultValue={tagCourseId} onChange={this.handleTagCourseId}>
+                                                            <select className="text-box" defaultValue={tagCourseId} onChange={this.handleTagCourseId}>
                                                                 <option value="Vali" disabled hidden>Vali</option>
                                                                 <option value="1">RIF</option>
                                                                 <option value="2">LO</option>
@@ -184,8 +184,8 @@ class Settings extends Component {
                                                     <Row className="text-center">
                                                         <Col>
                                                             <br></br>
-                                                            <Button onClick={close}>Tagasi</Button>
-                                                            <Button className="create_tag_btn" onClick={() => createTag(tagName, tagCourseId)}>Lisa</Button>
+                                                            <Button className="sett_secondary" onClick={close}>Tagasi</Button>
+                                                            <Button className="sett_primary" onClick={() => createTag(tagName, tagCourseId)}>Lisa</Button>
                                                         </Col>
                                                     </Row>
                                                 </div>     

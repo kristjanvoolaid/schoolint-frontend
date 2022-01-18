@@ -110,7 +110,7 @@ class CandidatesLists extends Component {
                                         </Row>
                                         <Row className="text-center">
                                             <Col>
-                                                <select value={this.state.listCode} onChange={this.handleListCodeChange}>
+                                                <select className="text-box" value={this.state.listCode} onChange={this.handleListCodeChange}>
                                                     <option value="">Vali õppekava</option>
                                                     {this.state.courses.map(course => (
                                                         <option value={course.id}>{course.name}</option>
@@ -123,20 +123,20 @@ class CandidatesLists extends Component {
                                         </Row>
                                         <Row className="text-center">
                                             <Col>        
-                                                <input name="year" type="number" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
+                                                <input name="year" type="number" className="text-box" defaultValue={this.state.year} onChange={this.handleSelectedYear} min="2021" max="2050"></input>
                                             </Col>
                                         </Row>
                                         <Row className="text-center">
                                             <Col>
                                                 <br></br>        
-                                                <input name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
+                                                <input className="text-box" name="file" type="file" onChange={this.onChangeHandler} accept=".xls, .xlsx"/>
                                             </Col>
                                         </Row>
                                         <Row className="text-center">
                                             <Col>
                                                 <br></br>
-                                                <Button onClick={close} className="close_upload_btn">Tagasi</Button>
-                                                <Button type="button" className="upload_btn" onClick={this.listDataToBackend}>Import</Button>
+                                                <Button onClick={close} className="export_btn r_mrg">Tagasi</Button>
+                                                <Button className="import_btn l_mrg" onClick={this.listDataToBackend}>Import</Button>
                                                 {this.state.err &&
                                                     <div className="error_box_list">
                                                         <span className="error_message">{this.state.err}</span>

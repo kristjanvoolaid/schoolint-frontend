@@ -34,3 +34,55 @@
     margin-top: 40px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+.sett_secondary {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    background-color: white;
+    padding: 5px 5px;
+    color: rgb(164,214,94);
+    border: 2px solid  rgb(164,214,94);
+    border-radius: 8px;
+    font-size: 15px;
+    display: inline-block;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.sett_primary:hover {
+    background-color:rgb(146, 204, 64);
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+    border: 2px solid #6C757D;
+}
+
+
+.sett_primary {
+    background-color: rgb(164,214,94);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    padding: 5px 5px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid  rgb(164,214,94);
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.sett_primary:focus {
+    background-color:rgb(146, 204, 64);
+    color: rgb(50, 65, 30);
+    border: 2px solid #6C757D;
+    box-shadow: none;
+}
+
+.sett_secondary:hover {
+    color: #6C757D;
+    background-color: white;
+    border: 2px solid #6C757D;
+}

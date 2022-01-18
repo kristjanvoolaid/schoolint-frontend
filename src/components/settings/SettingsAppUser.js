@@ -104,32 +104,32 @@ class SettingsAppUser extends Component {
                                         <Col><br></br>Eesnimi</Col>
                                     </Row>
                                     <Row className="text-center">
-                                        <Col><input type="text" placeholder="Nimi" defaultValue={firstName} onChange={this.handleUserFirstNameChange}></input></Col>
+                                        <Col><input className="text-box" type="text" placeholder="Nimi" defaultValue={firstName} onChange={this.handleUserFirstNameChange}></input></Col>
                                     </Row>
                                     <Row className="text-center">
                                         <Col>Perekonnanimi</Col>
                                     </Row>
                                     <Row className="text-center">
-                                        <Col><input type="text" placeholder="Nimi" defaultValue={lastName} onChange={this.handleUserLastNameChange}></input></Col>
+                                        <Col><input className="text-box" type="text" placeholder="Nimi" defaultValue={lastName} onChange={this.handleUserLastNameChange}></input></Col>
                                     </Row>
                                     <Row className="text-center">
                                         <Col>Email</Col>
                                     </Row>
                                     <Row className="text-center">
-                                        <Col><input type="text" placeholder="Email" defaultValue={email} onChange={this.handleUserEmailChange}></input></Col>
+                                        <Col><input className="text-box" type="text" placeholder="Email" defaultValue={email} onChange={this.handleUserEmailChange}></input></Col>
                                     </Row>
                                     <Row className="text-center">
                                         <Col>Parool</Col>
                                     </Row>
                                     <Row className="text-center">
-                                        <Col><input type="password" placeholder="Parool" onChange={this.handleUserPasswordChange}></input></Col>
+                                        <Col><input className="text-box" type="password" placeholder="Parool" onChange={this.handleUserPasswordChange}></input></Col>
                                     </Row>
                                     <Row className="text-center">
                                         <Col><br></br>Õppekava</Col>
                                     </Row>
                                     <Row className="text-center">
                                         <Col>
-                                            <select defaultValue={specialityCode} onChange={this.handleUserSpecialityCodeChange}>
+                                            <select className="text-box" defaultValue={specialityCode} onChange={this.handleUserSpecialityCodeChange}>
                                                 <option value="Vali" disabled hidden>Vali</option>
                                                 <option value="RIF">RIF</option>
                                                 <option value="KTD">KTD</option>
@@ -141,8 +141,8 @@ class SettingsAppUser extends Component {
                                     <Row className="text-center">
                                         <Col>
                                             <br></br>
-                                            <Button onClick={close}>Tagasi</Button>
-                                            <Button className="create_user_btn" onClick={() => this.changeUser(firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate)}>Muuda</Button>
+                                            <Button onClick={close} className="sett_secondary">Tagasi</Button>
+                                            <Button className="sett_primary" onClick={() => this.changeUser(firstNameToUpdate, lastNameToUpdate, emailToUpdate, passwordToUpdate, specialityCodeToUpdate)}>Muuda</Button>
                                         </Col>
                                     </Row>
                                 </div>

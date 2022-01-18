@@ -10,7 +10,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                     <Col md={2}>
                         Motivatsioon
                         <br></br>
-                        <select onChange={handleInterviewCatScores} name="interviewCat1">
+                        <select onChange={handleInterviewCatScores} className="text-box" name="interviewCat1">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -22,7 +22,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                     <Col md={2}>
                         Väljendusoskus
                         <br></br>
-                        <select onChange={handleInterviewCatScores} name="interviewCat2">
+                        <select onChange={handleInterviewCatScores} className="text-box" name="interviewCat2">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -33,7 +33,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                     <Col md={2}>
                         Üldteadmised
                         <br></br>
-                        <select onChange={handleInterviewCatScores} name="interviewCat3">
+                        <select onChange={handleInterviewCatScores} className="text-box" name="interviewCat3">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -44,7 +44,7 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                     <Col md={2}>
                         Boonus
                         <br></br>
-                        <select onChange={handleInterviewCatScores} name="interviewCat4">
+                        <select onChange={handleInterviewCatScores} className="text-box" name="interviewCat4">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>

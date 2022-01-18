@@ -9,7 +9,7 @@ function CandidateInformation({ notes, residence, phoneNumber, email }) {
                     <Col md={2}></Col>
                     <Col md={4}>
                         Admini märkmed
-                        <textarea className="admin-notes text-box" value={notes} readonly ></textarea>
+                        <p className="admin-notes text-box" readonly>{notes}</p>
                     </Col>
                     <Col md={4} className="candidate-data">
                         Aadress <br></br>

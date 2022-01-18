@@ -27,6 +27,20 @@
     font-size: 15px;
 }
 
+.import_btn:hover, .enable_btn:hover, .list_import_btn:hover {
+    background-color:rgb(146, 204, 64);
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+    border: 2px solid #6C757D;
+}
+
+.import_btn:focus {
+    background-color:rgb(146, 204, 64);
+    color: rgb(50, 65, 30);
+    border: 2px solid #6C757D;
+    box-shadow: none;
+}
+
 .export_btn {
     background-color: white;
     padding: 5px 5px;
@@ -38,6 +52,13 @@
     display: inline-block;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.export_btn:hover {
+    color: #6C757D;
+    background-color: white;
+    border: 2px solid #6C757D;
 }
 
 .list_import_btn {
@@ -53,6 +74,13 @@
     border-radius: 8px;
     border: 2px solid  rgb(164,214,94);
     font-size: 15px;
+}
+
+.list_import_btn:hover {
+    background-color:rgb(146, 204, 64);
+    color: rgb(50, 65, 30);
+    font-weight: bold;
+    border: 2px solid #6C757D;
 }
 
 .list_import_title {
@@ -76,4 +104,12 @@
 
 .loading_spinner {
     padding: 10px;
+}
+
+.r_mrg {
+    margin-right: 5px;
+}
+
+.l_mrg {
+    margin-left: 5px;
 }

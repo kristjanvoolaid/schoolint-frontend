@@ -8,9 +8,9 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleT
                 <Row>
                 <Col sm={3}></Col>
                     <Col sm={2}>
-                        Mulje/isiksus
+                        Isiksus
                         <br></br>
-                        <select onChange={handleInterviewCatScores} name="interviewCat1">
+                        <select onChange={handleInterviewCatScores} className="text-box" name="interviewCat1">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -20,9 +20,9 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleT
                         <br></br>
                     </Col>
                     <Col sm={2}>
-                        Teadmised/kogemused
+                        Teadmised
                         <br></br>
-                        <select onChange={handleInterviewCatScores} name="interviewCat2">
+                        <select onChange={handleInterviewCatScores} className="text-box" name="interviewCat2">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -31,9 +31,9 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleT
                         </select>
                     </Col>
                     <Col sm={2}>
-                        Kat 1.3
+                        Motivatsioon
                         <br></br>
-                        <select onChange={handleInterviewCatScores} name="interviewCat3">
+                        <select onChange={handleInterviewCatScores} className="text-box" name="interviewCat3">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>

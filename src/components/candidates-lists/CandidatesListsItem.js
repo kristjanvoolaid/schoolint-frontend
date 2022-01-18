@@ -137,10 +137,10 @@ class CandidatesListsItem extends Component {
                                         </Row>
                                         <Row className="text-center popUp_buttons">
                                             <Col>
-                                                <button className="button2" onClick={close}>Tagasi</button>
+                                                <button className="export_btn r_mrg" onClick={close}>Tagasi</button>
                                                 &nbsp;
                                                 &nbsp;
-                                                <button onClick={this.onClickHandler} className="button1">Lae üles</button>
+                                                <button onClick={this.onClickHandler} className="import_btn l_mrg">Lae üles</button>
                                                 {this.state.err &&
                                                     <div className="error_box_list">
                                                         <span className="error_message">{this.state.err}</span>

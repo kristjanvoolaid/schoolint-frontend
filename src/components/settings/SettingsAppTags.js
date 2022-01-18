@@ -75,7 +75,7 @@ class SettingsAppTags extends Component {
                                 {close => (
                                     <div>
                                         <Row className="text-center">
-                                            <Col className="settings_title"><h2>Muuda silti</h2></Col>
+                                            <Col className="settings_title text-box"><h2>Muuda silti</h2></Col>
                                         </Row>
                                         <Row className="text-center">
                                             <Col><br></br>Nimi</Col>
@@ -83,7 +83,7 @@ class SettingsAppTags extends Component {
                                         <Row className="text-center">
                                             <Col>
                                                 <br></br>
-                                                <input type="text" placeholder="Nimi" defaultValue={name} onChange={this.handleTagNameChange}></input>
+                                                <input type="text" placeholder="Nimi" className="text-box" defaultValue={name} onChange={this.handleTagNameChange}></input>
                                             </Col>
                                         </Row>
                                         <Row className="text-center">
@@ -103,9 +103,9 @@ class SettingsAppTags extends Component {
                                         <Row className="text-center">
                                             <Col>
                                                 <br></br>
-                                                <Button onClick={close}>Tagasi</Button>
+                                                <Button onClick={close} className="sett_secondary">Tagasi</Button>
                                                 {/* <Button className="change_tag_btn" onClick={() => this.updateTag(tagNameToUpdate, tagCourseIdToUpdate)}>Lisa</Button> */}
-                                                <Button className="change_tag_btn" onClick={() => this.updateTag(tagNameToUpdate, tagCourseIdToUpdate)}>Lisa</Button>
+                                                <Button className="sett_primary" onClick={() => this.updateTag(tagNameToUpdate, tagCourseIdToUpdate)}>Lisa</Button>
                                             </Col>
                                         </Row>
                                     </div>

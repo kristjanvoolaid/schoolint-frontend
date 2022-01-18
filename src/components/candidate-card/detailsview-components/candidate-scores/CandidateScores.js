@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Table } from 'react-bootstrap';
 
 function CandidateScores({ candidateCode, scoresKat1, scoresKat2, scoresKat3, scoresKat4, finalScore }) {
-    const rifCategories = ['', 'Kat1', 'Kat2', 'Kat3', 'Kat4', 'Kokku'];
+    const rifCategories = ['', 'Valik', 'Loogika', 'Programmeerimine', 'Disain', 'Kokku'];
     const loCategories = ['', 'Liiklustest', 'Isiksustest', 'Tõlkimine', 'Kokku'];
     const rifScores = ['Test', scoresKat1, scoresKat2, scoresKat3, scoresKat4, finalScore];
     const loScores = ['Test', scoresKat1, scoresKat2, scoresKat3, finalScore];

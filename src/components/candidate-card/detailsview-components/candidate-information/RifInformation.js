@@ -6,10 +6,10 @@ function RifInformation({ background, notes, residence, phoneNumber, email, hand
         <div>
             <Container>
                 <Row>
-                    <Col sm={4}><p>Tekst</p><p className="text-box">{background}</p></Col>
+                    <Col sm={4}>Tekst<p className="text-box">{background}</p></Col>
                     <Col md={4}>
                         Admini märkmed
-                        <textarea className="admin-notes text-box" value={notes} readonly ></textarea>
+                        <p className="admin-notes text-box" readonly>{notes}</p>
                     </Col>
                     <Col sm={4} className="candidate-data">
                         Aadress <br></br>
