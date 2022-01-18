@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Col, Toast, Container } from "react-bootstrap";
+import { Form, Button, Row, Col, Container, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import "../login/Login.css"; 
@@ -8,10 +8,13 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, setErr] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
+        setErr('');
+        setLoading(true);
         e.preventDefault();
         try {
             await AuthService.login(email, password).then(
@@ -20,6 +23,7 @@ const Login = () => {
                     window.location.reload();    
                 },
                 (error) => {
+                    setLoading(false);
                     setErr(error.message);
                 }
             )
@@ -41,7 +45,6 @@ const Login = () => {
         <Col sm={{span:6, offset:3}}>
             <Form.Label>E-postiaadress</Form.Label>
             <br />
-                {/* <FloatingLabel controlId="floatingInput" label= "nimi@domeeninimi.ee"></FloatingLabel> */}
                     <Form.Control
                         type="text"
                         placeholder="E-mail" 
@@ -56,8 +59,6 @@ const Login = () => {
         <Form.Group as={Row} controlId="formGridPassword" className="mb-3">
         <Col sm={{span:6, offset:3}}>
             <Form.Label>Parool</Form.Label>
-            {/* FloatingLabel on tore vidin, kogu FormControl peab olema selle sees */}
-            {/* <FloatingLabel controlId="floatingPassword" label= "midagikeerulist"></FloatingLabel> */}
                     <Form.Control
                         type="password" 
                         placeholder="Salasõna" 
@@ -81,6 +82,19 @@ const Login = () => {
                                 </Col>
                             </Row>
                         </Container>
+                    }
+                </Row>
+                <Row>
+                    {loading &&
+                        <Container>
+                            <Row className="text-center">
+                                <Col>
+                                    <Spinner animation="border" role="status" className="loading_spinner">
+                                        <span className="visually-hidden">Kandidaatide listide laadimine</span>
+                                    </Spinner>
+                                </Col>
+                            </Row>
+                        </Container> 
                     }
                 </Row>
         </Form>
