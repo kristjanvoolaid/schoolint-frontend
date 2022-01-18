@@ -11,7 +11,6 @@ export class CandidateCardList extends Component {
 
     render() {
         const { candidates } = this.props;
-        console.log(candidates);
         return (
             <div>
                 <div className="page-name">

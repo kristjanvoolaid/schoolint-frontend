@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -21,7 +21,9 @@ class CandidatesListsItem extends Component {
             year: date.getFullYear(),
             selectedValue: 1,
             enabled: props.enabled,
-            loading: false
+            err: '',
+            load: false,
+            listStatusload: false
         };
     }
 
@@ -39,18 +41,27 @@ class CandidatesListsItem extends Component {
 
     onClickHandler = (e) => {
         
-        // TODO: Make proper alerting box or sign that no file is selected. Current solution is for testing
-        if (this.state.file == null) {
-            return alert('No file selected!');
-        }
-
         const dataToSend = new FormData();
         dataToSend.append('file', this.state.file);
         dataToSend.append('year', this.state.year);
         dataToSend.append('id', this.props.id);
 
-        try {
-            // Sending file to backend
+        if (this.state.file == null) {
+            this.setState({
+                err: 'Faili ei ole valitud!'
+            })
+
+            return (
+                <div></div>
+            )
+        }
+
+        this.setState({
+            err: '',
+            load: true
+        });
+
+        setTimeout(() => {
             axios({
                 method: "POST",
                 url: config.API_URL + "/results",
@@ -58,19 +69,17 @@ class CandidatesListsItem extends Component {
                 headers: authHeader()
             })
             .then(response => response.data)
-            .then(result => window.location.reload());
-
-            alert('File sent!')
-            this.setState({
-                file: null
-            });
-        } catch (error) {
-            console.log(error)
-            return alert('Failed to send file')   
-        }
+            .then(result => window.location.reload())
+            .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!', load: false }))
+        }, 5000);
     }
 
     listStatusHandler = () => {
+
+        this.setState({
+            listStatusload: true
+        });
+
         setTimeout(() => {
             if (this.state.enabled === 1) {
                 this.setState({
@@ -91,7 +100,7 @@ class CandidatesListsItem extends Component {
                 headers: authHeader()
             })
             .then(response => response.data)
-            .then(result => console.log(result))
+            .then(result => this.setState({ listStatusload: false }))
             .catch(error => console.log(error));
         }, 3000)
     }
@@ -116,7 +125,7 @@ class CandidatesListsItem extends Component {
                         <Col className="lists_data" md={4}>
                             <Popup trigger={<button className="import_btn">Lisa tulemused +</button>} modal>
                                 {close => (
-                                    <div>
+                                    <div className="text-center">
                                         <Row className="text-center popUp_title">
                                             <Col><h2>Kandidaatide tulemused</h2></Col>
                                         </Row>
@@ -131,33 +140,42 @@ class CandidatesListsItem extends Component {
                                                 <button className="button2" onClick={close}>Tagasi</button>
                                                 &nbsp;
                                                 &nbsp;
-                                                &nbsp;
-                                                <Link to="/lists">
-                                                    <button onClick={this.onClickHandler} className="button1">Lae üles</button>
-                                                </Link> 
+                                                <button onClick={this.onClickHandler} className="button1">Lae üles</button>
+                                                {this.state.err &&
+                                                    <div className="error_box_list">
+                                                        <span className="error_message">{this.state.err}</span>
+                                                    </div>
+                                                } 
                                             </Col>
                                         </Row>
+                                        {this.state.load &&
+                                        <Row className="text-center">
+                                            <Col>
+                                                <Spinner animation="border" role="status" className="loading_spinner">
+                                                    <span className="visually-hidden">Kandidaatide listide laadimine</span>
+                                                </Spinner>
+                                            </Col>
+                                        </Row>
+                                        }
                                     </div>
                                 )}
                             </Popup>
                             &nbsp;
                             &nbsp;
-                            <button className="export_btn">Expordi</button>
+                            <button className="export_btn">Ekspordi</button>
                             &nbsp;
-                            {/* // TODO: Loading spinner tuleb siia juurde lisada
-                            <Button onClick={this.listStatusHandler} className="button1">
+                            <button onClick={this.listStatusHandler} className="enable_btn">
                                 {listStatus}
-                                {this.state.loading && 
+                                {this.state.listStatusload && 
                                     <Spinner
-                                    as="span"
-                                    animation="border"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
                                 >
                                 </Spinner>}
-                            </Button> */}
-                            <button onClick={this.listStatusHandler} className="enable_btn">{listStatus}</button>
+                            </button>
                         </Col>
                     </Row>
                 </Container>

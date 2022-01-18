@@ -68,3 +68,12 @@
 .close_upload_btn {
     margin-bottom: 10px;
 }
+
+.error_box_list {
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.loading_spinner {
+    padding: 10px;
+}

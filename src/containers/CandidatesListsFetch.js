@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import axios from "axios";
 import CandidatesLists from '../components/candidates-lists/CandidatesLists';
 import authHeader from "../services/AuthHeader";
-import { Spinner, Row, Col, Button } from 'react-bootstrap';
+import { Spinner, Row, Col, Button, Container } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import config from "../config";
+import "./CandidatesListsFetch.css";
 
 class CandidatesListsFetch extends Component {
     constructor() {
@@ -16,7 +17,10 @@ class CandidatesListsFetch extends Component {
             candidatesLists: [],
             courses: [],
             year: date.getFullYear(),
-            err: ''
+            err: '',
+            load: false,
+            firstLoadErr: '',
+            listload: false,
         };
     }
     
@@ -26,14 +30,21 @@ class CandidatesListsFetch extends Component {
     }
 
     fetchCoursesLists() {
+        this.setState({
+            listload: true
+        });
+
         axios.get(config.API_URL + '/lists', { headers: authHeader() })
         .then((response) => {
             this.setState({
-                candidatesLists: response.data.candidatesLists
+                candidatesLists: response.data.candidatesLists,
+                listload: false
             })
         })
         .catch((error) => {
-            console.log(error);
+            this.setState({
+                firstLoadErr: 'Listide laadimisel tekkis viga! Palun värskenda veebilehitseja akent.'
+            })
         });
     }
 
@@ -69,15 +80,22 @@ class CandidatesListsFetch extends Component {
             )
         }
 
-        axios({
-            method: "POST",
-            url: `${config.API_URL}/lists`,
-            data: dataToSend,
-            headers: authHeader()
-        })
-        .then(response => response.data)
-        .then(result => window.location.reload())
-        .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!' }))
+        this.setState({
+            err: '',
+            load: true
+        });
+
+        setTimeout(() => {
+            axios({
+                method: "POST",
+                url: `${config.API_URL}/lists`,
+                data: dataToSend,
+                headers: authHeader()
+            })
+            .then(response => response.data)
+            .then(result => window.location.reload())
+            .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!', load: false }))
+        }, 5000);
     }
 
     handleListCodeChange = (e) => {
@@ -101,10 +119,31 @@ class CandidatesListsFetch extends Component {
     render() {
         const { candidatesLists, courses } = this.state;
 
+        if (this.state.firstLoadErr) {
+            return (
+                <Container className="text-center">
+                    <Row className="text-center">
+                        <Col>
+                            <div className="firstload_error">
+                                <span className="error_message">{this.state.firstLoadErr}</span>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
+
         if (candidatesLists.length < 1) {
             return (
                 <div className="text-center" style={{ marginTop: 50 }}>
-                    <Row>
+                    {this.state.listload ?  
+                        <Spinner animation="border" role="status" className="loading_spinner">
+                            <span className="visually-hidden">Kandidaatide listide laadimine</span>
+                        </Spinner>
+                    
+                        :
+
+                        <Row>
                         <Col md={{ offset: 0 }}>
                         <Popup trigger={<button className="list_import_btn">Import</button>} modal>
                                 {close => (
@@ -148,8 +187,17 @@ class CandidatesListsFetch extends Component {
                                         </Row>
                                         {this.state.err &&
                                             <Row className="text-center">
-                                                <Col className="error_box">
+                                                <Col className="error_box_list">
                                                     <span className="error_message">{this.state.err}</span>
+                                                </Col>
+                                            </Row>
+                                        }
+                                        {this.state.load &&
+                                            <Row className="text-center">
+                                                <Col>
+                                                    <Spinner animation="border" role="status" className="loading_spinner">
+                                                        <span className="visually-hidden">Kandidaatide listide laadimine</span>
+                                                    </Spinner>
                                                 </Col>
                                             </Row>
                                         }
@@ -158,13 +206,7 @@ class CandidatesListsFetch extends Component {
                             </Popup>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                            <Spinner animation="border" role="status">
-                                <span className="visually-hidden">Kandidaatide listide laadimine</span>
-                            </Spinner>
-                        </Col>
-                    </Row>
+                    }
                 </div>
             )
         }

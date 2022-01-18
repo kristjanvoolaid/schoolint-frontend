@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Col, Container, Row, Toast, ToastBody, ToastContainer, ToastHeader } from 'react-bootstrap';
+import { Button, Col, Container, Row, Spinner } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import CandidatesListsItem from './CandidatesListsItem';
 import authHeader from '../../services/AuthHeader';
@@ -19,7 +19,8 @@ class CandidatesLists extends Component {
             year: date.getFullYear(),
             listCode: 1,
             courses: [],
-            err: ''
+            err: '',
+            load: false
         }
     }
 
@@ -59,15 +60,22 @@ class CandidatesLists extends Component {
             )
         }
 
-        axios({
-            method: "POST",
-            url: `${config.API_URL}/lists`,
-            data: dataToSend,
-            headers: authHeader()
-        })
-        .then(response => response.data)
-        .then(result => window.location.reload())
-        .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!' }))
+        this.setState({
+            err: '',
+            load: true
+        });
+
+        setTimeout(() => {
+            axios({
+                method: "POST",
+                url: `${config.API_URL}/lists`,
+                data: dataToSend,
+                headers: authHeader()
+            })
+            .then(response => response.data)
+            .then(result => window.location.reload())
+            .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!', load: false }))
+        }, 5000);
     }
 
     componentDidMount() {
@@ -129,16 +137,17 @@ class CandidatesLists extends Component {
                                                 <br></br>
                                                 <Button onClick={close} className="close_upload_btn">Tagasi</Button>
                                                 <Button type="button" className="upload_btn" onClick={this.listDataToBackend}>Import</Button>
-                                            </Col>
-                                        </Row>
-                                        {this.state.err &&
-                                            <Row className="text-center">
-                                                <Col>
+                                                {this.state.err &&
                                                     <div className="error_box_list">
                                                         <span className="error_message">{this.state.err}</span>
                                                     </div>
-                                                </Col>
-                                            </Row>
+                                                }
+                                            </Col>
+                                        </Row>
+                                        {this.state.load && 
+                                            <Spinner animation="border" role="status" className="loading_spinner">
+                                                <span className="visually-hidden">Kandidaatide listide laadimine</span>
+                                            </Spinner>
                                         }
                                     </div>
                                 )}
