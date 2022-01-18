@@ -1,7 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import Select from 'react-select'
 
-function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTagsCheckbox, handleInterviewCatScores }) {
+function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleSelectChange, handleTagsCheckbox, handleInterviewCatScores }) {
     return (
         <div>
             <Container>
@@ -60,6 +61,21 @@ function LoTags({ tags, comments, handleCommentsChange, onSearchChange, handleTa
                             <option value="4">4</option>
                         </select>
                     </Col>
+                </Row>
+                <Row>
+                <Select
+                            name="form-field-name"
+                            isMulti
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            options={
+                                tags.map((tag, i) => ({
+                                    id: tags[i].id,
+                                    label: tags[i].name,
+                                }))
+                            }
+                            onChange={handleSelectChange}
+                        />
                 </Row>
             </Container>
         </div>

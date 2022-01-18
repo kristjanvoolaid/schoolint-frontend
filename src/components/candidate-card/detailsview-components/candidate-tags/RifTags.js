@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import Select from 'react-select';
 
 function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleTagsCheckbox, handleInterviewCatScores  }) {
     return (
@@ -20,6 +21,19 @@ function RifTags({ tags, comments, handleCommentsChange, onSearchChange, handleT
                         <br></br>
                         <label>Sildid</label>
                         <input type="text" placeholder="Search" onChange={onSearchChange}></input>
+                        <Select
+                            name="form-field-name"
+                            isMulti
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                            options={
+                                tags.map((tag, i) => ({
+                                    value: tags[i].name,
+                                    label: tags[i].name,
+                                }))
+                            }
+                        />
+
                         {tags.map((tag, i) => (
                             <div>
                                 <input key={tags[i].id} type="checkbox" id={tags[i].id} name={tags[i].name} onChange={handleTagsCheckbox}/>

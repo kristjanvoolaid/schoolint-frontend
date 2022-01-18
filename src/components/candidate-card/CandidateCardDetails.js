@@ -251,6 +251,7 @@ class CandidateCardDetails extends Component {
     };
 
     handleTagsCheckbox = (e) => {
+        console.log(e);
         const { id } = e.target;
         this.setState(prevState => ({
             interviewResult: {
@@ -259,6 +260,21 @@ class CandidateCardDetails extends Component {
             }
         }))
     };
+
+    handleSelectChange(selectedItem) {
+        console.log(selectedItem);
+        const { id } = selectedItem.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                tags: [...this.state.interviewResult.tags, id]
+            }
+        }))
+        this.setState({
+            inputValue: selectedItem
+        });
+        console.log("inputValue=" + selectedItem);
+    }
 
     render() {
         let candidateCode;
@@ -336,6 +352,7 @@ class CandidateCardDetails extends Component {
                                 comments={this.state.comments}
                                 handleCommentsChange={this.handleCommentsChange}
                                 onSearchChange={this.onSearchChange}
+                                handleSelectChange={this.handleSelectChange}
                                 handleTagsCheckbox={this.handleTagsCheckbox}
                                 handleInterviewCatScores={this.handleInterviewCatScores}
                             />
