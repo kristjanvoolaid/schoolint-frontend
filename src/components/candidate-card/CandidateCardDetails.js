@@ -145,9 +145,44 @@ class CandidateCardDetails extends Component {
                     room: room,
                     present: present,
                     attachments: attachments,
-                    interviewResult: interviewResult
+                    interviewResult: {
+                        comment: '',
+                        interviewCat1: '',
+                        interviewCat2: '',
+                        interviewCat3: '',
+                        interviewCat4: '',
+                        interviewCat5: '',
+                        interviewCat6: '',
+                        interviewCat7: '',
+                        interviewCat8: '',
+                        tags: []
+                    },
                 });
             }
+
+            if (background && scores && interviewResult) {
+                this.setState({
+                id: id,
+                specialityCode: specialityCode,
+                courseId: courseId,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                personalId: personalId,
+                finalScore: finalScore,
+                phoneNumber: phoneNumber,
+                residence: residence,
+                scores: scores,
+                studies: studies,
+                background: background,
+                notes: notes,
+                comments: comments,
+                room: room,
+                present: present,
+                attachments: attachments,
+                interviewResult: interviewResult
+            });
+        }
             
             this.setState({
                 id: id,
