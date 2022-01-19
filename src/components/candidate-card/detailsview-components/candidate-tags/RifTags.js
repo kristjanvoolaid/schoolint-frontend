@@ -10,7 +10,7 @@ function RifTags({ tags, handleCommentsChange, onSearchChange, handleTagsCheckbo
                     <Col sm={2}>
                         Isiksus
                         <br></br>
-                        <select value={interviewCat1} onChange={handleInterviewCatScores} name="interviewCat1">
+                        <select className="text-box" value={interviewCat1} onChange={handleInterviewCatScores} name="interviewCat1">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -22,7 +22,7 @@ function RifTags({ tags, handleCommentsChange, onSearchChange, handleTagsCheckbo
                     <Col sm={2}>
                         Teadmised
                         <br></br>
-                        <select value={interviewCat2}  onChange={handleInterviewCatScores} name="interviewCat2">
+                        <select className="text-box" value={interviewCat2}  onChange={handleInterviewCatScores} name="interviewCat2">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -33,7 +33,7 @@ function RifTags({ tags, handleCommentsChange, onSearchChange, handleTagsCheckbo
                     <Col sm={2}>
                         Motivatsioon
                         <br></br>
-                        <select value={interviewCat3} onChange={handleInterviewCatScores} name="interviewCat3">
+                        <select className="text-box" value={interviewCat3} onChange={handleInterviewCatScores} name="interviewCat3">
                             <option value="">VALI</option>
                             <option value="1">1</option>
                             <option value="2">2</option>

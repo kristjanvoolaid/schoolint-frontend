@@ -456,7 +456,7 @@ class CandidateCardDetails extends Component {
                         <Col md={9}></Col>
                         <Col md={1}>
                             <Link to="/candidates">
-                                <button className="button2">Sulge</button>
+                                <button className="button2">Katkesta</button>
                             </Link>
                         </Col>
                         <Col md={1}>
