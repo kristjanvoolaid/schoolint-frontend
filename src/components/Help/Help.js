@@ -12,7 +12,7 @@ import help_img_7 from "./img/help_img_7.png";
 import help_img_8 from "./img/help_img_8.png";
 import help_img_9 from "./img/help_img_9.png";
 import help_img_10 from "./img/help_img_10.png";
-import help_img_11 from "./img/help_img_11";
+import help_img_11 from "./img/help_img_11.png";
 import authHeader from "../../services/AuthHeader";
 import "./Help.css";
 
@@ -41,13 +41,20 @@ function Help() {
                         <p>Töölaua vaates on näha kõik sellel aastal teie õppekaval intervjueeritavad. 
                             Vaate ülemises ääres asuva otsinguriba kaudu on võimalik nimekirjast sorteerida 
                             kandidaate nime järgi. Kandidaadi detailvaatesse saab navigeerida kui vajutada 
-                            kandidaadi rea peale. Kui ühtegi kandidaati ei ole töölaual näha, palun võta ühendust 
-                            Mihkliga (mihkel.pulst@tlu.ee).
+                            kandidaadi rea peale. <i>Kui ühtegi kandidaati ei ole töölaual näha, palun võta ühendust 
+                            Mihkliga (mihkel.pulst@tlu.ee).</i>
                         </p>
                     </Col>
                 </Row>
                 <Row className="text-center">
                     <Col><h2 className="secondary-text">Intervjuu</h2></Col>
+                </Row>
+                <Row className="text-center">
+                    <Col className="help_text">
+                        <p>Intervjuule kulunud aja jälgimiseks kui ka kohaloleku märkimiseks kasutada kandidaadi 
+                            detailvaates "Alusta" nuppu, mille järel algab selle kõrval taimeril aeg jooksma. Ajalist 
+                            limiiti intervjuu läbiviimiseks rakenduses sätestatud ei ole.</p>
+                    </Col>
                 </Row>
                 <Row className="text-center">
                     <Col>
@@ -61,22 +68,15 @@ function Help() {
                 </Row>
                 <Row className="text-center">
                     <Col className="help_text">
-                        <p>Intervjuule kulunud aja jälgimiseks kui ka kohaloleku märkimiseks kasutada kandidaadi 
-                            detailvaates "Alusta" nuppu, mille järel algab selle kõrval taimeril aeg jooksma. Ajalist 
-                            limiiti intervjuu läbiviimiseks rakenduses sätestatud ei ole.</p>
-                    </Col>
-                </Row>
-                <Row className="text-center">
-                    <Col className="help_text">
                         <p>Kandidaadi testitulemused ning ka informatsioon on õppekavati erinev, kuid on nähtav detailvaates. 
-                            "Admin märkmed" on informatsioon, mille on Katri Loik pannud koos SAIS'ist tuleva kandidaadi taustainformatsiooniga 
+                            "Admin märkmed" on informatsioon, mille on ülikooli admin pannud koos SAIS'ist tuleva kandidaadi taustainformatsiooniga 
                             kaasa.</p>
                     </Col>
                 </Row>
                 <Row className="text-center">
                     <Col>
                         <Figure.Image
-                            src={help_img_3}
+                            src={help_img_11}
                             width="1000"
                             className="center"
                             alt="User help" 
@@ -94,11 +94,17 @@ function Help() {
                 <Row className="text-center">
                     <Col>
                         <Figure.Image
-                            src={help_img_11}
+                            src={help_img_3}
                             width="1000"
                             className="center"
                             alt="User help" 
                         />
+                    </Col>
+                </Row>
+                <Row className="text-center">
+                    <Col className="help_text">
+                        <p>Kui intervjuu on lõpetatud, palun vajuta "Salvesta" nuppu. 
+                            Kui oled kogemata avanud vale kandidaadi, saad väljuda hindamises ilma salvestamata "Katkesta" nupu kaudu.</p>
                     </Col>
                 </Row>
                 <Row className="text-center"> 
@@ -114,13 +120,18 @@ function Help() {
                 {role === "Admin" &&
                     <div>
                         <Row className="text-center">
-                            <Col><h2>Nimekirjad</h2></Col>
+                            <Col><h2 className="secondary-text">Nimekirjad</h2></Col>
                         </Row>
                         <Row className="text-center">
                             <Col className="help_text"><p>Nimekirjade vaates on nähtaval kõik eelnevalt üles laetud erinevate õppekavade tudengikandidaatide nimekirjad.</p></Col>
                         </Row>
                         <Row className="text-center">
-                            <Col><h3>Nimekirja üleslaadimine</h3></Col>
+                            <Col><h3 className="secondary-text">Nimekirja üleslaadimine</h3></Col>
+                        </Row>
+                        <Row className="text-center">
+                            <Col className="help_text">
+                                <p>1. Vajuta nimekirjade vaates "import"</p>
+                            </Col>
                         </Row>
                         <Row className="text-center">
                             <Col>
@@ -134,32 +145,30 @@ function Help() {
                         </Row>
                         <Row className="text-center">
                             <Col className="help_text">
-                                <p>1. Vajuta nimekirjade vaates "import"
-                                    2. Valik õppekava ja aasta, mille sisseastumiste nimekirjaga on tegu; vali fail enda seadmest ja seejärel vajuta import. 
-                                    PS! Üleslaetav tabel siin on ülikooli Adminilt saadav SAIS'i andmetega tabel.
-                                    3. Lae üles ka nimekirja juurde testitulemused klikates selle kõrval "Lisa tulemused" nupule.</p>
+                                    <p>2. Valik õppekava ja aasta, mille sisseastumiste nimekirjaga on tegu; vali fail enda seadmest ja seejärel vajuta import.
+                                    PS! Üleslaetav tabel siin on ülikooli Adminilt saadav SAIS'i andmetega tabel. </p>
                             </Col>
                         </Row>
                         <Row className="text-center">
                             <Col>
                                 <Figure.Image
                                     src={help_img_5}
-                                    width="1000"
+                                    width="500"
                                     className="center"
                                     alt="User help" 
                                 />
                             </Col>
                         </Row>
                         <Row className="text-center">
-                            <Col className="help_text"><p>2. Valik õppekava ja aasta, mille sisseastumiste nimekirjaga on tegu; vali fail enda seadmest ja seejärel vajuta import. 
-                                    PS! Üleslaetav tabel siin on ülikooli Adminilt saadav SAIS'i andmetega tabel.
-                                    3. Lae üles ka nimekirja juurde testitulemused klikates selle kõrval "Lisa tulemused" nupule.</p></Col>
+                        <Col className="help_text">
+                              <p> 3. Lae üles ka nimekirja juurde testitulemused klikates selle kõrval "Lisa tulemused" nupule.</p>
+                            </Col>
                         </Row>
                         <Row className="text-center">
                             <Col>
                                 <Figure.Image
                                     src={help_img_6}
-                                    width="1000"
+                                    width="500"
                                     className="center"
                                     alt="User help" 
                                 />
@@ -173,18 +182,15 @@ function Help() {
                             </Col>
                         </Row>
                         <Row className="text-center">
-                            <Col><h3>Seaded</h3></Col>
+                            <Col><h3 className="secondary-text">Seaded</h3></Col>
                         </Row>
                         <Row className="text-center">
                             <Col className="help_text"><p>Seadete all on võimalik lisada/muuta/eemaldada kasutajaid (st. intervjueerijaid) ning muuta 
                                 tudengikandidaadi detailvaates nähtavaid silte.</p></Col>
                         </Row>
                         <Row className="text-center">
-                            <Col className="help_text"><p>Uue kasutaja lisamine:
-                                    1. Vajuta seadete all "Kasutajad" lehel "Lisa" nuppu
-                                    2. Täida ära eesnimi, perekonnanimi, kasutaja email mida saab sisselogimiseks 
-                                    kasutada ning lisa ka parool. Kindlasti tuleb ka lisada vastav õppekava, mille nimekirja 
-                                    on kasutajal õigus töölaual vaadata.</p>
+                            <Col className="help_text"><p>Uue kasutaja lisamine:</p>
+                                    <p>1. Vajuta seadete all "Kasutajad" lehel "Lisa" nuppu</p>
                             </Col>
                         </Row>
                         <Row className="text-center">
@@ -195,19 +201,29 @@ function Help() {
                                     className="center"
                                     alt="User help" 
                                 />
+                            </Col>
+                        </Row>
+                        <Row className="text-center">
+                            <Col className="help_text">
+                                    <p>
+                                    2. Täida ära eesnimi, perekonnanimi, kasutaja email mida saab sisselogimiseks 
+                                    kasutada ning lisa ka parool. Kindlasti tuleb ka lisada vastav õppekava, mille nimekirja 
+                                    on kasutajal õigus töölaual vaadata.</p>
+                            </Col>
+                        </Row>
+                        <Row className="text-center">
+                            <Col>
                                 <Figure.Image
                                     src={help_img_8}
-                                    width="300"
+                                    width="200"
                                     className="center"
                                     alt="User help" 
                                 />
                             </Col>
                         </Row>
                         <Row className="text-center">
-                            <Col className="help_text"><p>Siltide lisamine/muutmine:
-                                    1. Navigeeri "Sildid" lehele seadete all
-                                    2. Vajuta "Lisa"
-                                    3. Lisa sildile nimetus kui ka õppekava, mille kandidaatidele peaks seda võimalik olla panna ja vajuta seejärel "Lisa".
+                            <Col className="help_text"><p>Siltide lisamine/muutmine:</p>
+                                    <p>1. Navigeeri "Sildid" lehele seadete all ja vajuta "Lisa"
                                     </p>
                             </Col>
                         </Row>
@@ -219,6 +235,16 @@ function Help() {
                                     className="center"
                                     alt="User help" 
                                 />
+                            </Col>
+                        </Row>
+                        <Row className="text-center">
+                            <Col className="help_text"><p>
+                                    3. Lisa sildile nimetus kui ka õppekava, mille kandidaatidele peaks seda võimalik olla panna ja vajuta seejärel "Lisa".
+                                    </p>
+                            </Col>
+                        </Row>
+                        <Row className="text-center">
+                            <Col>
                                 <Figure.Image
                                     src={help_img_9}
                                     width="300"
