@@ -42,6 +42,7 @@ class CandidateCardDetails extends Component {
             room: '-',
             tags: [],
             interviewResult: {
+                comment: '',
                 interviewCat1: '',
                 interviewCat2: '',
                 interviewCat3: '',
@@ -65,7 +66,6 @@ class CandidateCardDetails extends Component {
             searchField: ''
         }
 
-        this.handleCommentsChange = this.handleCommentsChange.bind(this);
         this.handleNotesChange = this.handleNotesChange.bind(this);
     }
 
@@ -120,7 +120,8 @@ class CandidateCardDetails extends Component {
                 comments,
                 room,
                 present,
-                attachments
+                attachments,
+                interviewResult
             } = response.data.candidate;
 
             // Check if results are available
@@ -143,7 +144,8 @@ class CandidateCardDetails extends Component {
                     comments: comments,
                     room: room,
                     present: present,
-                    attachments: attachments
+                    attachments: attachments,
+                    interviewResult: interviewResult
                 });
             }
             
@@ -159,7 +161,7 @@ class CandidateCardDetails extends Component {
                 specialityCode: specialityCode,
                 courseId: courseId,
                 present: present,
-                attachments: attachments
+                attachments: attachments,
             });
         })
         .catch((error) => {
@@ -167,10 +169,14 @@ class CandidateCardDetails extends Component {
         });
     };
 
-    handleCommentsChange(e) {
-        this.setState({
-            comments: e.target.value
-        });
+    handleCommentsChange = (e) => {
+        const { value } = e.target;
+        this.setState(prevState => ({
+            interviewResult: {
+                ...prevState.interviewResult,
+                comment: value
+            }
+        }))
     };
 
     handleNotesChange(e) {
@@ -326,6 +332,10 @@ class CandidateCardDetails extends Component {
                                 onSearchChange={this.onSearchChange}
                                 handleTagsCheckbox={this.handleTagsCheckbox}
                                 handleInterviewCatScores={this.handleInterviewCatScores}
+                                comment={this.state.interviewResult.comment}
+                                interviewCat1={this.state.interviewResult.interviewCat1}
+                                interviewCat2={this.state.interviewResult.interviewCat2}
+                                interviewCat3={this.state.interviewResult.interviewCat3}
                             />
 
             candidateAttachments = null;
@@ -338,6 +348,11 @@ class CandidateCardDetails extends Component {
                                 onSearchChange={this.onSearchChange}
                                 handleTagsCheckbox={this.handleTagsCheckbox}
                                 handleInterviewCatScores={this.handleInterviewCatScores}
+                                comment={this.state.interviewResult.comment}
+                                interviewCat1={this.state.interviewResult.interviewCat1}
+                                interviewCat2={this.state.interviewResult.interviewCat2}
+                                interviewCat3={this.state.interviewResult.interviewCat3}
+                                interviewCat4={this.state.interviewResult.interviewCat4}
                             />
 
             candidateAttachments = null;
@@ -350,6 +365,12 @@ class CandidateCardDetails extends Component {
                                 onSearchChange={this.onSearchChange}
                                 handleTagsCheckbox={this.handleTagsCheckbox}
                                 handleInterviewCatScores={this.handleInterviewCatScores}
+                                comment={this.state.interviewResult.comment}
+                                interviewCat1={this.state.interviewResult.interviewCat1}
+                                interviewCat2={this.state.interviewResult.interviewCat2}
+                                interviewCat3={this.state.interviewResult.interviewCat3}
+                                interviewCat4={this.state.interviewResult.interviewCat4}
+                                interviewCat5={this.state.interviewResult.interviewCat5}
                           />
             
             candidateAttachments = <KtdCandidateAttachments attachments={this.state.attachments} id={this.state.id} />

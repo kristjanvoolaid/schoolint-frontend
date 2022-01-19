@@ -23,7 +23,9 @@ class CandidatesListsItem extends Component {
             enabled: props.enabled,
             err: '',
             load: false,
-            listStatusload: false
+            listStatusload: false,
+            deleteListLoad: false,
+            deleteListErr: '',
         };
     }
 
@@ -105,6 +107,26 @@ class CandidatesListsItem extends Component {
         }, 3000)
     }
 
+    deleteList = () => {
+        const { id } = this.props;
+
+        this.setState({ 
+            deleteListErr: '',
+            deleteListLoad: true
+        });
+
+        setTimeout(() => {
+            axios({
+                method: "DELETE",
+                url: config.API_URL + `/lists/${id}`,
+                headers: authHeader()
+            })
+            .then(response => response.data)
+            .then(result => window.location.reload())
+            .catch(error => this.setState({ deleteListErr: 'Faili kustutamisega tekkis probleem! Proovi uuesti!', deleteListLoad: false }));
+        }, 3000);
+    }
+
     render() {
         let listStatus;
         if (this.state.enabled === 1) {
@@ -151,8 +173,8 @@ class CandidatesListsItem extends Component {
                                         {this.state.load &&
                                         <Row className="text-center">
                                             <Col>
-                                                <Spinner animation="border" role="status" className="loading_spinner">
-                                                    <span className="visually-hidden">Kandidaatide listide laadimine</span>
+                                                <Spinner animation="border" role="status" className="results_spinner">
+                                                    <span className="visually-hidden">Kandidaatide tulemuste laadimine</span>
                                                 </Spinner>
                                             </Col>
                                         </Row>
@@ -160,7 +182,6 @@ class CandidatesListsItem extends Component {
                                     </div>
                                 )}
                             </Popup>
-                            &nbsp;
                             &nbsp;
                             <button className="export_btn">Ekspordi</button>
                             &nbsp;
@@ -173,9 +194,50 @@ class CandidatesListsItem extends Component {
                                         size="sm"
                                         role="status"
                                         aria-hidden="true"
-                                >
-                                </Spinner>}
+                                    >
+                                    </Spinner>}
                             </button>
+                            &nbsp;
+                            <Popup trigger={<button onClick={this.deleteList} className="enable_btn">Kustuta</button>} modal>
+                                {close => (
+                                    <Container>
+                                        <Row className="text-center delete_list_title">
+                                            <Col><h4>Kas olete kindel, et soovite antud listi kustutada?</h4></Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col>
+                                                <br></br>
+                                                <button className="button2" onClick={close}>Tagasi</button>
+                                                &nbsp;
+                                                <button className="button1" onClick={this.deleteList}>Kustuta</button>
+                                                {this.state.deleteListErr &&
+                                                    <div className="error_box_list">
+                                                        <span className="error_message">{this.state.deleteListErr}</span>
+                                                    </div>
+                                                }
+                                            </Col>
+                                        </Row>
+                                        {this.state.deleteListLoad && 
+                                            <Row className="text-center">
+                                                <Col>
+                                                    <Spinner animation="border" role="status" className="delete_list_spinner">
+                                                        <span className="visually-hidden">Kandidaatide listide kustutamine</span>
+                                                    </Spinner>
+                                                </Col>
+                                            </Row>
+                                        }
+                                        {/* {this.state.deleteListErr && 
+                                            <Row className="text-center">
+                                                <Col>
+                                                    <div className="error_box_list">
+                                                        <span className="error_message">{this.state.deleteListErr}</span>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        } */}
+                                    </Container>
+                                )}
+                            </Popup>
                         </Col>
                     </Row>
                 </Container>
