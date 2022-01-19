@@ -83,7 +83,7 @@ export default function KtdCandidateTags({
                         <input className="text-box" type="text" placeholder="Search" onChange={onSearchChange}></input>
                         {tags.map(tag => (
                             <div>
-                                <input type="checkbox" id={tag.name} />
+                                <input type="checkbox" id={tag.id} />
                                 <label for={tag.name}>{tag.name}</label>    
                             </div>
                         ))}

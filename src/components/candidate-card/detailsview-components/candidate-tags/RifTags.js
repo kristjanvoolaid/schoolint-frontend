@@ -52,7 +52,7 @@ function RifTags({ tags, handleCommentsChange, onSearchChange, handleTagsCheckbo
                         <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
                         {tags.map(tag => (
                             <div key={"." + tag.name + tag.id}>
-                                <input type="checkbox" id={tag.name} key={tag.name}/>
+                                <input type="checkbox" id={tag.id} key={tag.id}/>
                                 <label key={tag.name + tag.id} htmlFor={tag.name}>{tag.name}</label>    
                             </div>
                         ))}

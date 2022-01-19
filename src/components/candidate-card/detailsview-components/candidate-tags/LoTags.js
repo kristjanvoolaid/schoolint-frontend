@@ -74,7 +74,7 @@ function LoTags({
                         <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
                         {tags.map(tag => (
                             <div>
-                                <input type="checkbox" id={tag.name} />
+                                <input type="checkbox" id={tag.id} />
                                 <label for={tag.name}>{tag.name}</label>    
                             </div>
                         ))}
