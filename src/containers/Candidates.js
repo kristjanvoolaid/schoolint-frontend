@@ -40,7 +40,7 @@ class Candidates extends Component {
             candidatesLoad: false
           })
         });
-      }, 2000);
+      }, 1000);
     }
 
     onSearchChange = (e) => {
