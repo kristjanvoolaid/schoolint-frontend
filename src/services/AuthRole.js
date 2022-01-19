@@ -1,37 +1,15 @@
 import axios from "axios";
-import authHeader from "./AuthHeader";
 import config from "../config";
+import authHeader from "./AuthHeader";
 
-let r;
-const setUserRole = (role) => {
-    console.log("Setting role to: " + role);
-    r = role;
-};
-
-const getUserRole = () => {
-    console.log("Getting role: " + r);
-    return r;
-};
-
-const userRole = () => {
-    let userRole;
-
-    axios({
+export default function AuthRole() {
+    
+    return axios({
         method: "GET",
-        url: config.API_URL + "/users/role",
+        url: "http://localhost:3001" + "/users/role",
         headers: authHeader()
     })
     .then(response => response)
-    .then(result => userRole = result.data)
+    .then(result => result.data.role)
     .catch(error => console.log(error));
-
-    return userRole;
-}
-
-const AuthRoleService = {
-    userRole,
-    setUserRole,
-    getUserRole
 };
-
-export default AuthRoleService;

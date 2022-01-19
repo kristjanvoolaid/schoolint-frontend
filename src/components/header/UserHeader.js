@@ -37,7 +37,7 @@ function UserHeader() {
                            <Container>
                                 <Nav className="justify-content-end">
                                     <Nav.Link eventKey='Töölaud' href="/candidates"><CgIcons.CgMenuBoxed />Töölaud</Nav.Link>
-                                    <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle />Abi</Nav.Link>   
+                                    <Nav.Link eventKey='Abi' href="/help"><IoIcons.IoMdHelpCircle />Abi</Nav.Link>   
                                     <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower />{userBtn}</Nav.Link>
                                 </Nav>
                              </Container>

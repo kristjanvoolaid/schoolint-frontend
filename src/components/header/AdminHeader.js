@@ -40,8 +40,7 @@ function AdminHeader() {
                                      <Nav.Link eventKey='Nimekirjad' href="/lists"><BsIcons.BsListUl /> Nimekirjad</Nav.Link>
                                      <Nav.Link eventKey='Töölaud' href="/candidates"><CgIcons.CgMenuBoxed /> Töölaud</Nav.Link>
                                      <Nav.Link eventKey='Seaded' href="/settings"><BsFillGearFill /> Seaded</Nav.Link>
-                                     {/* siia tuleb abilehekülje nupp link peab muutuma> hetkel viib seadete lehele*/}
-                                     <Nav.Link eventKey='Abi' href="/settings"><IoIcons.IoMdHelpCircle /> Abi</Nav.Link> 
+                                     <Nav.Link eventKey='Abi' href="/help"><IoIcons.IoMdHelpCircle /> Abi</Nav.Link> 
                                      <Nav.Link eventKey='Logout' onClick={AuthService.logout} href="/login"><BsPower /> {userBtn}</Nav.Link>
                                 </Nav>
                              </Container>
