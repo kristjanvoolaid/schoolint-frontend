@@ -9,6 +9,7 @@ import Login from "../components/login/Login";
 import RequireAuth from "../services/RequireAuth";
 import AppHeader from "../components/header/AppHeader";
 import RequireAdmin from "../services/RequireAdmin";
+import Help from "../components/help/Help";
 
 class App extends Component {
   render() {
@@ -45,6 +46,11 @@ class App extends Component {
               <AppSettings />
             </RequireAuth>
           } />
+          <Route exact path="/help" element={
+            <RequireAuth redirectTo="/login">
+              <Help />
+            </RequireAuth>
+          }></Route>
         </Routes>
       </div>
     )

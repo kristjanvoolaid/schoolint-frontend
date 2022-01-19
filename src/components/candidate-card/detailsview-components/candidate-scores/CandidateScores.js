@@ -19,12 +19,12 @@ function CandidateScores({ candidateCode, scoresKat1, scoresKat2, scoresKat3, sc
         scoresToMap = loScores;
     }
 
-    categories = categoriesToMap.map((category) =>
-        <th>{category}</th>
+    categories = categoriesToMap.map((category, i) =>
+        <th key={i}>{category}</th>
     );
 
-    scores = scoresToMap.map((score) =>
-        <td>{score}</td>
+    scores = scoresToMap.map((score, i) =>
+        <td key={i}>{score}</td>
     )
 
     return (

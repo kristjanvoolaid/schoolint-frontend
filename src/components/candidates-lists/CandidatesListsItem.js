@@ -8,6 +8,7 @@ import './PopUp.css';
 import authHeader from "../../services/AuthHeader";
 import config from "../../config";
 import "./Lists.css";
+const FileDownload = require('js-file-download');
 
 class CandidatesListsItem extends Component {
     constructor(props) {
@@ -26,6 +27,8 @@ class CandidatesListsItem extends Component {
             listStatusload: false,
             deleteListLoad: false,
             deleteListErr: '',
+            exportFile: null,
+            exportLoad: false
         };
     }
 
@@ -127,7 +130,31 @@ class CandidatesListsItem extends Component {
         }, 3000);
     }
 
+    exportList = () => {
+        
+        this.setState({
+            exportLoad: true
+        });
+
+        const { id } = this.props;
+        setTimeout(() => {
+            axios({
+                url: config.API_URL + `/lists/export/${id}`,
+                method: 'GET',
+                responseType: 'blob',
+                headers: authHeader()
+              })
+              .then((response) => {
+                  FileDownload(response.data, 'report.xlsx')
+                  this.setState({
+                      exportLoad: false
+                  });
+              });
+        }, 3000);
+    }
+
     render() {
+        console.log(this.state.exportFile);
         let listStatus;
         if (this.state.enabled === 1) {
             listStatus = "Disable";
@@ -183,7 +210,19 @@ class CandidatesListsItem extends Component {
                                 )}
                             </Popup>
                             &nbsp;
-                            <button className="export_btn">Ekspordi</button>
+                            <button onClick={this.exportList} className="export_btn">
+                                Ekspordi
+                                {this.state.exportLoad && 
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    >
+                                    </Spinner>
+                                    }
+                            </button>
                             &nbsp;
                             <button onClick={this.listStatusHandler} className="enable_btn">
                                 {listStatus}

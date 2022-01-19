@@ -45,15 +45,15 @@ function RifTags({ tags, handleCommentsChange, onSearchChange, handleTagsCheckbo
                 </Row>
                 <Row>
                 <Col md={2}></Col>
-                <Col md={4}><br></br>Kommentaar<br></br><textarea class="comments-box text-box" value={comment} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
+                <Col md={4}><br></br>Kommentaar<br></br><textarea className="comments-box text-box" value={comment} onChange={handleCommentsChange} rows="6" cols="20"></textarea></Col>
                 <Col md={4}>
                 <br></br>
                 <label>Sildid</label><br></br>
                         <input type="text" placeholder="Search" onChange={onSearchChange} className="text-box"></input>
                         {tags.map(tag => (
-                            <div>
-                                <input type="checkbox" id={tag.name} />
-                                <label for={tag.name}>{tag.name}</label>    
+                            <div key={"." + tag.name + tag.id}>
+                                <input type="checkbox" id={tag.name} key={tag.name}/>
+                                <label key={tag.name + tag.id} htmlFor={tag.name}>{tag.name}</label>    
                             </div>
                         ))}
                 </Col>

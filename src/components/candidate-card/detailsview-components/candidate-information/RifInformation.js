@@ -12,7 +12,7 @@ function RifInformation({ background, notes, residence, phoneNumber, email, hand
                     </Col>
                     <Col md={4}>
                         Admini märkmed
-                        <p className="admin-notes text-box" readonly>{notes}</p>
+                        <p className="admin-notes text-box" aria-readonly>{notes}</p>
                     </Col>
                     <Col sm={4} className="candidate-data">
                         Aadress <br></br>

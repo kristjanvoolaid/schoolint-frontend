@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Spinner } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import CandidateCardList from "../components/candidate-card/CandidateCardList";
 import authHeader from "../services/AuthHeader";
 import config from "../config";
@@ -9,9 +9,11 @@ class Candidates extends Component {
     constructor() {
         super()
         this.state = {
-          'candidates': [],
-          'error': null,
-          searchField: '' 
+          candidates: [],
+          error: null,
+          searchField: '',
+          candidatesLoad: false,
+          err: '' 
         }
     }
 
@@ -19,16 +21,26 @@ class Candidates extends Component {
         this.fetchCandidates();
     }
 
-    fetchCandidates() {
-      axios.get(config.API_URL + '/candidates', { headers: authHeader() })
-      .then((response) => {
+    fetchCandidates = () => {
+      this.setState({ 
+        err: '',
+        candidatesLoad: true
+      });
+
+      setTimeout(() => {
+        axios.get(config.API_URL + '/candidates', { headers: authHeader() })
+        .then((response) => {
           this.setState({
             candidates: response.data.candidates
           })
-      })
-      .catch((error) => {
-          console.log(error);
-      });
+        })
+        .catch((error) => {
+          this.setState({
+            err: 'Kandidaatide laadimisel tekkis probleem! Palun värskendage veebilehitseja akent.',
+            candidatesLoad: false
+          })
+        });
+      }, 1000);
     }
 
     onSearchChange = (e) => {
@@ -68,9 +80,22 @@ class Candidates extends Component {
         if (candidates.length < 1) {
           return (
             <div className="text-center" style={{ marginTop: 50 }}>
-              <Spinner animation="border" role="status" size="lg">
-                  <span className="visually-hidden">Kandidaatie laadimine</span>
-              </Spinner>
+              {this.state.err && 
+                <Row className="text-center">
+                  <Col className="error_box_list">
+                    <span className="error_message">{this.state.err}</span>
+                  </Col>
+              </Row>
+              }
+              {this.state.candidatesLoad && 
+                <Row className="text-center">
+                  <Col>
+                    <Spinner animation="border" role="status" size="lg">
+                      <span className="visually-hidden">Kandidaatide laadimine</span>
+                    </Spinner>
+                  </Col>
+                </Row>
+              }
             </div>
           )
         }

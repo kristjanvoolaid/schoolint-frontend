@@ -43,7 +43,7 @@ class CandidatesListsFetch extends Component {
         })
         .catch((error) => {
             this.setState({
-                firstLoadErr: 'Listide laadimisel tekkis viga! Palun värskenda veebilehitseja akent.'
+                firstLoadErr: 'Listide laadimisel tekkis viga! Palun värskendage veebilehitseja akent.'
             })
         });
     }
@@ -181,8 +181,8 @@ class CandidatesListsFetch extends Component {
                                         <Row className="text-center">
                                             <Col>
                                                 <br></br>
-                                                <Button onClick={close} className="close_upload_btn">Tagasi</Button>
-                                                <Button type="button" className="upload_btn" onClick={this.listDataToBackend}>Import</Button>
+                                                <Button onClick={close} className="export_btn r_mrg">Tagasi</Button>
+                                                <Button type="button" className="import_btn l_mrg" onClick={this.listDataToBackend}>Import</Button>
                                             </Col>
                                         </Row>
                                         {this.state.err &&

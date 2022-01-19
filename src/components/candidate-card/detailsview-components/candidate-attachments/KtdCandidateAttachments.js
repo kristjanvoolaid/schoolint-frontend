@@ -4,7 +4,6 @@ import Popup from 'reactjs-popup';
 import axios from "axios";
 import authHeader from "../../../../services/AuthHeader";
 import config from "../../../../config";
-import { Link } from 'react-router-dom';
 
 class KtdCandidateAttachments extends Component {
     constructor(props) {
@@ -35,7 +34,7 @@ class KtdCandidateAttachments extends Component {
             headers: authHeader()
         })
         .then(response => response.data)
-        .then(result => console.log(result))
+        .then(result => window.location.reload())
         .catch(error => console.log(error));
     }
 
@@ -45,7 +44,7 @@ class KtdCandidateAttachments extends Component {
 
         axios({
             method: "DELETE",
-            url: config.API_URL + `/candidates/attachment`,
+            url: config.API_URL + `/candidates/attachment/?id=${id}&candidateId=${candidateId}`,
             data: {
               id,
               candidateId  
@@ -59,7 +58,6 @@ class KtdCandidateAttachments extends Component {
 
     render() {
         const { attachments } = this.props;
-        // const { attachments } = this.state;
 
         return (
             <div>
