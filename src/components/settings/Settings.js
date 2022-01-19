@@ -77,7 +77,7 @@ class Settings extends Component {
                                     {close => (
                                         <div>
                                             <Row className="text-center">
-                                                <Col className="settings_title"><h2>Uus kasutaja</h2></Col>
+                                                <Col className="settings_title secondary-text"><h2>Uus kasutaja</h2></Col>
                                             </Row>
                                             <Row className="text-center">
                                                 <Col><br></br>Eesnimi</Col>
@@ -158,7 +158,7 @@ class Settings extends Component {
                                             {close => (
                                                 <div>
                                                     <Row className="text-center">
-                                                        <Col className="settings_title"><h2>Uus silt</h2></Col>
+                                                        <Col className="settings_title secondary-text"><h2>Uus silt</h2></Col>
                                                     </Row>
                                                     <Row className="text-center">
                                                         <Col><br></br>Nimi</Col>
