@@ -9,7 +9,7 @@ import Login from "../components/login/Login";
 import RequireAuth from "../services/RequireAuth";
 import AppHeader from "../components/header/AppHeader";
 import RequireAdmin from "../services/RequireAdmin";
-import Help from "../components/help/Help";
+import Help from "../components/Help/Help";
 
 class App extends Component {
   render() {
