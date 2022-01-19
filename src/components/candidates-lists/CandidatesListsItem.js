@@ -8,6 +8,7 @@ import './PopUp.css';
 import authHeader from "../../services/AuthHeader";
 import config from "../../config";
 import "./Lists.css";
+const FileDownload = require('js-file-download');
 
 class CandidatesListsItem extends Component {
     constructor(props) {
@@ -133,21 +134,22 @@ class CandidatesListsItem extends Component {
         
         this.setState({
             exportLoad: true
-        })
+        });
 
         const { id } = this.props;
-        let token = localStorage.getItem("user").slice(10, -2);
-
         setTimeout(() => {
-            axios.get(config.API_URL + `/lists/export/${id}`, {
+            axios({
+                url: config.API_URL + `/lists/export/${id}`,
                 method: 'GET',
-                responseType: 'arrayBuffer', // important
+                responseType: 'blob',
                 headers: authHeader()
-            }).then((response) => {
-                console.log(response)
-                let f = window.URL.createObjectURL(new Blob([response.data]));
-                this.setState({ exportFile: f, exportLoad: false })
-            });
+              })
+              .then((response) => {
+                  FileDownload(response.data, 'report.xlsx')
+                  this.setState({
+                      exportLoad: false
+                  });
+              });
         }, 3000);
     }
 
@@ -208,15 +210,10 @@ class CandidatesListsItem extends Component {
                                 )}
                             </Popup>
                             &nbsp;
-                            {this.state.exportFile ?
-                                <a href={this.state.exportFile} target="_blank" className="export_btn" download>Lae alla</a>
-
-                                :
-
-                                <button onClick={this.exportList} className="export_btn">
-                                    Ekspordi
-                                    {this.state.exportLoad && 
-                                        <Spinner
+                            <button onClick={this.exportList} className="export_btn">
+                                Ekspordi
+                                {this.state.exportLoad && 
+                                    <Spinner
                                         as="span"
                                         animation="border"
                                         size="sm"
@@ -225,10 +222,7 @@ class CandidatesListsItem extends Component {
                                     >
                                     </Spinner>
                                     }
-                                </button>
-
-                            }
-
+                            </button>
                             &nbsp;
                             <button onClick={this.listStatusHandler} className="enable_btn">
                                 {listStatus}
