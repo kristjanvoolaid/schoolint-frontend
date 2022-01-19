@@ -26,6 +26,8 @@ class CandidatesListsItem extends Component {
             listStatusload: false,
             deleteListLoad: false,
             deleteListErr: '',
+            exportFile: null,
+            exportLoad: false
         };
     }
 
@@ -127,7 +129,30 @@ class CandidatesListsItem extends Component {
         }, 3000);
     }
 
+    exportList = () => {
+        
+        this.setState({
+            exportLoad: true
+        })
+
+        const { id } = this.props;
+        let token = localStorage.getItem("user").slice(10, -2);
+
+        setTimeout(() => {
+            axios.get(config.API_URL + `/lists/export/${id}`, {
+                method: 'GET',
+                responseType: 'arrayBuffer', // important
+                headers: authHeader()
+            }).then((response) => {
+                console.log(response)
+                let f = window.URL.createObjectURL(new Blob([response.data]));
+                this.setState({ exportFile: f, exportLoad: false })
+            });
+        }, 3000);
+    }
+
     render() {
+        console.log(this.state.exportFile);
         let listStatus;
         if (this.state.enabled === 1) {
             listStatus = "Disable";
@@ -183,7 +208,27 @@ class CandidatesListsItem extends Component {
                                 )}
                             </Popup>
                             &nbsp;
-                            <button className="export_btn">Ekspordi</button>
+                            {this.state.exportFile ?
+                                <a href={this.state.exportFile} target="_blank" className="export_btn" download>Lae alla</a>
+
+                                :
+
+                                <button onClick={this.exportList} className="export_btn">
+                                    Ekspordi
+                                    {this.state.exportLoad && 
+                                        <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    >
+                                    </Spinner>
+                                    }
+                                </button>
+
+                            }
+
                             &nbsp;
                             <button onClick={this.listStatusHandler} className="enable_btn">
                                 {listStatus}
