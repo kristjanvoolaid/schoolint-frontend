@@ -12,6 +12,7 @@ import help_img_7 from "./img/help_img_7.png";
 import help_img_8 from "./img/help_img_8.png";
 import help_img_9 from "./img/help_img_9.png";
 import help_img_10 from "./img/help_img_10.png";
+import help_img_11 from "./img/help_img_11";
 import authHeader from "../../services/AuthHeader";
 import "./Help.css";
 
@@ -33,7 +34,7 @@ function Help() {
         <div>
             <Container>
                 <Row className="text-center help_title">
-                    <Col><h1>Abi</h1></Col>
+                    <Col><h1 className="secondary-text">Abi</h1></Col>
                 </Row>
                 <Row className="text-center">
                     <Col className="help_text">
@@ -41,22 +42,12 @@ function Help() {
                             Vaate ülemises ääres asuva otsinguriba kaudu on võimalik nimekirjast sorteerida 
                             kandidaate nime järgi. Kandidaadi detailvaatesse saab navigeerida kui vajutada 
                             kandidaadi rea peale. Kui ühtegi kandidaati ei ole töölaual näha, palun võta ühendust 
-                            Mihkliga (mihkelpulst@tlu.ee).
+                            Mihkliga (mihkel.pulst@tlu.ee).
                         </p>
                     </Col>
                 </Row>
-                <Row className="text-center"> 
-                    <Col>
-                        <Figure.Image
-                            src={help_img_1}
-                            width="300"
-                            className="center"
-                            alt="User help" 
-                        />
-                    </Col>
-                </Row>
                 <Row className="text-center">
-                    <Col><h2>Intervjuu</h2></Col>
+                    <Col><h2 className="secondary-text">Intervjuu</h2></Col>
                 </Row>
                 <Row className="text-center">
                     <Col>
@@ -76,6 +67,13 @@ function Help() {
                     </Col>
                 </Row>
                 <Row className="text-center">
+                    <Col className="help_text">
+                        <p>Kandidaadi testitulemused ning ka informatsioon on õppekavati erinev, kuid on nähtav detailvaates. 
+                            "Admin märkmed" on informatsioon, mille on Katri Loik pannud koos SAIS'ist tuleva kandidaadi taustainformatsiooniga 
+                            kaasa.</p>
+                    </Col>
+                </Row>
+                <Row className="text-center">
                     <Col>
                         <Figure.Image
                             src={help_img_3}
@@ -87,12 +85,30 @@ function Help() {
                 </Row>
                 <Row className="text-center">
                     <Col className="help_text">
-                        <p>Kandidaadi testitulemused ning ka informatsioon on õppekavati erinev, kuid on nähtav detailvaates. 
-                            "Admin märkmed" on informatsioon, mille on Katri Loik pannud koos SAIS'ist tuleva kandidaadi taustainformatsiooniga 
-                            kaasa. Intervjuu hindamise alal olevate kategooriate nimetusi, punktiskaalat, silte kui ka lõpliku punktisumma jaoks 
+                        <p>Intervjuu hindamise alal olevate kategooriate nimetusi, punktiskaalat, silte kui ka lõpliku punktisumma jaoks 
                             kasutatavat valemit saab paluda vajaduse korral muuta Mihklil. Kandidaadi punktide sisestamine on kõikidele vastuvõtukomisjonis 
                             individuaalne, sama kehtib ka siltidele ja kommentaarie. Kui intervjuu on lõpetatud, palun vajuta "Salvesta" nuppu. 
                             Kui oled kogemata avanud vale kandidaadi, saad väljuda hindamises ilma salvestamata "Katkesta" nupu kaudu.</p>
+                    </Col>
+                </Row>
+                <Row className="text-center">
+                    <Col>
+                        <Figure.Image
+                            src={help_img_11}
+                            width="1000"
+                            className="center"
+                            alt="User help" 
+                        />
+                    </Col>
+                </Row>
+                <Row className="text-center"> 
+                    <Col>
+                        <Figure.Image
+                            src={help_img_1}
+                            width="300"
+                            className="center"
+                            alt="User help" 
+                        />
                     </Col>
                 </Row>
                 {role === "Admin" &&
