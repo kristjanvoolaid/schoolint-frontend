@@ -463,13 +463,18 @@ class CandidateCardDetails extends Component {
                             <Popup trigger={<button className="button1">Salvesta</button>} modal>
                                 {close => (
                                     <div>
-                                        <div>
-                                            <p>Kas oled kindel, et soovid salvestada ja väljuda?</p>
-                                        </div>
-                                        <button className="button2" onClick={close}>Sulge</button>
-                                        <Link to="/candidates">
-                                            <button className="button1" onClick={this.candidateChanges}>Salvesta</button>
-                                        </Link>
+                                        <Row className="text-center delete_list_title">
+                                            <Col><h4>Kas oled kindel, et soovid salvestada ja väljuda?</h4></Col>
+                                        </Row>
+                                        <Row className="text-center">
+                                            <Col>
+                                            <button className="button2" onClick={close}>Sulge</button>
+                                            &nbsp;
+                                            <Link to="/candidates">
+                                                <button className="button1" onClick={this.candidateChanges}>Salvesta</button>
+                                            </Link>
+                                            </Col>
+                                        </Row>
                                     </div>
                                 )}
                             </Popup>
