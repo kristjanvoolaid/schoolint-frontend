@@ -28,12 +28,5 @@
 }
 
 .error_message {
-  background-color: #F8F8F8;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-  padding: 10px;
   color: #FF5733;
-  font-size: 15px;
-  margin-top: 50px;
-  font-weight: 500;
 }

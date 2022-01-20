@@ -98,8 +98,13 @@
 }
 
 .error_box_list {
-    margin-top: 5px;
+    background-color: #F8F8F8;
+    border: 1px solid lightgray;
+    border-radius: 4px;
     padding: 10px;
+    font-size: 15px;
+    margin-top: 50px;
+    font-weight: 500;
 }
 
 .r_mrg {

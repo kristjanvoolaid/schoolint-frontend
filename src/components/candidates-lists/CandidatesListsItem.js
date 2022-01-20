@@ -75,7 +75,7 @@ class CandidatesListsItem extends Component {
             })
             .then(response => response.data)
             .then(result => window.location.reload())
-            .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!', load: false }))
+            .catch(error => this.setState({ err: error.response.data.error, load: false }))
         }, 5000);
     }
 
