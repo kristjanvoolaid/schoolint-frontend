@@ -94,7 +94,7 @@ class CandidatesListsFetch extends Component {
             })
             .then(response => response.data)
             .then(result => window.location.reload())
-            .catch(error => this.setState({ err: 'Faili importimisega tekkis probleem!', load: false }))
+            .catch(error => this.setState({ err: error.response.data.error, load: false }))
         }, 5000);
     }
 
@@ -185,12 +185,12 @@ class CandidatesListsFetch extends Component {
                                                 <Button type="button" className="import_btn l_mrg" onClick={this.listDataToBackend}>Import</Button>
                                             </Col>
                                         </Row>
-                                        {this.state.err &&
-                                            <Row className="text-center">
-                                                <Col className="error_box_list">
-                                                    <span className="error_message">{this.state.err}</span>
-                                                </Col>
-                                            </Row>
+                                            {this.state.err &&
+                                        <Col className="text-center">
+                                            <Col className="error_box_list">
+                                                <span className="error_message">{this.state.err}</span>
+                                            </Col>
+                                        </Col>
                                         }
                                         {this.state.load &&
                                             <Row className="text-center">
