@@ -51,11 +51,22 @@ class Candidates extends Component {
 
     render() {
         const { candidates, error } = this.state;
-        let emptySearch;
-        const fileteredCandidates = candidates.filter(candidates => {
+      let emptySearch;
+      function GetSortOrder(prop) {    
+        return function(b, a) {    
+            if (a[prop] > b[prop]) {    
+                return 1;    
+            } else if (a[prop] < b[prop]) {    
+                return -1;    
+            }    
+            return 0;    
+        }    
+    }    
+      const sortedCandidates = candidates.sort(GetSortOrder("present"));
+        const fileteredCandidates = sortedCandidates.filter(candidates => {
           const firstNameFilter = candidates.firstName.toLowerCase().includes(this.state.searchField.toLowerCase());
           const lastNameFilter = candidates.lastName.toLowerCase().includes(this.state.searchField.toLowerCase());
-          // const personalIdFilter = candidates.personalId.includes(this.state.searchField);
+          const personalIdFilter = candidates.personalId.toString().includes(this.state.searchField);
 
           // if (firstNameFilter) {
           //   return firstNameFilter;
@@ -69,7 +80,9 @@ class Candidates extends Component {
             return firstNameFilter;
           } else if (lastNameFilter) {
             return lastNameFilter;
-          } 
+          } else if (personalIdFilter) {
+            return personalIdFilter;
+          }
           
         });
 

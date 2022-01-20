@@ -17,6 +17,7 @@
     text-decoration: none;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
+    white-space: nowrap;
 }
 
 .secondary-text {
@@ -27,11 +28,11 @@
     margin-top: 30px;
 }
 .candidates-list-header {
-    font-size: 30px;
-    margin-bottom: 5px;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid lightgray;
 }
 
 .list-item {
@@ -46,6 +47,7 @@
 }
 
 .list-item_present {
+    margin-top: 15px;
     margin-bottom: 15px;
     background:  rgb(164,214,94);
     border: 1px lightgray solid;
