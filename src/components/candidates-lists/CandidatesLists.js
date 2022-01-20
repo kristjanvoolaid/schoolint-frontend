@@ -96,7 +96,7 @@ class CandidatesLists extends Component {
         const { candidatesLists } = this.props;
         return (
             <div>
-                <Container className="text-center">
+                <Container className="text-center mt-5">
                 <Row>
                     <Col md={{ offset: 11 }}>
                         <Popup trigger={<button className="list_import_btn">Import</button>} modal>
